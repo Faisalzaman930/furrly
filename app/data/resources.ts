@@ -1,0 +1,133 @@
+export interface Resource {
+  id: string;
+  title: string;
+  category: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  emoji: string;
+  slug: string;
+}
+
+export const resourcesData: Resource[] = [
+  {
+    id: "1",
+    title: "New Puppy: The First 30 Days",
+    category: "Guide",
+    excerpt: "Everything you need to know about welcoming your new companion home, from crate training to the first vet visit.",
+    date: "2024-03-15",
+    readTime: "5 min read",
+    emoji: "🐶",
+    slug: "new-puppy-guide",
+  },
+  {
+    id: "2",
+    title: "Traveling with Pets: SF Pro Tips",
+    category: "Travel",
+    excerpt: "Navigating San Francisco with a pet? From dog-friendly cable cars to the best parks, we've got you covered.",
+    date: "2024-03-20",
+    readTime: "7 min read",
+    emoji: "🌉",
+    slug: "traveling-sf-pets",
+  },
+  {
+    id: "3",
+    title: "Emergency Care: First Steps",
+    category: "Medical",
+    excerpt: "What to do in a pet medical emergency. Key steps to take before you reach the vet concierge.",
+    date: "2024-03-25",
+    readTime: "4 min read",
+    emoji: "🏥",
+    slug: "emergency-pet-care",
+  },
+  {
+    id: "4",
+    title: "Understanding Pet Nutrition",
+    category: "Health",
+    excerpt: "A deep dive into reading pet food labels and choosing the right diet for your breed's specific needs.",
+    date: "2024-03-28",
+    readTime: "6 min read",
+    emoji: "🥣",
+    slug: "pet-nutrition-basics",
+  },
+  {
+    id: "5",
+    title: "Senior Pet Care Strategies",
+    category: "Guide",
+    excerpt: "As your pet ages, their needs change. Learn how to adapt their exercise, diet, and home environment.",
+    date: "2024-04-01",
+    readTime: "8 min read",
+    emoji: "👴",
+    slug: "senior-pet-care",
+  },
+  {
+    id: "6",
+    title: "The Art of Socialization",
+    category: "Social",
+    excerpt: "How to use Furrly Playdates to safely introduce your pet to new friends and build confidence.",
+    date: "2024-04-05",
+    readTime: "5 min read",
+    emoji: "🎉",
+    slug: "pet-socialization-art",
+  },
+  {
+    id: "7",
+    title: "Cat Behavior Decoded",
+    category: "Behavior",
+    excerpt: "Why do cats knead? What does that tail flick mean? Understanding the subtle language of felines.",
+    date: "2024-04-10",
+    readTime: "5 min read",
+    emoji: "🐈",
+    slug: "cat-behavior-decoded",
+  },
+  {
+    id: "8",
+    title: "Grooming at Home: A Guide",
+    category: "Health",
+    excerpt: "Save time and build trust by learning the basics of pet grooming from the comfort of your living room.",
+    date: "2024-04-12",
+    readTime: "6 min read",
+    emoji: "✂️",
+    slug: "home-grooming-basics",
+  },
+  {
+    id: "9",
+    title: "First-Time Foster Tips",
+    category: "Community",
+    excerpt: "Thinking of fostering? Here's what to expect and how to prepare your home for a temporary guest.",
+    date: "2024-04-15",
+    readTime: "7 min read",
+    emoji: "💖",
+    slug: "first-time-foster",
+  },
+  {
+    id: "10",
+    title: "Pet Photography 101",
+    category: "Social",
+    excerpt: "How to capture the perfect shot for your Furrly social feed. Lighting, timing, and treat-motivation.",
+    date: "2024-04-18",
+    readTime: "4 min read",
+    emoji: "📸",
+    slug: "pet-photography-tips",
+  },
+  {
+    id: "11",
+    title: "Managing Pet Allergies",
+    category: "Health",
+    excerpt: "Identify common seasonal and food allergies in pets and how to manage them effectively.",
+    date: "2024-04-20",
+    readTime: "6 min read",
+    emoji: "🤧",
+    slug: "managing-pet-allergies",
+  },
+  {
+    id: "12",
+    title: "Rescue Adoption Checklist",
+    category: "Guide",
+    excerpt: "You've been approved! Here is everything you need to have ready before you bring your rescue pet home.",
+    date: "2024-04-22",
+    readTime: "5 min read",
+    emoji: "🏠",
+    slug: "adoption-checklist",
+  },
+];
