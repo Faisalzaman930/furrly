@@ -319,7 +319,7 @@ export default function Home() {
                 <defs><radialGradient id="grad2"><stop stopColor="#fff" /><stop offset="1" stopColor="#fff" stopOpacity="0" /></radialGradient></defs>
               </svg>
             </div>
-            <div className="relative">
+            <div className="relative text-center">
               <p className="text-white/70 font-black uppercase tracking-widest text-xs mb-4">Free to Download</p>
               <h2 className="text-5xl md:text-7xl font-black text-white leading-[0.9] uppercase mb-6">
                 Your Pet's Life,<br />Organized.
@@ -327,7 +327,9 @@ export default function Home() {
               <p className="text-xl text-white/80 max-w-xl mx-auto leading-relaxed mb-12">
                 Join 50,000+ pet parents who've replaced five apps with one. Download Furrly free today.
               </p>
-              <DownloadButtons light center />
+              <div className="flex justify-center">
+                <DownloadButtons light center />
+              </div>
             </div>
           </div>
         </div>
