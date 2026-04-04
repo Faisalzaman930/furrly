@@ -4,6 +4,7 @@ import { SymptomArticle, symptomArticles, UrgencyLevel } from "../data/symptom-a
 import Link from "next/link";
 import ContactSection from "./ContactSection";
 import { md } from "../utils/markdown";
+import RelatedTools from "./RelatedTools";
 
 const urgencyConfig: Record<UrgencyLevel, { bg: string; border: string; text: string; label: string }> = {
   emergency: { bg: "bg-red-600", border: "border-red-700", text: "text-white", label: "EMERGENCY — Go to vet now" },
@@ -185,6 +186,7 @@ export default function SymptomLayout({ article }: { article: SymptomArticle }) 
         </section>
       )}
 
+      <RelatedTools slugs={["symptom-checker", "pet-health-quiz", "vaccine-tracker", "toxic-food", "first-aid-quiz"]} />
       <ContactSection />
     </div>
   );

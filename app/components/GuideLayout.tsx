@@ -5,6 +5,7 @@ import { guides } from "../data/guides";
 import Hero from "./Hero";
 import Link from "next/link";
 import ContactSection from "./ContactSection";
+import RelatedTools from "./RelatedTools";
 
 export default function GuideLayout({ guide }: { guide: Guide }) {
   const related = guides.filter(g => guide.relatedSlugs.includes(g.slug));
@@ -77,6 +78,7 @@ export default function GuideLayout({ guide }: { guide: Guide }) {
         </section>
       )}
 
+      <RelatedTools slugs={["age-calculator", "feeding-calculator", "vaccine-tracker", "insurance-cost", "pet-health-quiz", "pet-owner-quiz"]} />
       <ContactSection />
     </div>
   );

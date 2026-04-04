@@ -4,6 +4,7 @@ import { BreedArticle, breedArticles } from "../data/breed-articles";
 import Link from "next/link";
 import ContactSection from "./ContactSection";
 import { md } from "../utils/markdown";
+import RelatedTools from "./RelatedTools";
 
 function ScoreBar({ label, score }: { label: string; score: number }) {
   return (
@@ -195,6 +196,7 @@ export default function BreedLayout({ article }: { article: BreedArticle }) {
         </section>
       )}
 
+      <RelatedTools slugs={["breed-compare", "best-dog-quiz", "best-cat-quiz", "feeding-calculator", "pet-bmi", "age-calculator"]} />
       <ContactSection />
     </div>
   );

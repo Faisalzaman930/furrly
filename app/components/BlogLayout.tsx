@@ -6,6 +6,7 @@ import Link from "next/link";
 import ContactSection from "./ContactSection";
 import Image from "next/image";
 import { useState } from "react";
+import RelatedTools from "./RelatedTools";
 
 // ─── Hero images per article category ────────────────────────────────────────
 
@@ -173,6 +174,35 @@ function FaqItem({ faq }: { faq: { q: string; a: string } }) {
       )}
     </div>
   );
+}
+
+// ─── Tool interlinking map ────────────────────────────────────────────────────
+
+const articleToolMap: Record<string, string[]> = {
+  "best-dog-walking-apps":          ["pet-sitter-cost", "sitting-comparison", "pet-owner-quiz"],
+  "best-pet-sitting-apps":          ["pet-sitter-cost", "sitting-comparison", "packing-checklist"],
+  "best-pet-social-media-apps":     ["photo-tips", "pet-owner-quiz", "birthday-countdown"],
+  "best-pet-dating-playdate-apps":  ["best-dog-quiz", "breed-compare", "age-calculator"],
+  "best-pet-health-parenting-apps": ["symptom-checker", "pet-health-quiz", "vaccine-tracker"],
+  "best-virtual-vet-telehealth-apps":["symptom-checker", "first-aid-quiz", "vaccine-tracker"],
+  "best-pet-adoption-rescue-apps":  ["best-dog-quiz", "best-cat-quiz", "breed-compare", "name-generator"],
+  "best-pet-fostering-network-apps":["best-dog-quiz", "best-cat-quiz", "insurance-cost"],
+  "best-gps-pet-tracking-apps":     ["symptom-checker", "first-aid-quiz", "pet-health-quiz"],
+  "best-lost-pet-recovery-apps":    ["symptom-checker", "first-aid-quiz", "vaccine-tracker"],
+  "best-dog-training-apps":         ["age-calculator", "feeding-calculator", "pet-owner-quiz"],
+  "best-pet-camera-monitoring-apps":["symptom-checker", "first-aid-quiz", "pet-health-quiz"],
+  "best-pet-diet-nutrition-apps":   ["feeding-calculator", "pet-bmi", "toxic-food", "age-calculator"],
+  "best-pet-first-aid-apps":        ["first-aid-quiz", "symptom-checker", "vaccine-tracker", "toxic-food"],
+  "best-pet-insurance-estimators":  ["insurance-cost", "pet-health-quiz", "vaccine-tracker"],
+  "best-pet-photography-apps":      ["photo-tips", "birthday-countdown", "pet-owner-quiz"],
+  "best-pet-travel-hotel-finder-apps":["packing-checklist", "pet-sitter-cost", "insurance-cost"],
+  "best-pet-ecommerce-shopping-apps":["feeding-calculator", "pet-bmi", "toxic-food"],
+  "best-dog-park-finder-apps":      ["breed-compare", "best-dog-quiz", "age-calculator"],
+  "best-all-in-one-pet-super-apps": ["symptom-checker", "feeding-calculator", "breed-compare", "insurance-cost"],
+};
+
+function getToolsForArticle(slug: string): string[] {
+  return articleToolMap[slug] ?? ["symptom-checker", "feeding-calculator", "breed-compare", "pet-health-quiz"];
 }
 
 // ─── Main Layout ──────────────────────────────────────────────────────────────
@@ -469,6 +499,7 @@ export default function BlogLayout({ article, allArticles }: { article: Article;
         </section>
       )}
 
+      <RelatedTools slugs={getToolsForArticle(article.slug)} />
       <ContactSection />
     </div>
   );

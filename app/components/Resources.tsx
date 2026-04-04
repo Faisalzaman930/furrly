@@ -1,31 +1,34 @@
 import React from "react";
 import Link from "next/link";
 
-const Resources = () => {
-  const articles = [
-    {
-      title: "New Puppy: The First 30 Days",
-      category: "Guide",
-      desc: "Our comprehensive guide to making your new arrival feel at home.",
-      time: "5 min read",
-      emoji: "🐶",
-    },
-    {
-      title: "Traveling with Pets: SF Pro Tips",
-      category: "Logistics",
-      desc: "How to navigate San Francisco with your companion, safely.",
-      time: "7 min read",
-      emoji: "🌉",
-    },
-    {
-      title: "Emergency Care: What to Do",
-      category: "Medical",
-      desc: "Critical steps to take in the first minutes of a pet medical emergency.",
-      time: "4 min read",
-      emoji: "👩‍⚕️",
-    },
-  ];
+const featured = [
+  {
+    slug: "3-3-3-rule-for-rescue-dogs",
+    title: "The 3-3-3 Rule for Rescue Dogs",
+    category: "Expert Guide",
+    desc: "The essential decompression framework every new rescue owner needs before day one.",
+    time: "12 min read",
+    emoji: "🐕",
+  },
+  {
+    slug: "how-to-crate-train-a-puppy",
+    title: "How to Crate Train a Puppy",
+    category: "How-To",
+    desc: "A step-by-step guide that actually works — without the crying, guilt, or guesswork.",
+    time: "8 min read",
+    emoji: "🏠",
+  },
+  {
+    slug: "best-dog-walking-apps",
+    title: "Best Dog Walking Apps Tested",
+    category: "App Review",
+    desc: "We tested every major platform across 30 days of real-world scenarios. Here's what we found.",
+    time: "18 min read",
+    emoji: "🦮",
+  },
+];
 
+const Resources = () => {
   return (
     <section className="py-24 bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -35,12 +38,16 @@ const Resources = () => {
             <p className="mt-2 text-3xl font-bold tracking-tight text-ebony sm:text-5xl uppercase">Resources for Pet Parents</p>
           </div>
           <Link href="/resources" className="text-sm font-bold uppercase tracking-widest text-ebony hover:text-brand-start transition-colors border-b-2 border-brand-start pb-1">
-             View All Resources <span aria-hidden="true">→</span>
+            View All Resources <span aria-hidden="true">→</span>
           </Link>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {articles.map((a) => (
-            <div key={a.title} className="flex flex-col items-start bg-gray-50 p-10 rounded-[4rem] group hover:bg-white hover:ring-1 hover:ring-gray-100 hover:shadow-2xl transition-all">
+          {featured.map((a) => (
+            <Link
+              key={a.slug}
+              href={`/resources/${a.slug}`}
+              className="flex flex-col items-start bg-gray-50 p-10 rounded-[4rem] group hover:bg-white hover:ring-1 hover:ring-gray-100 hover:shadow-2xl transition-all"
+            >
               <div className="h-16 w-16 rounded-3xl bg-white flex items-center justify-center text-4xl mb-8 group-hover:scale-110 transition-transform shadow-sm">
                 {a.emoji}
               </div>
@@ -55,9 +62,9 @@ const Resources = () => {
                 {a.desc}
               </p>
               <div className="mt-10">
-                 <button className="text-sm font-bold uppercase tracking-widest text-ebony group-hover:text-brand-start">Read Article</button>
+                <span className="text-sm font-bold uppercase tracking-widest text-ebony group-hover:text-brand-start transition-colors">Read Article →</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

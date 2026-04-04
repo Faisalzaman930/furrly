@@ -4,6 +4,7 @@ import { HowToArticle, howToArticles } from "../data/howto";
 import Link from "next/link";
 import ContactSection from "./ContactSection";
 import { md } from "../utils/markdown";
+import RelatedTools from "./RelatedTools";
 
 function QuickAnswerBox({ answer }: { answer: string }) {
   return (
@@ -205,6 +206,7 @@ export default function HowToLayout({ article }: { article: HowToArticle }) {
         </section>
       )}
 
+      <RelatedTools slugs={["feeding-calculator", "packing-checklist", "photo-tips", "pet-bmi", "toxic-food", "first-aid-quiz"]} />
       <ContactSection />
     </div>
   );

@@ -4,6 +4,7 @@ import { PillarPage, pillarPages } from "../data/pillars";
 import Link from "next/link";
 import ContactSection from "./ContactSection";
 import { md } from "../utils/markdown";
+import RelatedTools from "./RelatedTools";
 
 const typeColors: Record<string, string> = {
   "how-to": "bg-blue-100 text-blue-800",
@@ -179,6 +180,7 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
         </section>
       )}
 
+      <RelatedTools slugs={["symptom-checker", "breed-compare", "feeding-calculator", "vaccine-tracker", "pet-health-quiz", "insurance-cost"]} />
       <ContactSection />
     </div>
   );
