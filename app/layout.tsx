@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "Furrly — Pet Social, Adoption, Vets & Lost & Found App",
+    default: "Furrly — One App for Every Pet Parent Need",
     template: "%s | Furrly",
   },
   description: "Download Furrly, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
@@ -18,12 +18,12 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "Furrly",
     type: "website",
-    title: "Furrly — Pet Social, Adoption, Vets & Lost & Found App",
+    title: "Furrly — One App for Every Pet Parent Need",
     description: "Download Furrly, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Furrly — Pet Social, Adoption, Vets & Lost & Found App",
+    title: "Furrly — One App for Every Pet Parent Need",
     description: "Social networking, playdates, adoption, vet discovery, and lost & found — all in one free app for pet parents.",
   },
 };
