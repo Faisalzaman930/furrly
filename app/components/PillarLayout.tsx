@@ -3,169 +3,343 @@
 import { PillarPage, pillarPages } from "../data/pillars";
 import Link from "next/link";
 import ContactSection from "./ContactSection";
-import { md } from "../utils/markdown";
 import RelatedTools from "./RelatedTools";
+import { md } from "../utils/markdown";
+import { useState, useEffect, useRef } from "react";
 
-const typeColors: Record<string, string> = {
-  "how-to": "bg-blue-100 text-blue-800",
-  "symptom": "bg-amber-100 text-amber-800",
-  "breed": "bg-purple-100 text-purple-800",
-  "definition": "bg-teal-100 text-teal-800",
-  "guide": "bg-emerald-100 text-emerald-800",
-  "article": "bg-gray-100 text-gray-700",
+const typeConfig: Record<string, { bg: string; text: string; label: string; emoji: string }> = {
+  "how-to":     { bg: "bg-blue-50",    text: "text-blue-700",    label: "How-To",        emoji: "📋" },
+  "symptom":    { bg: "bg-red-50",     text: "text-red-700",     label: "Symptom Guide", emoji: "🩺" },
+  "breed":      { bg: "bg-purple-50",  text: "text-purple-700",  label: "Breed Guide",   emoji: "🐾" },
+  "definition": { bg: "bg-teal-50",    text: "text-teal-700",    label: "Glossary",      emoji: "📖" },
+  "guide":      { bg: "bg-emerald-50", text: "text-emerald-700", label: "Expert Guide",  emoji: "⭐" },
+  "article":    { bg: "bg-gray-50",    text: "text-gray-600",    label: "Article",       emoji: "📰" },
 };
 
-const typeLabels: Record<string, string> = {
-  "how-to": "How-To",
-  "symptom": "Symptom Guide",
-  "breed": "Breed Guide",
-  "definition": "Health Glossary",
-  "guide": "Expert Guide",
-  "article": "Article",
-};
+function ReadingProgress() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const update = () => {
+      const el = document.documentElement;
+      const scrolled = el.scrollTop;
+      const total = el.scrollHeight - el.clientHeight;
+      setProgress(total > 0 ? Math.round((scrolled / total) * 100) : 0);
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
+  return (
+    <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-gray-100">
+      <div
+        className="h-full bg-brand-gradient transition-all duration-100"
+        style={{ width: `${progress}%` }}
+      />
+    </div>
+  );
+}
+
+function ChapterNav({ chapters, activeIdx }: { chapters: PillarPage["chapters"]; activeIdx: number }) {
+  return (
+    <nav className="space-y-1">
+      {chapters.map((ch, i) => (
+        <a
+          key={i}
+          href={`#chapter-${i}`}
+          className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
+            activeIdx === i
+              ? "bg-brand-start/10 text-brand-start"
+              : "text-slate-gray hover:text-ebony hover:bg-gray-50"
+          }`}
+        >
+          <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black transition-all ${
+            activeIdx === i ? "bg-brand-gradient text-white" : "bg-gray-100 text-slate-gray"
+          }`}>{i + 1}</span>
+          <span className="leading-snug line-clamp-2">{ch.title}</span>
+        </a>
+      ))}
+      <a
+        href="#cluster"
+        className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold text-slate-gray hover:text-ebony hover:bg-gray-50 transition-all"
+      >
+        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs">📚</span>
+        All Resources
+      </a>
+      <a
+        href="#faqs"
+        className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold text-slate-gray hover:text-ebony hover:bg-gray-50 transition-all"
+      >
+        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs">❓</span>
+        FAQs
+      </a>
+    </nav>
+  );
+}
 
 export default function PillarLayout({ page }: { page: PillarPage }) {
   const related = pillarPages.filter(p => p.slug !== page.slug).slice(0, 3);
+  const [activeChapter, setActiveChapter] = useState(0);
+  const chapterRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observers = page.chapters.map((_, i) => {
+      const el = chapterRefs.current[i];
+      if (!el) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveChapter(i); },
+        { rootMargin: "-30% 0px -60% 0px" }
+      );
+      obs.observe(el);
+      return obs;
+    });
+    return () => observers.forEach(o => o?.disconnect());
+  }, [page.chapters]);
+
+  // Group cluster articles by type
+  const clusterByType = page.clusterArticles.reduce<Record<string, typeof page.clusterArticles>>((acc, item) => {
+    if (!acc[item.type]) acc[item.type] = [];
+    acc[item.type].push(item);
+    return acc;
+  }, {});
+
+  const typeOrder = ["how-to", "guide", "symptom", "breed", "definition", "article"];
 
   return (
     <div className="bg-white">
-      {/* Hero */}
-      <div className="bg-brand-gradient py-24 px-6">
-        <div className="mx-auto max-w-4xl text-center">
+      <ReadingProgress />
+
+      {/* ── HERO ── */}
+      <div className="bg-brand-gradient py-24 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 pointer-events-none select-none flex items-center justify-end pr-16">
+          <span className="text-[14rem] font-black text-white leading-none">✦</span>
+        </div>
+        <div className="relative mx-auto max-w-4xl">
+          <nav className="flex items-center gap-2 text-white/60 text-xs font-bold uppercase tracking-widest mb-6">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/resources" className="hover:text-white transition-colors">Resources</Link>
+            <span>/</span>
+            <span className="text-white/80">{page.shortTitle}</span>
+          </nav>
           <span className="inline-block bg-white/20 text-white font-black text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
-            {page.category}
+            {page.category} · {page.readTime}
           </span>
-          <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6">{page.title}</h1>
-          <p className="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto mb-8">{page.seoDescription}</p>
-          <div className="flex items-center justify-center gap-4 text-white/60 text-xs font-bold uppercase tracking-widest">
-            <span>{page.publishDate}</span>
-            <span>•</span>
-            <span>{page.readTime}</span>
-          </div>
-        </div>
-      </div>
+          <h1 className="text-4xl md:text-6xl font-black text-white leading-[0.95] tracking-tighter mb-6">
+            {page.title}
+          </h1>
+          <p className="text-white/80 text-lg leading-relaxed max-w-2xl mb-10">{page.seoDescription}</p>
 
-      {/* Quick Answer */}
-      <div className="mx-auto max-w-4xl px-6 lg:px-8 pt-16">
-        <div className="bg-brand-start/5 border-l-4 border-brand-start rounded-r-[2rem] p-8 mb-16">
-          <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-3">Quick Answer</p>
-          <p className="text-lg text-ebony leading-relaxed font-medium">{page.quickAnswer}</p>
-        </div>
-      </div>
-
-      <div className="mx-auto max-w-4xl px-6 lg:px-8 pb-20">
-        {/* Introduction */}
-        <div
-          className="prose prose-lg max-w-none text-slate-gray leading-relaxed mb-20 [&_strong]:text-ebony [&_a]:text-brand-start [&_a]:font-bold [&_h2]:text-2xl [&_h2]:font-black [&_h2]:text-ebony [&_h3]:text-xl [&_h3]:font-black [&_h3]:text-ebony"
-          dangerouslySetInnerHTML={{ __html: md(page.introduction) }}
-        />
-
-        {/* Chapter Navigation */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-black text-ebony uppercase tracking-tighter mb-10 border-l-8 border-brand-start pl-6">What's In This Guide</h2>
-          <div className="space-y-6">
-            {page.chapters.map((chapter, i) => (
-              <div key={i} className="flex gap-6 bg-gray-50 rounded-[2rem] p-7 border border-gray-100 hover:border-brand-start/30 transition-colors">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-brand-gradient flex items-center justify-center text-white font-black text-sm">
-                  {i + 1}
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="font-black text-ebony text-lg mb-2">{chapter.title}</h3>
-                    {chapter.linkedSlug && (
-                      <Link
-                        href={`/resources/${chapter.linkedSlug}`}
-                        className="flex-shrink-0 text-[10px] font-black text-brand-start bg-brand-start/10 px-3 py-1.5 rounded-full hover:bg-brand-start/20 transition-colors uppercase tracking-widest"
-                      >
-                        Deep Dive →
-                      </Link>
-                    )}
-                  </div>
-                  <p className="text-sm text-slate-gray">{chapter.summary}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Full Chapter Content */}
-        <div className="space-y-20 mb-20">
-          {page.chapters.map((chapter, i) => (
-            <div key={i} id={`chapter-${i + 1}`}>
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 rounded-full bg-brand-gradient flex items-center justify-center text-white font-black text-lg flex-shrink-0">
-                  {i + 1}
-                </div>
-                <h2 className="text-3xl font-black text-ebony uppercase tracking-tighter">{chapter.title}</h2>
-              </div>
-              <div
-                className="prose prose-lg max-w-none text-slate-gray leading-relaxed mb-8 [&_strong]:text-ebony [&_a]:text-brand-start [&_a]:font-bold [&_h3]:text-xl [&_h3]:font-black [&_h3]:text-ebony"
-                dangerouslySetInnerHTML={{ __html: md(chapter.content) }}
-              />
-              {chapter.linkedSlug && (
-                <Link
-                  href={`/resources/${chapter.linkedSlug}`}
-                  className="inline-flex items-center gap-2 text-brand-start font-black uppercase tracking-widest text-sm hover:gap-4 transition-all"
-                >
-                  Read the full guide on this topic →
-                </Link>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Cluster Article Grid */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-black text-ebony uppercase tracking-tighter mb-10 border-l-8 border-brand-start pl-6">All Resources in This Topic</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {page.clusterArticles.map(cluster => (
-              <Link
-                href={`/resources/${cluster.slug}`}
-                key={cluster.slug}
-                className="group bg-gray-50 border border-gray-200 rounded-[2rem] p-6 hover:border-brand-start/30 hover:shadow-md transition-all"
+          {/* Chapter pills */}
+          <div className="flex flex-wrap gap-2">
+            {page.chapters.map((ch, i) => (
+              <a
+                key={i}
+                href={`#chapter-${i}`}
+                className="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all border border-white/20"
               >
-                <span className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block ${typeColors[cluster.type] || "bg-gray-100 text-gray-700"}`}>
-                  {typeLabels[cluster.type] || cluster.type}
-                </span>
-                <h3 className="font-black text-ebony leading-snug group-hover:text-brand-start transition-colors">{cluster.title}</h3>
-              </Link>
+                <span className="w-4 h-4 rounded-full bg-white/30 flex items-center justify-center text-[10px]">{i + 1}</span>
+                {ch.title.split(":")[0].split("(")[0].trim()}
+              </a>
             ))}
           </div>
-        </div>
 
-        {/* FAQs */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-black text-ebony uppercase tracking-tighter mb-8 border-l-8 border-brand-start pl-6">Frequently Asked Questions</h2>
-          <div className="space-y-6">
-            {page.faqs.map((faq, i) => (
-              <div key={i} className="border-b border-gray-100 pb-6">
-                <h3 className="font-black text-ebony text-lg mb-3">{faq.q}</h3>
-                <div
-                  className="text-slate-gray leading-relaxed [&_strong]:text-ebony [&_a]:text-brand-start [&_a]:font-bold"
-                  dangerouslySetInnerHTML={{ __html: md(faq.a) }}
-                />
-              </div>
-            ))}
+          <div className="flex items-center gap-6 text-white/50 text-xs font-bold uppercase tracking-widest mt-10">
+            <span>Updated: {page.lastUpdated}</span>
+            <span className="h-1 w-1 rounded-full bg-white/30" />
+            <span>{page.clusterArticles.length} Resources in This Cluster</span>
           </div>
-        </div>
-
-        {/* CTA */}
-        <div className="bg-brand-gradient rounded-[3rem] p-12 text-center">
-          <p className="text-white/80 text-sm font-bold uppercase tracking-widest mb-3">{page.ctaFeature}</p>
-          <p className="text-white font-black text-3xl mb-6">{page.ctaText}</p>
-          <Link
-            href="/#download"
-            className="inline-block bg-white text-brand-start font-black py-4 px-12 rounded-[2rem] hover:scale-105 active:scale-95 transition-transform uppercase tracking-widest text-sm shadow-xl"
-          >
-            Get Furrly Free
-          </Link>
         </div>
       </div>
 
-      {/* Other Pillar Pages */}
+      {/* ── QUICK ANSWER BANNER ── */}
+      <div className="bg-brand-start/5 border-b border-brand-start/20 px-6 py-8">
+        <div className="mx-auto max-w-4xl flex gap-5 items-start">
+          <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-brand-gradient flex items-center justify-center text-white font-black text-sm mt-0.5">✓</div>
+          <div>
+            <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-2">The Short Answer</p>
+            <p className="text-base text-ebony leading-relaxed font-medium">{page.quickAnswer}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── MAIN LAYOUT: sidebar + content ── */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+          {/* ── STICKY SIDEBAR ── */}
+          <aside className="hidden lg:block lg:col-span-3">
+            <div className="sticky top-24 space-y-6">
+              <div className="bg-gray-50 rounded-[2rem] p-6 border border-gray-100">
+                <p className="text-[10px] font-black text-ebony uppercase tracking-widest mb-4">In This Guide</p>
+                <ChapterNav chapters={page.chapters} activeIdx={activeChapter} />
+              </div>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2">
+                {page.tags.map(tag => (
+                  <span key={tag} className="bg-gray-100 text-slate-gray text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">{tag}</span>
+                ))}
+              </div>
+
+              {/* Mini CTA */}
+              <div className="bg-ebony rounded-[2rem] p-6 text-center">
+                <p className="text-white font-black text-sm mb-4 leading-snug">{page.ctaText}</p>
+                <Link
+                  href={page.ctaFeature}
+                  className="block bg-brand-gradient text-white font-black py-3 px-5 rounded-xl uppercase tracking-widest text-[10px] hover:scale-105 transition-transform"
+                >
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+          </aside>
+
+          {/* ── MAIN CONTENT ── */}
+          <main className="lg:col-span-9">
+
+            {/* Introduction */}
+            <div
+              className="prose prose-lg max-w-none text-slate-gray leading-relaxed mb-20 [&_strong]:text-ebony [&_a]:text-brand-start [&_a]:font-bold [&_h2]:text-2xl [&_h2]:font-black [&_h2]:text-ebony [&_h3]:text-xl [&_h3]:font-black [&_h3]:text-ebony"
+              dangerouslySetInnerHTML={{ __html: md(page.introduction) }}
+            />
+
+            {/* Chapter nav (mobile) */}
+            <div className="lg:hidden mb-12 bg-gray-50 rounded-[2rem] p-6 border border-gray-100">
+              <p className="text-[10px] font-black text-ebony uppercase tracking-widest mb-4">Jump To</p>
+              <div className="flex flex-wrap gap-2">
+                {page.chapters.map((ch, i) => (
+                  <a key={i} href={`#chapter-${i}`} className="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-ebony text-xs font-bold px-3 py-2 rounded-xl hover:border-brand-start/40 transition-colors">
+                    <span className="w-4 h-4 rounded-full bg-brand-gradient flex items-center justify-center text-[10px] text-white font-black flex-shrink-0">{i + 1}</span>
+                    {ch.title.split(":")[0].split("(")[0].trim()}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* ── CHAPTERS ── */}
+            <div className="space-y-24">
+              {page.chapters.map((chapter, i) => (
+                <div
+                  key={i}
+                  id={`chapter-${i}`}
+                  ref={el => { chapterRefs.current[i] = el; }}
+                  className="scroll-mt-28"
+                >
+                  {/* Chapter header */}
+                  <div className="flex items-start gap-5 mb-8">
+                    <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-brand-gradient flex items-center justify-center text-white font-black text-xl shadow-lg">
+                      {i + 1}
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-1">Chapter {i + 1}</p>
+                      <h2 className="text-2xl md:text-3xl font-black text-ebony leading-tight">{chapter.title}</h2>
+                      <p className="text-sm text-slate-gray mt-2 leading-relaxed">{chapter.summary}</p>
+                    </div>
+                  </div>
+
+                  {/* Chapter content */}
+                  <div
+                    className="prose prose-lg max-w-none text-slate-gray leading-relaxed
+                      [&_strong]:text-ebony [&_strong]:font-black
+                      [&_a]:text-brand-start [&_a]:font-bold [&_a]:no-underline [&_a:hover]:underline
+                      [&_h3]:text-xl [&_h3]:font-black [&_h3]:text-ebony [&_h3]:mt-8 [&_h3]:mb-4
+                      [&_ul]:space-y-2 [&_li]:leading-relaxed
+                      [&_p]:leading-relaxed [&_p]:mb-4"
+                    dangerouslySetInnerHTML={{ __html: md(chapter.content) }}
+                  />
+
+                  {/* Deep-dive link */}
+                  {chapter.linkedSlug && (
+                    <Link
+                      href={`/resources/${chapter.linkedSlug}`}
+                      className="mt-8 flex items-center gap-4 bg-brand-start/5 border border-brand-start/20 rounded-[1.5rem] p-5 hover:bg-brand-start/10 hover:border-brand-start/40 transition-all group"
+                    >
+                      <div className="flex-shrink-0 w-10 h-10 bg-brand-gradient rounded-xl flex items-center justify-center text-white text-sm font-black group-hover:scale-110 transition-transform">→</div>
+                      <div>
+                        <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-0.5">Deep Dive</p>
+                        <p className="font-black text-ebony text-sm leading-snug group-hover:text-brand-start transition-colors">Read the full guide on this topic →</p>
+                      </div>
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* ── CTA ── */}
+            <div className="mt-24 bg-brand-gradient rounded-[3rem] p-12 text-center relative overflow-hidden">
+              <div className="absolute inset-0 opacity-10 pointer-events-none select-none flex items-center justify-center">
+                <span className="text-[12rem] font-black text-white leading-none">✦</span>
+              </div>
+              <div className="relative">
+                <p className="text-white/70 text-xs font-black uppercase tracking-widest mb-3">{page.ctaFeature}</p>
+                <p className="text-white font-black text-3xl md:text-4xl mb-8 leading-tight">{page.ctaText}</p>
+                <Link
+                  href={page.ctaFeature}
+                  className="inline-block bg-white text-brand-start font-black py-4 px-12 rounded-[2rem] hover:scale-105 active:scale-95 transition-transform uppercase tracking-widest text-sm shadow-xl"
+                >
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      {/* ── CLUSTER GRID ── */}
+      <section id="cluster" className="py-20 bg-gray-50 border-t border-gray-100 scroll-mt-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-3">Complete Resource Cluster</p>
+            <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter">All {page.clusterArticles.length} Resources in This Topic</h2>
+            <p className="text-slate-gray mt-4 max-w-xl mx-auto">Every article, guide, and how-to in this cluster — organized by type so you can find exactly what you need.</p>
+          </div>
+
+          {typeOrder.filter(t => clusterByType[t]?.length > 0).map(type => {
+            const cfg = typeConfig[type];
+            const items = clusterByType[type];
+            return (
+              <div key={type} className="mb-12">
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="text-xl">{cfg.emoji}</span>
+                  <h3 className="font-black text-ebony uppercase tracking-widest text-sm">{cfg.label}s</h3>
+                  <span className="text-xs text-slate-gray font-bold bg-gray-200 px-2 py-0.5 rounded-full">{items.length}</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {items.map(item => (
+                    <Link
+                      href={`/resources/${item.slug}`}
+                      key={item.slug}
+                      className={`group ${cfg.bg} border border-transparent hover:border-brand-start/20 hover:shadow-md rounded-[1.5rem] p-5 transition-all block`}
+                    >
+                      <span className={`text-[10px] font-black uppercase tracking-widest ${cfg.text} mb-3 block`}>{cfg.label}</span>
+                      <h4 className="font-black text-ebony leading-snug group-hover:text-brand-start transition-colors text-sm">{item.title}</h4>
+                      <span className="text-xs text-slate-gray mt-2 flex items-center gap-1 group-hover:gap-2 transition-all">Read <span>→</span></span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ── FAQs ── */}
+      <section id="faqs" className="py-20 bg-white border-t border-gray-100 scroll-mt-20">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+          <h2 className="text-3xl font-black text-ebony uppercase tracking-tighter mb-12 text-center">Frequently Asked Questions</h2>
+          <div className="space-y-0 divide-y divide-gray-100">
+            {page.faqs.map((faq, i) => (
+              <FaqItem key={i} faq={faq} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── OTHER PILLAR PAGES ── */}
       {related.length > 0 && (
         <section className="py-20 bg-gray-50 border-t border-gray-100">
-          <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <h2 className="text-2xl font-black text-ebony uppercase tracking-tight mb-10 text-center">Explore More Complete Guides</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {related.map(rel => (
@@ -180,8 +354,31 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
         </section>
       )}
 
-      <RelatedTools slugs={["symptom-checker", "breed-compare", "feeding-calculator", "vaccine-tracker", "pet-health-quiz", "insurance-cost"]} />
+      <RelatedTools slugs={["symptom-checker", "breed-compare", "feeding-calculator", "vaccine-tracker", "pet-health-quiz", "age-calculator"]} />
       <ContactSection />
+    </div>
+  );
+}
+
+function FaqItem({ faq }: { faq: { q: string; a: string } }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className={`py-6 transition-all ${open ? "bg-white" : ""}`}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-start justify-between gap-6 text-left"
+      >
+        <span className="font-black text-ebony text-lg leading-snug">{faq.q}</span>
+        <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-black text-lg transition-all mt-0.5 ${
+          open ? "bg-brand-start text-white rotate-45" : "bg-gray-100 text-slate-gray"
+        }`}>+</span>
+      </button>
+      {open && (
+        <div
+          className="mt-4 text-slate-gray leading-relaxed text-base [&_strong]:text-ebony [&_a]:text-brand-start [&_a]:font-bold"
+          dangerouslySetInnerHTML={{ __html: md(faq.a) }}
+        />
+      )}
     </div>
   );
 }
