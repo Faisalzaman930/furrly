@@ -4,9 +4,28 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "Furrly: The Ultimate Pet Super-App | Social, Adoption & Vets",
+  title: {
+    default: "Furrly: The Ultimate Pet Super-App | Social, Adoption & Vets",
+    template: "%s | Furrly",
+  },
   description: "Download Furrly, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
   keywords: ["pet super-app", "best pet app", "dog social media app", "pet adoption app", "mobile vet directory", "find lost pet app", "Furrly app download"],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  openGraph: {
+    siteName: "Furrly",
+    type: "website",
+    title: "Furrly: The Ultimate Pet Super-App | Social, Adoption & Vets",
+    description: "Download Furrly, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Furrly: The Ultimate Pet Super-App",
+    description: "Social networking, playdates, adoption, vet discovery, and lost & found — all in one free app for pet parents.",
+  },
 };
 
 export default function RootLayout({

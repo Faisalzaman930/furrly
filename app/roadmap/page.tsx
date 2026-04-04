@@ -5,6 +5,16 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Furrly Roadmap & Wishlist: Build the Future of Pet Care",
   description: "Explore the development roadmap for Furrly and submit your own feature requests. Follow our journey to build the first true pet super-app.",
+  openGraph: {
+    title: "Furrly Roadmap & Wishlist",
+    description: "See what's live, in development, and planned next. Vote for features and help shape the future of the #1 pet super-app.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Furrly Roadmap & Wishlist",
+    description: "See what's live, in development, and planned next. Vote for features and help shape the future of the #1 pet super-app.",
+  },
 };
 
 export default function RoadmapPage() {
