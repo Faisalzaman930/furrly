@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../app/utils/markdown.ts";
 
 @theme {
   --color-brand-start: #E11D48;
