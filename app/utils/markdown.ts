@@ -1,28 +1,27 @@
 /**
  * Smart markdown → HTML renderer.
+ * Uses dedicated CSS classes defined in globals.css (md-* prefix)
+ * so Tailwind purging never strips them.
  *
- * List rendering modes (auto-detected):
- *  - Timeline items  "Label: body"  → two-column labelled timeline
- *  - Short items (≤ 70 chars)       → 2-col styled card grid
- *  - Long items                     → checklist rows with checkmark
- *
- * Paragraph:
- *  - **Label:** body  → brand pill + paragraph
+ * List modes (auto-detected):
+ *  - "Label: body" (≥60% of items) → timeline
+ *  - All items ≤70 chars           → 2-col bullet card grid
+ *  - Otherwise                     → checklist rows
  */
 export function md(text: string): string {
   if (!text) return "";
 
-  const html = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-
-  return html
+  return text
+    .replace(/\r\n/g, "\n")
+    .replace(/\r/g, "\n")
     .split(/\n\n+/)
     .map((block) => {
       const t = block.trim();
       if (!t) return "";
 
-      if (t.startsWith("### ")) return `<h3 class="text-xl font-black text-ebony mt-10 mb-3 leading-snug">${inline(t.slice(4))}</h3>`;
-      if (t.startsWith("## "))  return `<h2 class="text-2xl font-black text-ebony mt-12 mb-4 leading-snug">${inline(t.slice(3))}</h2>`;
-      if (t.startsWith("> "))   return `<blockquote class="border-l-4 border-brand-start pl-5 py-2 my-5 text-slate-gray italic text-lg leading-relaxed">${inline(t.slice(2))}</blockquote>`;
+      if (t.startsWith("### ")) return `<h3 style="font-size:1.125rem;font-weight:900;color:#111827;margin-top:2rem;margin-bottom:0.5rem;line-height:1.3">${inline(t.slice(4))}</h3>`;
+      if (t.startsWith("## "))  return `<h2 style="font-size:1.375rem;font-weight:900;color:#111827;margin-top:2.5rem;margin-bottom:0.75rem;line-height:1.2">${inline(t.slice(3))}</h2>`;
+      if (t.startsWith("> "))   return `<blockquote style="border-left:4px solid #E11D48;padding:0.5rem 0 0.5rem 1.25rem;margin:1.25rem 0;color:#6B7280;font-style:italic;font-size:1.1rem;line-height:1.7">${inline(t.slice(2))}</blockquote>`;
 
       const lines = t.split("\n");
 
@@ -33,28 +32,23 @@ export function md(text: string): string {
       if (lines.every((l) => /^\d+\. /.test(l.trim()))) {
         const items = lines.map((l, i) => {
           const content = l.trim().replace(/^\d+\. /, "");
-          return `<li class="flex gap-3 items-start">
-            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand-gradient flex items-center justify-center text-white font-black text-xs mt-0.5">${i + 1}</span>
-            <span class="leading-relaxed pt-0.5">${inline(content)}</span>
-          </li>`;
+          return `<li class="md-ol-item"><span class="md-ol-num">${i + 1}</span><span class="md-ol-text">${inline(content)}</span></li>`;
         }).join("");
-        return `<ol class="space-y-3 my-6">${items}</ol>`;
+        return `<ol class="md-ol">${items}</ol>`;
       }
 
+      // Section label: **Label:** rest
       const labelMatch = t.match(/^\*\*([^*]+)\*\*[:\s]/);
       if (labelMatch) {
         const label = labelMatch[1];
         const rest = t.slice(labelMatch[0].length).trim();
         if (rest) {
-          return `<div class="my-5">
-            <span class="inline-block text-[10px] font-black text-brand-start uppercase tracking-widest bg-brand-start/10 px-3 py-1.5 rounded-full mb-3">${label}</span>
-            <p class="leading-relaxed text-slate-gray">${inline(rest.replace(/\n/g, "<br />"))}</p>
-          </div>`;
+          return `<div class="md-section-wrap"><span class="md-section-label">${label}</span><p class="md-section-body">${inline(rest.replace(/\n/g, "<br />"))}</p></div>`;
         }
-        return `<span class="inline-block text-[10px] font-black text-brand-start uppercase tracking-widest bg-brand-start/10 px-3 py-1.5 rounded-full my-4">${label}</span>`;
+        return `<span class="md-section-label">${label}</span>`;
       }
 
-      return `<p class="leading-relaxed mb-4">${inline(t.replace(/\n/g, "<br />"))}</p>`;
+      return `<p style="line-height:1.75;margin-bottom:1rem;color:#6B7280">${inline(t.replace(/\n/g, "<br />"))}</p>`;
     })
     .filter(Boolean)
     .join("\n");
@@ -72,60 +66,53 @@ function renderList(items: string[]): string {
       const m = item.match(timelinePattern);
       if (m) {
         const [, label, body] = m;
-        return `<div class="flex gap-4 items-start">
-          <div class="flex-shrink-0 min-w-[110px] max-w-[130px]">
-            <span class="inline-block text-[10px] font-black text-brand-start bg-brand-start/10 border border-brand-start/20 px-2.5 py-1.5 rounded-lg leading-tight text-center w-full">${inline(label)}</span>
-          </div>
-          <div class="flex-1 pt-0.5 leading-relaxed text-slate-gray text-sm border-l-2 border-gray-200 pl-4 pb-4">${inline(body)}</div>
+        return `<div class="md-timeline-row">
+          <div class="md-timeline-label-wrap"><span class="md-timeline-label">${inline(label)}</span></div>
+          <div class="md-timeline-body">${inline(body)}</div>
         </div>`;
       }
       return bulletCard(item);
     }).join("");
-    return `<div class="my-6 space-y-0">${rows}</div>`;
+    return `<div class="md-timeline">${rows}</div>`;
   }
 
   // Short items → 2-col card grid
-  const allShort = items.every((i) => i.length <= 70);
-  if (allShort && items.length >= 2) {
+  if (items.every((i) => i.length <= 70) && items.length >= 2) {
     const cards = items.map((item) => bulletCard(item)).join("");
-    return `<div class="my-6 grid grid-cols-1 sm:grid-cols-2 gap-2">${cards}</div>`;
+    return `<div class="md-grid">${cards}</div>`;
   }
 
   // Long items → checklist rows
-  return `<div class="my-6 space-y-2">${items.map(checklistRow).join("")}</div>`;
+  return `<div class="md-checklist">${items.map(checklistRow).join("")}</div>`;
 }
-
-// ─── Short item: accent dot card ─────────────────────────────────────────────
 
 function bulletCard(item: string): string {
   const dashIdx = item.search(/ [—\-] /);
   if (dashIdx > 0) {
     const title = item.slice(0, dashIdx);
     const sub   = item.slice(dashIdx).replace(/^ [—\-] /, "");
-    return `<div class="flex gap-3 items-start bg-white border border-gray-100 rounded-2xl px-4 py-3 hover:border-brand-start/30 hover:shadow-sm transition-all">
-      <span class="flex-shrink-0 w-2 h-2 rounded-full bg-brand-gradient mt-2"></span>
+    return `<div class="md-bullet-card-titled">
+      <span class="md-bullet-card-titled-dot"></span>
       <div>
-        <p class="font-black text-ebony text-sm leading-snug">${inline(title)}</p>
-        <p class="text-xs text-slate-gray mt-0.5 leading-relaxed">${inline(sub)}</p>
+        <p class="md-bullet-card-titled-title">${inline(title)}</p>
+        <p class="md-bullet-card-titled-sub">${inline(sub)}</p>
       </div>
     </div>`;
   }
-  return `<div class="flex gap-3 items-center bg-white border border-gray-100 rounded-2xl px-4 py-3 hover:border-brand-start/30 hover:shadow-sm transition-all">
-    <span class="flex-shrink-0 w-2 h-2 rounded-full bg-brand-gradient"></span>
-    <span class="font-medium text-ebony text-sm leading-snug">${inline(item)}</span>
+  return `<div class="md-bullet-card">
+    <span class="md-bullet-card-dot"></span>
+    <span class="md-bullet-card-text">${inline(item)}</span>
   </div>`;
 }
 
-// ─── Long item: checklist row ─────────────────────────────────────────────────
-
 function checklistRow(item: string): string {
-  return `<div class="flex gap-3 items-start rounded-xl px-4 py-3 border border-gray-100 bg-gray-50">
-    <span class="flex-shrink-0 w-5 h-5 rounded-full bg-brand-start/10 border border-brand-start/20 flex items-center justify-center mt-0.5">
-      <svg class="w-2.5 h-2.5 text-brand-start" fill="none" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M2 6l3 3 5-5"/>
+  return `<div class="md-check-row">
+    <span class="md-check-icon">
+      <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 6l3 3 5-5"/>
       </svg>
     </span>
-    <span class="leading-relaxed text-sm text-slate-gray">${inline(item)}</span>
+    <span class="md-check-text">${inline(item)}</span>
   </div>`;
 }
 
@@ -134,14 +121,14 @@ function checklistRow(item: string): string {
 function inline(text: string): string {
   text = text.replace(
     /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,
-    '<a href="$2" rel="nofollow noopener" target="_blank" class="text-brand-start font-bold hover:underline">$1</a>'
+    '<a href="$2" rel="nofollow noopener" target="_blank" style="color:#E11D48;font-weight:700">$1</a>'
   );
   text = text.replace(
     /\[([^\]]+)\]\((\/[^\)]*)\)/g,
-    '<a href="$2" class="text-brand-start font-bold hover:underline">$1</a>'
+    '<a href="$2" style="color:#E11D48;font-weight:700">$1</a>'
   );
   text = text.replace(/\*\*\*(.*?)\*\*\*/g, "<strong><em>$1</em></strong>");
-  text = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-ebony">$1</strong>');
+  text = text.replace(/\*\*(.*?)\*\*/g, '<strong style="font-weight:900;color:#111827">$1</strong>');
   text = text.replace(/\*(.*?)\*/g, "<em>$1</em>");
   return text;
 }
