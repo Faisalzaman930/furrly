@@ -381,6 +381,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── VOLUNTEER CTA ─── */}
+      <section className="py-28 bg-white border-t border-gray-100">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-[3.5rem] bg-ebony px-10 py-20 shadow-2xl">
+            <div className="pointer-events-none absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-brand-start/10 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-brand-end/10 blur-3xl" />
+            <div className="relative grid lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="text-xs font-black text-brand-end uppercase tracking-widest mb-4">Hey you 👋</p>
+                <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight leading-tight mb-6">
+                  Got a soft spot<br />for animals?
+                </h2>
+                <p className="text-white/70 text-lg leading-relaxed mb-6">
+                  Furrly is a free, community-driven project built by two pet lovers — Faizan & Faisal. We&apos;re on a mission to save animals, find them loving homes, and make life better for every pet owner on the planet.
+                </p>
+                <p className="text-white/70 text-lg leading-relaxed mb-10">
+                  Whether you&apos;re a developer, a shelter worker, a vet, a designer, or just someone who loves animals — <strong className="text-white">we want your help.</strong> Every single contribution counts. 🐾
+                </p>
+                <Link
+                  href="/about#volunteer"
+                  className="inline-flex items-center gap-3 bg-brand-gradient text-white font-black px-10 py-5 rounded-2xl uppercase tracking-widest text-sm hover:scale-105 active:scale-95 transition-all shadow-xl shadow-brand-start/30"
+                >
+                  🙋 Yes, I want to help →
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { icon: "💻", role: "Developers", desc: "Build features that connect pets with loving families." },
+                  { icon: "🎨", role: "Designers", desc: "Make Furrly beautiful for every pet owner." },
+                  { icon: "🏥", role: "Vets & Shelters", desc: "Help us build real tools for animal welfare." },
+                  { icon: "❤️", role: "Pet Lovers", desc: "Spread the word. Share stories. Help animals get seen." },
+                ].map((v, i) => (
+                  <div key={i} className="bg-white/5 border border-white/10 rounded-[1.5rem] p-6 hover:bg-white/10 transition-colors">
+                    <div className="text-3xl mb-3">{v.icon}</div>
+                    <h4 className="font-black text-white text-sm uppercase tracking-tight mb-2">{v.role}</h4>
+                    <p className="text-white/50 text-xs leading-relaxed">{v.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── RESOURCES ─── */}
       <Resources />
 
