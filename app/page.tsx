@@ -114,7 +114,7 @@ export default function Home() {
                 ))}
               </div>
               <div className="pt-2">
-                <DownloadButtons />
+                <DownloadButtons light />
               </div>
             </div>
 
