@@ -116,6 +116,14 @@ export default function Home() {
               <div className="pt-2">
                 <DownloadButtons light />
               </div>
+              <div className="pt-1">
+                <Link
+                  href="/about#volunteer"
+                  className="inline-flex items-center gap-2 text-sm font-black text-brand-start uppercase tracking-widest hover:underline"
+                >
+                  🙋 Or volunteer with us →
+                </Link>
+              </div>
             </div>
 
             {/* Right — Floating phone mockups */}
