@@ -396,7 +396,7 @@ export default function Home() {
             We&apos;re putting the finishing touches on our iOS and Android apps. Join the waiting list and be the first to know when we launch — plus get early access before the public release.
           </p>
           <div className="flex justify-center">
-            <WaitingList center />
+            <WaitingList light center />
           </div>
           <p className="mt-6 text-xs text-slate-gray font-bold uppercase tracking-widest">No spam. Just one email when we launch.</p>
         </div>

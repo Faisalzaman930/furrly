@@ -13,24 +13,31 @@ interface ComingSoonPageProps {
 export default function ComingSoonPage({ icon, feature, tagline, description, phase = "Phase 2", bullets = [] }: ComingSoonPageProps) {
   return (
     <div className="bg-white">
+      {/* Top bar — unmissable coming soon strip */}
+      <div className="bg-amber-400 py-4 px-6 text-center">
+        <p className="text-ebony font-black text-sm uppercase tracking-widest">
+          🚧 This feature is not live yet — it is coming in {phase}. Join the waitlist below to be notified. 🚧
+        </p>
+      </div>
+
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#7C3AED] via-[#6D28D9] to-[#4C1D95] py-28 md:py-36">
         <div className="pointer-events-none absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-white/5 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-white/5 blur-3xl" />
         <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
           <div className="text-7xl mb-6">{icon}</div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-5 py-2 text-xs font-black text-white/80 uppercase tracking-widest mb-6">
-            {phase} · Coming Soon
+          <div className="inline-flex items-center gap-2 rounded-full bg-amber-400/20 border border-amber-400/40 px-5 py-2 text-sm font-black text-amber-300 uppercase tracking-widest mb-6">
+            ⏳ Coming Soon — {phase}
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tight leading-[0.9] mb-6">
             {feature}
           </h1>
-          <p className="text-white/70 text-xl leading-relaxed max-w-xl mx-auto mb-4 font-bold">{tagline}</p>
-          <p className="text-white/50 text-base leading-relaxed max-w-lg mx-auto mb-12">{description}</p>
+          <p className="text-white/90 text-xl leading-relaxed max-w-xl mx-auto mb-4 font-bold">{tagline}</p>
+          <p className="text-white/60 text-base leading-relaxed max-w-lg mx-auto mb-12">{description}</p>
           <div className="flex justify-center">
             <WaitingList center large />
           </div>
-          <p className="mt-5 text-white/40 text-xs font-bold uppercase tracking-widest">
+          <p className="mt-5 text-white/50 text-xs font-bold uppercase tracking-widest">
             Get notified the moment this feature goes live
           </p>
         </div>

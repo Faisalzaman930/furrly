@@ -68,7 +68,7 @@ export default function WaitingList({ light = false, center = false, large = fal
           } ${
             light
               ? "bg-gray-50 border-2 border-gray-200 text-ebony placeholder:text-gray-400 focus:border-brand-start"
-              : "bg-white/10 border-2 border-white/20 text-white placeholder:text-white/40 focus:border-white/60"
+              : "bg-white border-2 border-white text-ebony placeholder:text-gray-400 focus:border-gray-200"
           }`}
         />
         <button

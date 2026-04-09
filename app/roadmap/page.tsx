@@ -140,7 +140,7 @@ export default function RoadmapPage() {
             <p className="text-lg leading-relaxed text-slate-gray max-w-2xl mb-10">
               Phase 1 is live. Vote on what gets built next — every vote directly influences our development priorities.
             </p>
-            <WaitingList />
+            <WaitingList light />
           </div>
         </div>
       </section>
