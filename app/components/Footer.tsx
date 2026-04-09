@@ -1,35 +1,11 @@
 import Link from "next/link";
 import Logo from "./Logo";
-import WaitingList from "./WaitingList";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="w-full bg-white">
-      {/* ── WAITLIST BANNER ── */}
-      <div className="bg-ebony">
-        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
-            <div className="text-center lg:text-left max-w-xl">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-black text-white/70 uppercase tracking-widest mb-4">
-                <span className="h-2 w-2 rounded-full bg-brand-end animate-pulse" />
-                App Store & Google Play — Coming Soon
-              </div>
-              <h2 className="text-3xl font-black text-white uppercase tracking-tight sm:text-4xl leading-tight mb-3">
-                Be First When We Launch.
-              </h2>
-              <p className="text-white/60 text-base leading-relaxed">
-                Join thousands of pet lovers on the waitlist. One email. No spam. Early access before the public launch.
-              </p>
-            </div>
-            <div className="w-full lg:w-auto flex-shrink-0">
-              <WaitingList />
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* ── MAIN FOOTER ── */}
       <div className="border-t border-gray-100">
         <div className="mx-auto max-w-7xl px-6 py-12 md:py-16 lg:px-8">

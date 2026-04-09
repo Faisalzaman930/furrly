@@ -9,13 +9,13 @@ const Navbar = () => {
 
   const verticals = [
     { name: "Playdates", href: "/playdates", icon: "🎉", desc: "Find compatible pets near you." },
-    { name: "Social", href: "/social", icon: "📸", desc: "Your neighborhood's pet feed." },
-    { name: "Adoption", href: "/adoption", icon: "🏠", desc: "Browse verified rescues." },
-    { name: "Fostering", href: "/fostering", icon: "💖", desc: "Open your home temporarily." },
-    { name: "Vets", href: "/vets", icon: "🏥", desc: "Find trusted clinics nearby." },
-    { name: "Lost & Found", href: "/lost-found", icon: "🔍", desc: "Reunite pets with owners." },
+    { name: "Social Feed", href: "/social", icon: "📸", desc: "Your neighborhood's pet feed." },
+    { name: "Shelters", href: "/adoption", icon: "🏠", desc: "Browse verified shelters near you." },
+    { name: "Adoption", href: "/adoption", icon: "💛", desc: "Connect with owners rehoming pets." },
+    { name: "Fostering", href: "/fostering", icon: "💖", desc: "Open your home temporarily.", isComingSoon: true },
+    { name: "Vets", href: "/vets", icon: "🏥", desc: "Find trusted clinics nearby.", isComingSoon: true },
+    { name: "Lost & Found", href: "/lost-found", icon: "🔍", desc: "Reunite pets with owners.", isComingSoon: true },
     { name: "Shop", href: "#", icon: "🛒", desc: "Pet gear & essentials.", isComingSoon: true },
-    { name: "Tracking", href: "#", icon: "📍", desc: "GPS health & safety.", isComingSoon: true },
   ];
 
   return (
