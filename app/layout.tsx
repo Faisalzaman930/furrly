@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WaitlistBanner from "./components/WaitlistBanner";
+import VolunteerBanner from "./components/VolunteerBanner";
 
 export const metadata: Metadata = {
   title: {
@@ -39,6 +40,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans">
         <Navbar />
         <main className="flex-grow">{children}</main>
+        <VolunteerBanner />
         <WaitlistBanner />
         <Footer />
       </body>

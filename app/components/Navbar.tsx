@@ -73,6 +73,9 @@ const Navbar = () => {
           <Link href="/roadmap" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
             Roadmap
           </Link>
+          <Link href="/about" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
+            About
+          </Link>
 
 
 
