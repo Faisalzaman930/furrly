@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import DownloadButtons from "./components/DownloadButtons";
+import WaitingList from "./components/WaitingList";
 import Resources from "./components/Resources";
 import PhoneFrame from "./components/PhoneFrame";
 import { useState, useEffect, useRef } from "react";
@@ -40,12 +41,14 @@ function StatCounter({ target, suffix = "", label }: { target: number; suffix?: 
 }
 
 const verticals = [
-  { name: "Playdates", href: "/playdates", icon: "🎉", color: "bg-violet-100", description: "Find compatible pets nearby — filtered by size, breed & temperament." },
-  { name: "Social", href: "/social", icon: "📸", color: "bg-pink-100", description: "A neighborhood-first feed connecting the pet owners you'll actually meet." },
-  { name: "Adoption", href: "/adoption", icon: "🏠", color: "bg-amber-100", description: "Browse verified rescues and apply paperlessly — in one tap." },
-  { name: "Fostering", href: "/fostering", icon: "💖", color: "bg-red-100", description: "Open your home temporarily and join a network of 10K+ foster parents." },
-  { name: "Vets", href: "/vets", icon: "🏥", color: "bg-emerald-100", description: "Real-time clinic discovery, verified reviews, one-tap emergency calls." },
-  { name: "Lost & Found", href: "/lost-found", icon: "🔍", color: "bg-blue-100", description: "Hyper-local alerts turn your entire neighborhood into a search party." },
+  { name: "Playdates", href: "/playdates", icon: "🎉", color: "bg-violet-100", description: "Find compatible pets nearby — filtered by size, breed & temperament.", live: true },
+  { name: "Social Feed", href: "/social", icon: "📸", color: "bg-pink-100", description: "A neighborhood-first feed connecting the pet owners you'll actually meet.", live: true },
+  { name: "Shelters", href: "/adoption", icon: "🏠", color: "bg-amber-100", description: "Browse verified shelters and rescues near you — updated in real time.", live: true },
+  { name: "Adoption", href: "/adoption", icon: "💛", color: "bg-yellow-100", description: "Apply to adopt paperlessly. Connect directly with owners rehoming pets.", live: true },
+  { name: "Fostering", href: "/fostering", icon: "💖", color: "bg-red-100", description: "Open your home temporarily and join a network of foster parents worldwide.", live: false },
+  { name: "Vets", href: "/vets", icon: "🏥", color: "bg-emerald-100", description: "Real-time clinic discovery, verified reviews, one-tap emergency calls.", live: false },
+  { name: "Lost & Found", href: "/lost-found", icon: "🔍", color: "bg-blue-100", description: "Hyper-local alerts turn your entire neighborhood into a search party.", live: false },
+  { name: "Shop", href: "/shop", icon: "🛍️", color: "bg-orange-100", description: "A multi-vendor marketplace for pet food, accessories and health products.", live: false },
 ];
 
 const steps = [
@@ -86,7 +89,7 @@ export default function Home() {
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 rounded-full bg-brand-start/10 px-4 py-2 text-xs font-black text-brand-start ring-1 ring-brand-start/20 uppercase tracking-widest">
                 <span className="h-2 w-2 rounded-full bg-brand-start animate-pulse" />
-                The Pet Super-App — Now Available
+                Phase 1 Live — App Store & Play Store Coming Soon
               </div>
               <h1 className="text-5xl font-black tracking-tight text-ebony sm:text-7xl leading-[0.9] uppercase">
                 Everything Your<br />
@@ -99,10 +102,10 @@ export default function Home() {
               {/* Stat chips */}
               <div className="flex flex-wrap gap-4 pt-2">
                 {[
-                  { val: "50K+", label: "Pet Parents" },
-                  { val: "6", label: "Core Features" },
-                  { val: "4.9★", label: "App Rating" },
-                  { val: "Free", label: "To Download" },
+                  { val: "4", label: "Live Features" },
+                  { val: "🌍", label: "Global Mission" },
+                  { val: "Free", label: "Always Free" },
+                  { val: "Soon", label: "App Stores" },
                 ].map(s => (
                   <div key={s.val} className="bg-gray-50 border border-gray-100 rounded-2xl px-5 py-3 text-center">
                     <p className="text-lg font-black text-ebony leading-none">{s.val}</p>
@@ -147,10 +150,10 @@ export default function Home() {
       <section className="bg-ebony py-14">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/10">
-            <StatCounter target={50000} suffix="+" label="Active Pet Parents" />
-            <StatCounter target={6} suffix="" label="Core App Features" />
+            <StatCounter target={4} suffix="" label="Phase 1 Features Live" />
+            <StatCounter target={2} suffix="" label="Founders — Pet Lovers" />
             <StatCounter target={3} suffix="min" label="To Adopt a Pet" />
-            <StatCounter target={2} suffix="hrs" label="Avg. Pet Recovery Time" />
+            <StatCounter target={100} suffix="%" label="Free Core Features" />
           </div>
         </div>
       </section>
@@ -161,16 +164,16 @@ export default function Home() {
           <div className="text-center mb-16">
             <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Ecosystem</p>
             <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-6xl leading-none">
-              Six Features.<br />One App.
+              4 Features Live.<br />More Coming Soon.
             </h2>
-            <p className="mt-6 text-lg text-slate-gray max-w-2xl mx-auto">Stop switching between apps. Furrly unifies the entire pet ownership experience in a single, beautifully designed mobile app.</p>
+            <p className="mt-6 text-lg text-slate-gray max-w-2xl mx-auto">Phase 1 is live — Playdates, Social Feed, Shelters, and Adoption. Vets, Lost & Found, Fostering, and the Shop are in active development.</p>
           </div>
 
           {/* Tab switcher */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             {verticals.map((v, i) => (
               <button
-                key={v.href}
+                key={v.name}
                 onClick={() => setActiveFeature(i)}
                 className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all ${
                   activeFeature === i
@@ -180,6 +183,7 @@ export default function Home() {
               >
                 <span>{v.icon}</span>
                 {v.name}
+                {!v.live && <span className="ml-1 px-1.5 py-0.5 rounded-full bg-brand-start/10 text-brand-start text-[9px] font-black uppercase tracking-widest leading-none">Soon</span>}
               </button>
             ))}
           </div>
@@ -190,14 +194,29 @@ export default function Home() {
               <div className={`w-16 h-16 ${active.color} rounded-[1.5rem] flex items-center justify-center text-3xl mb-8`}>
                 {active.icon}
               </div>
-              <h3 className="text-3xl font-black text-ebony uppercase tracking-tighter mb-4">{active.name}</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <h3 className="text-3xl font-black text-ebony uppercase tracking-tighter">{active.name}</h3>
+                {active.live
+                  ? <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-black uppercase tracking-widest border border-emerald-200">Live</span>
+                  : <span className="px-3 py-1 rounded-full bg-brand-start/10 text-brand-start text-[10px] font-black uppercase tracking-widest border border-brand-start/20">Coming Soon</span>
+                }
+              </div>
               <p className="text-lg text-slate-gray leading-relaxed mb-8">{active.description}</p>
-              <Link
-                href={active.href}
-                className="inline-flex items-center gap-2 bg-brand-gradient text-white font-black px-8 py-4 rounded-[1.5rem] hover:scale-105 active:scale-95 transition-transform uppercase tracking-widest text-sm shadow-lg"
-              >
-                Explore Feature →
-              </Link>
+              {active.live ? (
+                <Link
+                  href={active.href}
+                  className="inline-flex items-center gap-2 bg-brand-gradient text-white font-black px-8 py-4 rounded-[1.5rem] hover:scale-105 active:scale-95 transition-transform uppercase tracking-widest text-sm shadow-lg"
+                >
+                  Explore Feature →
+                </Link>
+              ) : (
+                <a
+                  href="#waitlist"
+                  className="inline-flex items-center gap-2 bg-gray-50 border-2 border-dashed border-brand-start/30 text-brand-start font-black px-8 py-4 rounded-[1.5rem] hover:bg-brand-start/5 transition-colors uppercase tracking-widest text-sm"
+                >
+                  🔔 Get Notified When Live →
+                </a>
+              )}
             </div>
             {/* App screenshot in phone frame */}
             {(() => {
@@ -291,6 +310,62 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── FOUNDERS ─── */}
+      <section className="py-28 bg-white border-t border-gray-50">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-4">Our Story</p>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl leading-tight mb-8">
+                Built by Two Friends.<br />
+                <span className="text-brand-gradient">Driven by Love<br />for Animals.</span>
+              </h2>
+              <p className="text-lg text-slate-gray leading-relaxed mb-6">
+                Furrly was started by <strong className="text-ebony">Faizan</strong> and <strong className="text-ebony">Faisal</strong> — two lifelong friends and devoted pet owners who got tired of the fragmented, unreliable tools available to pet parents.
+              </p>
+              <p className="text-lg text-slate-gray leading-relaxed mb-6">
+                After struggling to find local playdates for their dogs, watching a friend's cat go missing with no good alert system, and witnessing shelters operate on spreadsheets — they decided to build the solution themselves.
+              </p>
+              <p className="text-lg text-slate-gray leading-relaxed mb-10">
+                Their mission is simple: <strong className="text-ebony">improve the livelihoods of animals all across the world</strong> — one pet owner, one adoption, one playdate at a time.
+              </p>
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3 bg-gray-50 rounded-2xl px-6 py-4 border border-gray-100">
+                  <span className="text-3xl">🐕</span>
+                  <div>
+                    <p className="font-black text-ebony text-sm">Faizan</p>
+                    <p className="text-xs text-slate-gray font-bold uppercase tracking-widest">Co-Founder</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 bg-gray-50 rounded-2xl px-6 py-4 border border-gray-100">
+                  <span className="text-3xl">🐈</span>
+                  <div>
+                    <p className="font-black text-ebony text-sm">Faisal</p>
+                    <p className="text-xs text-slate-gray font-bold uppercase tracking-widest">Co-Founder</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="space-y-4">
+              {[
+                { icon: "🌍", title: "Global Mission", desc: "Built to improve the lives of animals and their owners everywhere — not just one city or country." },
+                { icon: "❤️", title: "Pet Owners First", desc: "Every feature is designed by pet owners, for pet owners. We dog-food our own product, literally." },
+                { icon: "🤝", title: "Community-Driven", desc: "Shelters, rescuers, vets, and pet parents all belong on one platform. We're building that bridge." },
+                { icon: "🚀", title: "Just Getting Started", desc: "Phase 1 is live. App Store and Google Play are coming very soon. The best is yet to come." },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-5 bg-gray-50 rounded-[2rem] p-7 border border-gray-100 hover:shadow-lg transition-shadow">
+                  <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-sm flex-shrink-0">{item.icon}</div>
+                  <div>
+                    <h4 className="font-black text-ebony text-base uppercase tracking-tight mb-1">{item.title}</h4>
+                    <p className="text-slate-gray text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── FAQ ─── */}
       <section className="py-28 bg-white">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
@@ -308,6 +383,24 @@ export default function Home() {
 
       {/* ─── RESOURCES ─── */}
       <Resources />
+
+      {/* ─── WAITING LIST ─── */}
+      <section id="waitlist" className="py-28 bg-gray-50 border-t border-gray-100">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8 text-center">
+          <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-4">Early Access</p>
+          <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl mb-6">
+            App Store & Google Play<br />
+            <span className="text-brand-gradient">Coming Very Soon</span>
+          </h2>
+          <p className="text-lg text-slate-gray leading-relaxed mb-10 max-w-xl mx-auto">
+            We&apos;re putting the finishing touches on our iOS and Android apps. Join the waiting list and be the first to know when we launch — plus get early access before the public release.
+          </p>
+          <div className="flex justify-center">
+            <WaitingList center />
+          </div>
+          <p className="mt-6 text-xs text-slate-gray font-bold uppercase tracking-widest">No spam. Just one email when we launch.</p>
+        </div>
+      </section>
 
       {/* ─── CTA ─── */}
       <section id="download" className="py-28 bg-gray-50">
