@@ -81,10 +81,10 @@ const Navbar = () => {
           </Link>
 
           <Link
-            href="/#download"
-            className="rounded-xl bg-ebony px-8 py-3 text-sm font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-lg shadow-ebony/20"
+            href="/#waitlist"
+            className="rounded-xl bg-brand-gradient px-8 py-3 text-sm font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-lg shadow-brand-start/20"
           >
-            Download App
+            🐾 Join Waitlist
           </Link>
         </div>
 
