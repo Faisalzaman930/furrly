@@ -318,48 +318,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── FOUNDERS ─── */}
+      {/* ─── COMMUNITY ─── */}
       <section className="py-28 bg-white border-t border-gray-50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-4">Our Story</p>
+              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-4">This App Belongs to You</p>
               <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl leading-tight mb-8">
-                Built by Two Friends.<br />
-                <span className="text-brand-gradient">Driven by Love<br />for Animals.</span>
+                Not a Company.<br />
+                <span className="text-brand-gradient">A Community.</span>
               </h2>
               <p className="text-lg text-slate-gray leading-relaxed mb-6">
-                Furrly was started by <strong className="text-ebony">Faizan</strong> and <strong className="text-ebony">Faisal</strong> — two lifelong friends and devoted pet owners who got tired of the fragmented, unreliable tools available to pet parents.
+                Furrly isn&apos;t a startup chasing revenue. It&apos;s a community project built by pet lovers, for pet lovers — and we want everyone to own a piece of it in their own way.
               </p>
               <p className="text-lg text-slate-gray leading-relaxed mb-6">
-                After struggling to find local playdates for their dogs, watching a friend's cat go missing with no good alert system, and witnessing shelters operate on spreadsheets — they decided to build the solution themselves.
+                Whether you&apos;re a developer building features, a vet helping us understand animal care, a shelter giving animals a digital home, or just a pet owner sharing stories — <strong className="text-ebony">you are part of what makes this work.</strong>
               </p>
               <p className="text-lg text-slate-gray leading-relaxed mb-10">
-                Their mission is simple: <strong className="text-ebony">improve the livelihoods of animals all across the world</strong> — one pet owner, one adoption, one playdate at a time.
+                Every voice shapes the roadmap. Every contribution moves animals closer to loving homes. <strong className="text-ebony">This is your app as much as ours.</strong>
               </p>
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-3 bg-gray-50 rounded-2xl px-6 py-4 border border-gray-100">
-                  <span className="text-3xl">🐕</span>
-                  <div>
-                    <p className="font-black text-ebony text-sm">Faizan</p>
-                    <p className="text-xs text-slate-gray font-bold uppercase tracking-widest">Co-Founder</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 bg-gray-50 rounded-2xl px-6 py-4 border border-gray-100">
-                  <span className="text-3xl">🐈</span>
-                  <div>
-                    <p className="font-black text-ebony text-sm">Faisal</p>
-                    <p className="text-xs text-slate-gray font-bold uppercase tracking-widest">Co-Founder</p>
-                  </div>
-                </div>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/about#volunteer" className="inline-flex items-center gap-2 bg-brand-gradient text-white font-black px-8 py-4 rounded-2xl uppercase tracking-widest text-sm hover:scale-105 active:scale-95 transition-all shadow-lg">
+                  🙋 Join the Community →
+                </Link>
+                <Link href="/roadmap" className="inline-flex items-center gap-2 bg-gray-50 border-2 border-gray-200 text-ebony font-black px-8 py-4 rounded-2xl uppercase tracking-widest text-sm hover:border-brand-start/40 transition-colors">
+                  Vote on Roadmap →
+                </Link>
               </div>
             </div>
             <div className="space-y-4">
               {[
-                { icon: "🌍", title: "Global Mission", desc: "Built to improve the lives of animals and their owners everywhere — not just one city or country." },
-                { icon: "❤️", title: "Pet Owners First", desc: "Every feature is designed by pet owners, for pet owners. We dog-food our own product, literally." },
-                { icon: "🤝", title: "Community-Driven", desc: "Shelters, rescuers, vets, and pet parents all belong on one platform. We're building that bridge." },
-                { icon: "🚀", title: "Just Getting Started", desc: "Phase 1 is live. App Store and Google Play are coming very soon. The best is yet to come." },
+                { icon: "🆓", title: "Free Forever", desc: "Core features will always be free. Access to pet welfare tools should never cost you anything." },
+                { icon: "🗳️", title: "You Shape the Roadmap", desc: "Vote on what we build next. Your priorities become our priorities — literally." },
+                { icon: "🤝", title: "Everyone Has a Role", desc: "Pet owner, developer, shelter, vet, designer — there's a way for everyone to contribute." },
+                { icon: "🌍", title: "Built for Every Animal", desc: "A dog in Karachi. A cat in London. A rescue in Lagos. This platform is for all of them." },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-5 bg-gray-50 rounded-[2rem] p-7 border border-gray-100 hover:shadow-lg transition-shadow">
                   <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-sm flex-shrink-0">{item.icon}</div>
