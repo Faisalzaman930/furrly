@@ -6,6 +6,7 @@ import ContactSection from "./ContactSection";
 import RelatedTools from "./RelatedTools";
 import { md } from "../utils/markdown";
 import { useState, useEffect, useRef } from "react";
+import { ChapterInteractive } from "./PillarInteractives";
 
 const typeConfig: Record<string, { bg: string; text: string; label: string; emoji: string }> = {
   "how-to":     { bg: "bg-blue-50",    text: "text-blue-700",    label: "How-To",        emoji: "📋" },
@@ -16,7 +17,7 @@ const typeConfig: Record<string, { bg: string; text: string; label: string; emoj
   "article":    { bg: "bg-gray-50",    text: "text-gray-600",    label: "Article",       emoji: "📰" },
 };
 
-/** Derives a descriptive anchor slug from a chapter — uses explicit anchorId if provided */
+/** Derives a descriptive anchor slug from a chapter */
 function chapterAnchor(chapter: PillarChapter, i: number): string {
   if (chapter.anchorId) return chapter.anchorId;
   const text = chapter.title.split(":")[0].split("—")[0].split("(")[0].trim();
@@ -30,7 +31,14 @@ function chapterAnchor(chapter: PillarChapter, i: number): string {
   return slug || `chapter-${i}`;
 }
 
-function ReadingProgress() {
+/* ─── Reading progress bar with chapter counter ─── */
+function ReadingProgress({
+  activeChapter,
+  totalChapters,
+}: {
+  activeChapter: number;
+  totalChapters: number;
+}) {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
     const update = () => {
@@ -42,16 +50,84 @@ function ReadingProgress() {
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
   }, []);
+
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 h-[3px] bg-gray-100">
+    <div className="fixed top-0 left-0 right-0 z-50" style={{ height: "4px", background: "rgba(15,52,96,0.08)" }}>
       <div
-        className="h-full bg-brand-gradient transition-all duration-100"
-        style={{ width: `${progress}%` }}
+        className="h-full transition-all duration-100"
+        style={{ width: `${progress}%`, background: "linear-gradient(90deg,#1D9E75,#5DCAA5)" }}
       />
+      {progress > 2 && (
+        <div
+          className="absolute right-3 top-1 text-[10px] font-black rounded-full px-2 py-0.5 -translate-y-1/2"
+          style={{ background: "#1D9E75", color: "#fff", marginTop: "10px" }}
+        >
+          Ch {activeChapter + 1}/{totalChapters}
+        </div>
+      )}
     </div>
   );
 }
 
+/* ─── Sticky horizontal pill nav ─── */
+function ChapterPillNav({
+  chapters,
+  activeIdx,
+}: {
+  chapters: PillarPage["chapters"];
+  activeIdx: number;
+}) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const active = container.children[activeIdx] as HTMLElement;
+    if (active) {
+      active.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    }
+  }, [activeIdx]);
+
+  return (
+    <div
+      className="sticky z-40 border-b"
+      style={{ top: "4px", background: "#fff", borderColor: "#e5e7eb" }}
+    >
+      <div
+        ref={scrollRef}
+        className="flex gap-2 px-4 py-2.5 overflow-x-auto scrollbar-none max-w-7xl mx-auto"
+        style={{ scrollbarWidth: "none" }}
+      >
+        {chapters.map((ch, i) => {
+          const anchor = chapterAnchor(ch, i);
+          const isActive = activeIdx === i;
+          return (
+            <a
+              key={i}
+              href={`#${anchor}`}
+              className="flex-shrink-0 flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wide px-3.5 py-1.5 rounded-full border transition-all whitespace-nowrap"
+              style={{
+                background: isActive ? "#0f3460" : "#fff",
+                color: isActive ? "#fff" : "#6b7280",
+                borderColor: isActive ? "#0f3460" : "#e5e7eb",
+              }}
+            >
+              <span
+                className="w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black flex-shrink-0"
+                style={{ background: isActive ? "rgba(255,255,255,0.2)" : "#f3f4f6", color: isActive ? "#fff" : "#6b7280" }}
+              >
+                {i + 1}
+              </span>
+              {ch.title.split(":")[0].split("(")[0].trim()}
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Sidebar chapter nav ─── */
 function ChapterNav({
   chapters,
   activeIdx,
@@ -63,22 +139,23 @@ function ChapterNav({
     <nav className="space-y-1">
       {chapters.map((ch, i) => {
         const anchor = chapterAnchor(ch, i);
+        const isActive = activeIdx === i;
         return (
           <a
             key={i}
             href={`#${anchor}`}
-            className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
-              activeIdx === i
-                ? "bg-brand-start/10 text-brand-start"
-                : "text-slate-gray hover:text-ebony hover:bg-gray-50"
-            }`}
+            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-all"
+            style={{
+              background: isActive ? "rgba(29,158,117,0.08)" : "transparent",
+              color: isActive ? "#1D9E75" : "#6b7280",
+            }}
           >
             <span
-              className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black transition-all ${
-                activeIdx === i
-                  ? "bg-brand-gradient text-white"
-                  : "bg-gray-100 text-slate-gray"
-              }`}
+              className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black transition-all"
+              style={{
+                background: isActive ? "linear-gradient(135deg,#1D9E75,#5DCAA5)" : "#f3f4f6",
+                color: isActive ? "#fff" : "#9ca3af",
+              }}
             >
               {i + 1}
             </span>
@@ -88,20 +165,16 @@ function ChapterNav({
       })}
       <a
         href="#cluster"
-        className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold text-slate-gray hover:text-ebony hover:bg-gray-50 transition-all"
+        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-gray-400 hover:text-gray-700 transition-colors"
       >
-        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs">
-          📚
-        </span>
+        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs">📚</span>
         All Resources
       </a>
       <a
         href="#faqs"
-        className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold text-slate-gray hover:text-ebony hover:bg-gray-50 transition-all"
+        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-gray-400 hover:text-gray-700 transition-colors"
       >
-        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs">
-          ❓
-        </span>
+        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs">❓</span>
         FAQs
       </a>
     </nav>
@@ -129,114 +202,156 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
     return () => observers.forEach((o) => o?.disconnect());
   }, [page.chapters]);
 
-  const clusterByType = page.clusterArticles.reduce<
-    Record<string, typeof page.clusterArticles>
-  >((acc, item) => {
-    if (!acc[item.type]) acc[item.type] = [];
-    acc[item.type].push(item);
-    return acc;
-  }, {});
+  const clusterByType = page.clusterArticles.reduce<Record<string, typeof page.clusterArticles>>(
+    (acc, item) => {
+      if (!acc[item.type]) acc[item.type] = [];
+      acc[item.type].push(item);
+      return acc;
+    },
+    {}
+  );
   const typeOrder = ["how-to", "guide", "symptom", "breed", "definition", "article"];
 
   return (
-    <div className="bg-white">
-      <ReadingProgress />
+    <div style={{ background: "#f8f8f6" }}>
+      <ReadingProgress activeChapter={activeChapter} totalChapters={page.chapters.length} />
 
       {/* ── HERO ── */}
-      <div className="bg-brand-gradient py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none select-none flex items-center justify-end pr-16">
-          <span className="text-[14rem] font-black text-white leading-none">✦</span>
-        </div>
+      <div
+        className="relative overflow-hidden px-6 py-20 md:py-28"
+        style={{ background: "linear-gradient(135deg,#0f3460 0%,#16213e 100%)" }}
+      >
+        {/* animated dot pattern */}
+        <div
+          className="absolute inset-0 pointer-events-none select-none"
+          style={{
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+            animation: "pawDrift 20s linear infinite",
+          }}
+        />
+        <style>{`
+          @keyframes pawDrift {
+            0% { background-position: 0 0; }
+            100% { background-position: 28px 28px; }
+          }
+        `}</style>
+
         <div className="relative mx-auto max-w-4xl">
-          <nav className="flex items-center gap-2 text-white/60 text-xs font-bold uppercase tracking-widest mb-6">
-            <Link href="/" className="hover:text-white transition-colors">
-              Home
-            </Link>
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest mb-6" style={{ color: "rgba(255,255,255,0.45)" }}>
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/resources" className="hover:text-white transition-colors">
-              Resources
-            </Link>
+            <Link href="/resources" className="hover:text-white transition-colors">Resources</Link>
             <span>/</span>
-            <span className="text-white/80">{page.shortTitle}</span>
+            <span style={{ color: "rgba(255,255,255,0.7)" }}>{page.shortTitle}</span>
           </nav>
-          <span className="inline-block bg-white/20 text-white font-black text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+
+          {/* Category pill */}
+          <span
+            className="inline-block font-black text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-full mb-6"
+            style={{ background: "rgba(29,158,117,0.3)", color: "#5DCAA5", border: "1px solid rgba(29,158,117,0.4)" }}
+          >
             {page.category} · {page.readTime}
           </span>
-          <h1 className="text-4xl md:text-6xl font-black text-white leading-[0.95] tracking-tighter mb-6">
+
+          <h1
+            className="text-4xl md:text-[3.5rem] font-black leading-[0.95] tracking-tight mb-5"
+            style={{ color: "#fff" }}
+          >
             {page.title}
           </h1>
-          <p className="text-white/80 text-lg leading-relaxed max-w-2xl mb-10">
+          <p className="text-lg leading-relaxed max-w-2xl mb-8" style={{ color: "rgba(255,255,255,0.7)" }}>
             {page.seoDescription}
           </p>
 
-          {/* Chapter pills — descriptive anchors */}
-          <div className="flex flex-wrap gap-2">
-            {page.chapters.map((ch, i) => (
-              <a
-                key={i}
-                href={`#${chapterAnchor(ch, i)}`}
-                className="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all border border-white/20"
+          {/* Stat pills */}
+          <div className="flex flex-wrap gap-3 mb-8">
+            {[
+              { label: "Chapters", value: `${page.chapters.length}` },
+              { label: "Resources", value: `${page.clusterArticles.length}+` },
+              { label: "Read time", value: page.readTime },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="flex items-center gap-2 px-4 py-2 rounded-full text-sm"
+                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.8)" }}
               >
-                <span className="w-4 h-4 rounded-full bg-white/30 flex items-center justify-center text-[10px]">
-                  {i + 1}
-                </span>
-                {ch.title.split(":")[0].split("(")[0].trim()}
-              </a>
+                <span className="font-black" style={{ color: "#5DCAA5" }}>{stat.value}</span>
+                <span className="font-bold text-xs uppercase tracking-widest">{stat.label}</span>
+              </div>
             ))}
           </div>
 
-          <div className="flex items-center gap-6 text-white/50 text-xs font-bold uppercase tracking-widest mt-10">
+          {/* CTA */}
+          <a
+            href={`#${chapterAnchor(page.chapters[0], 0)}`}
+            className="inline-flex items-center gap-2 font-black text-sm px-6 py-3 rounded-full transition-all hover:opacity-90 active:scale-95"
+            style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)", color: "#fff" }}
+          >
+            Start reading ↓
+          </a>
+
+          {/* Meta */}
+          <div
+            className="flex items-center gap-5 text-[10px] font-black uppercase tracking-widest mt-10"
+            style={{ color: "rgba(255,255,255,0.35)" }}
+          >
             <span>Updated: {page.lastUpdated}</span>
-            <span className="h-1 w-1 rounded-full bg-white/30" />
+            <span className="w-1 h-1 rounded-full" style={{ background: "rgba(255,255,255,0.25)" }} />
             <span>{page.clusterArticles.length} Resources in This Cluster</span>
           </div>
         </div>
       </div>
 
-      {/* ── QUICK ANSWER — no friction label ── */}
-      <div className="bg-brand-start/5 border-b border-brand-start/20 px-6 py-8">
-        <div className="mx-auto max-w-4xl flex gap-5 items-start">
-          <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-brand-gradient flex items-center justify-center text-white font-black text-sm mt-0.5">
+      {/* ── STICKY PILL NAV ── */}
+      <ChapterPillNav chapters={page.chapters} activeIdx={activeChapter} />
+
+      {/* ── QUICK ANSWER ── */}
+      <div style={{ background: "#fff", borderBottom: "1px solid #e5e7eb" }}>
+        <div className="mx-auto max-w-4xl px-6 py-6 flex gap-4 items-start">
+          <div
+            className="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center text-white font-black text-sm"
+            style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)" }}
+          >
             ✓
           </div>
-          <p className="text-base text-ebony leading-relaxed font-medium">
-            {page.quickAnswer}
-          </p>
+          <p className="text-base text-gray-700 leading-relaxed font-medium">{page.quickAnswer}</p>
         </div>
       </div>
 
       {/* ── MAIN LAYOUT ── */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
 
-          {/* ── STICKY SIDEBAR ── */}
+          {/* ── SIDEBAR ── */}
           <aside className="hidden lg:block lg:col-span-3">
-            <div className="sticky top-24 space-y-6">
-              <div className="bg-gray-50 rounded-[2rem] p-6 border border-gray-100">
-                <p className="text-[10px] font-black text-ebony uppercase tracking-widest mb-4">
+            <div className="sticky top-16 space-y-5">
+              <div className="rounded-2xl p-5 border" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
+                <p className="text-[10px] font-black uppercase tracking-widest mb-3" style={{ color: "#9ca3af" }}>
                   In This Guide
                 </p>
                 <ChapterNav chapters={page.chapters} activeIdx={activeChapter} />
               </div>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {page.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="bg-gray-100 text-slate-gray text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full"
+                    className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full"
+                    style={{ background: "#f3f4f6", color: "#9ca3af" }}
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <div className="bg-ebony rounded-[2rem] p-6 text-center">
-                <p className="text-white font-black text-sm mb-4 leading-snug">
-                  {page.ctaText}
-                </p>
+              <div className="rounded-2xl p-5 text-center" style={{ background: "#0f3460" }}>
+                <p className="text-white font-black text-sm mb-4 leading-snug">{page.ctaText}</p>
                 <Link
                   href={page.ctaFeature}
-                  className="block bg-brand-gradient text-white font-black py-3 px-5 rounded-xl uppercase tracking-widest text-[10px] hover:scale-105 transition-transform"
+                  className="block font-black py-2.5 px-4 rounded-xl uppercase tracking-widest text-[10px] hover:opacity-90 transition-opacity"
+                  style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)", color: "#fff" }}
                 >
                   Learn More →
                 </Link>
@@ -249,23 +364,28 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
 
             {/* Introduction */}
             <div
-              className="prose prose-lg max-w-none text-slate-gray leading-relaxed mb-16 [&_strong]:text-ebony [&_a]:text-brand-start [&_a]:font-bold [&_h2]:text-2xl [&_h2]:font-black [&_h2]:text-ebony [&_h3]:text-xl [&_h3]:font-black [&_h3]:text-ebony"
+              className="prose prose-lg max-w-none mb-14"
+              style={{ color: "#4b5563" }}
               dangerouslySetInnerHTML={{ __html: md(page.introduction) }}
             />
 
-            {/* Mobile TOC — single clean numbered list card */}
-            <div className="lg:hidden mb-12 bg-gray-50 rounded-[2rem] p-6 border border-gray-100">
-              <p className="text-[10px] font-black text-ebony uppercase tracking-widest mb-4">
+            {/* Mobile TOC */}
+            <div className="lg:hidden mb-10 rounded-2xl p-5 border" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
+              <p className="text-[10px] font-black uppercase tracking-widest mb-3" style={{ color: "#9ca3af" }}>
                 In This Guide
               </p>
-              <ol className="space-y-2 list-none">
+              <ol className="space-y-2">
                 {page.chapters.map((ch, i) => (
                   <li key={i}>
                     <a
                       href={`#${chapterAnchor(ch, i)}`}
-                      className="flex items-center gap-3 text-sm font-bold text-slate-gray hover:text-brand-start transition-colors py-1"
+                      className="flex items-center gap-3 text-sm font-bold py-0.5 transition-colors"
+                      style={{ color: "#4b5563" }}
                     >
-                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-gradient flex items-center justify-center text-[10px] text-white font-black">
+                      <span
+                        className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[9px] text-white font-black"
+                        style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)" }}
+                      >
                         {i + 1}
                       </span>
                       {ch.title.split(":")[0].split("(")[0].trim()}
@@ -276,36 +396,38 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
             </div>
 
             {/* ── CHAPTERS ── */}
-            <div className="space-y-24">
+            <div className="space-y-20">
               {page.chapters.map((chapter, i) => {
                 const anchor = chapterAnchor(chapter, i);
                 const nextChapter = page.chapters[i + 1];
-                const nextAnchor = nextChapter
-                  ? chapterAnchor(nextChapter, i + 1)
-                  : null;
+                const nextAnchor = nextChapter ? chapterAnchor(nextChapter, i + 1) : null;
 
                 return (
                   <div
                     key={i}
                     id={anchor}
-                    ref={(el) => {
-                      chapterRefs.current[i] = el;
-                    }}
-                    className="scroll-mt-28"
+                    ref={(el) => { chapterRefs.current[i] = el; }}
+                    className="scroll-mt-24"
                   >
-                    {/* Chapter header */}
-                    <div className="flex items-start gap-5 mb-8">
-                      <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-brand-gradient flex items-center justify-center text-white font-black text-xl shadow-lg">
+                    {/* Dark navy chapter header card */}
+                    <div
+                      className="rounded-2xl p-6 mb-8 flex items-center gap-5"
+                      style={{ background: "linear-gradient(135deg,#0f3460 0%,#16213e 100%)" }}
+                    >
+                      <div
+                        className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-lg font-black"
+                        style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)", color: "#fff" }}
+                      >
                         {i + 1}
                       </div>
                       <div>
-                        <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-1">
+                        <p className="text-[10px] font-black uppercase tracking-widest mb-0.5" style={{ color: "#5DCAA5" }}>
                           Chapter {i + 1}
                         </p>
-                        <h2 className="text-2xl md:text-3xl font-black text-ebony leading-tight">
+                        <h2 className="text-xl md:text-2xl font-black leading-tight" style={{ color: "#fff" }}>
                           {chapter.title}
                         </h2>
-                        <p className="text-sm text-slate-gray mt-2 leading-relaxed italic">
+                        <p className="text-sm leading-relaxed mt-1 italic" style={{ color: "rgba(255,255,255,0.55)" }}>
                           {chapter.summary}
                         </p>
                       </div>
@@ -313,56 +435,80 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
 
                     {/* Chapter content */}
                     <div
-                      className="prose prose-lg max-w-none text-slate-gray leading-relaxed
-                        [&_strong]:text-ebony [&_strong]:font-black
-                        [&_a]:text-brand-start [&_a]:font-bold [&_a]:no-underline [&_a:hover]:underline
-                        [&_h3]:text-xl [&_h3]:font-black [&_h3]:text-ebony [&_h3]:mt-8 [&_h3]:mb-4
+                      className="prose prose-lg max-w-none
+                        [&_strong]:font-black
+                        [&_a]:font-bold [&_a]:no-underline [&_a:hover]:underline
+                        [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:pl-3 [&_h3]:font-black [&_h3]:text-xl
                         [&_ul]:space-y-2 [&_li]:leading-relaxed
                         [&_p]:leading-relaxed [&_p]:mb-4"
-                      dangerouslySetInnerHTML={{ __html: md(chapter.content) }}
+                      style={{
+                        color: "#374151",
+                        // Teal left border on H3 via CSS custom property
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: md(chapter.content).replace(
+                          /<h3/g,
+                          '<h3 style="border-left:3px solid #1D9E75;padding-left:12px;color:#111827"'
+                        ),
+                      }}
                     />
 
-                    {/* Callout box — amber rule card */}
+                    {/* Callout box */}
                     {chapter.callout && (
-                      <div className="mt-8 flex gap-4 border-l-4 border-amber-400 bg-amber-50 rounded-r-2xl p-5">
-                        <span className="flex-shrink-0 text-amber-500 text-xl mt-0.5">⚠</span>
+                      <div
+                        className="mt-8 flex gap-4 rounded-r-2xl p-5"
+                        style={{ borderLeft: "4px solid #f59e0b", background: "#fffbeb" }}
+                      >
+                        <span className="flex-shrink-0 text-xl mt-0.5" style={{ color: "#f59e0b" }}>⚠</span>
                         <div
-                          className="text-amber-900 font-bold text-sm leading-relaxed [&_strong]:text-amber-900 [&_p]:mb-0"
+                          className="text-sm leading-relaxed font-bold [&_p]:mb-0"
+                          style={{ color: "#92400e" }}
                           dangerouslySetInnerHTML={{ __html: md(chapter.callout) }}
                         />
                       </div>
                     )}
 
+                    {/* Interactive component */}
+                    <ChapterInteractive slug={page.slug} anchorId={anchor} />
+
                     {/* Deep-dive link */}
                     {chapter.linkedSlug && (
                       <Link
                         href={`/resources/${chapter.linkedSlug}`}
-                        className="mt-8 flex items-center gap-4 bg-brand-start/5 border border-brand-start/20 rounded-[1.5rem] p-5 hover:bg-brand-start/10 hover:border-brand-start/40 transition-all group"
+                        className="mt-8 flex items-center gap-4 rounded-2xl p-5 transition-all group border"
+                        style={{ background: "rgba(29,158,117,0.04)", borderColor: "rgba(29,158,117,0.2)" }}
                       >
-                        <div className="flex-shrink-0 w-10 h-10 bg-brand-gradient rounded-xl flex items-center justify-center text-white text-sm font-black group-hover:scale-110 transition-transform">
+                        <div
+                          className="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-black group-hover:scale-110 transition-transform"
+                          style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)" }}
+                        >
                           →
                         </div>
                         <div>
-                          <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-0.5">
+                          <p className="text-[10px] font-black uppercase tracking-widest mb-0.5" style={{ color: "#1D9E75" }}>
                             Deep Dive
                           </p>
-                          <p className="font-black text-ebony text-sm leading-snug group-hover:text-brand-start transition-colors">
+                          <p className="font-black text-sm text-gray-800 group-hover:text-teal-600 transition-colors">
                             Read the full guide on this topic →
                           </p>
                         </div>
                       </Link>
                     )}
 
-                    {/* Next chapter navigation */}
+                    {/* Next chapter nav */}
                     {nextAnchor && nextChapter && (
-                      <div className="mt-10 pt-8 border-t border-gray-100 flex justify-end">
+                      <div className="mt-10 pt-8 border-t flex justify-end" style={{ borderColor: "#e5e7eb" }}>
                         <a
                           href={`#${nextAnchor}`}
-                          className="inline-flex items-center gap-2 text-sm font-black text-brand-start hover:gap-3 transition-all group"
+                          className="inline-flex items-center gap-2 text-sm font-black transition-all group"
+                          style={{ color: "#1D9E75" }}
                         >
-                          <span className="text-slate-gray font-bold">Next:</span>
+                          <span className="font-bold text-gray-400">Next:</span>
                           {nextChapter.title.split(":")[0].split("(")[0].trim()}
-                          <span className="w-7 h-7 rounded-full bg-brand-start/10 group-hover:bg-brand-start/20 flex items-center justify-center text-brand-start transition-colors">
+                          <span
+                            className="w-7 h-7 rounded-full flex items-center justify-center transition-all"
+                            style={{ background: "rgba(29,158,117,0.1)", color: "#1D9E75" }}
+                          >
                             →
                           </span>
                         </a>
@@ -373,21 +519,29 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
               })}
             </div>
 
-            {/* ── CTA — after final chapter ── */}
-            <div className="mt-24 bg-brand-gradient rounded-[3rem] p-12 text-center relative overflow-hidden">
-              <div className="absolute inset-0 opacity-10 pointer-events-none select-none flex items-center justify-center">
-                <span className="text-[12rem] font-black text-white leading-none">✦</span>
-              </div>
+            {/* ── CTA after final chapter ── */}
+            <div
+              className="mt-20 rounded-3xl p-12 text-center relative overflow-hidden"
+              style={{ background: "linear-gradient(135deg,#0f3460 0%,#16213e 100%)" }}
+            >
+              <div
+                className="absolute inset-0 pointer-events-none select-none"
+                style={{
+                  backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)",
+                  backgroundSize: "24px 24px",
+                }}
+              />
               <div className="relative">
-                <p className="text-white/70 text-xs font-black uppercase tracking-widest mb-3">
+                <p className="text-[10px] font-black uppercase tracking-widest mb-2" style={{ color: "#5DCAA5" }}>
                   {page.ctaFeature}
                 </p>
-                <p className="text-white font-black text-3xl md:text-4xl mb-8 leading-tight">
+                <p className="font-black text-2xl md:text-3xl mb-6 leading-tight" style={{ color: "#fff" }}>
                   {page.ctaText}
                 </p>
                 <Link
                   href={page.ctaFeature}
-                  className="inline-block bg-white text-brand-start font-black py-4 px-12 rounded-[2rem] hover:scale-105 active:scale-95 transition-transform uppercase tracking-widest text-sm shadow-xl"
+                  className="inline-block font-black py-3.5 px-10 rounded-2xl uppercase tracking-widest text-sm hover:opacity-90 active:scale-95 transition-all shadow-xl"
+                  style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)", color: "#fff" }}
                 >
                   Learn More →
                 </Link>
@@ -398,17 +552,17 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
       </div>
 
       {/* ── CLUSTER GRID ── */}
-      <section id="cluster" className="py-20 bg-gray-50 border-t border-gray-100 scroll-mt-20">
+      <section id="cluster" className="py-20 border-t scroll-mt-20" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-3">
+          <div className="text-center mb-14">
+            <p className="text-[10px] font-black uppercase tracking-widest mb-2" style={{ color: "#1D9E75" }}>
               Complete Resource Cluster
             </p>
-            <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter">
+            <h2 className="text-3xl font-black text-gray-900 uppercase tracking-tight">
               All {page.clusterArticles.length} Resources in This Topic
             </h2>
-            <p className="text-slate-gray mt-4 max-w-xl mx-auto">
-              Every article, guide, and how-to in this cluster — organized by type so you can find exactly what you need.
+            <p className="text-gray-500 mt-3 max-w-lg mx-auto text-sm">
+              Every article, guide, and how-to in this cluster — organized by type.
             </p>
           </div>
 
@@ -418,32 +572,28 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
               const cfg = typeConfig[type];
               const items = clusterByType[type];
               return (
-                <div key={type} className="mb-12">
-                  <div className="flex items-center gap-3 mb-5">
-                    <span className="text-xl">{cfg.emoji}</span>
-                    <h3 className="font-black text-ebony uppercase tracking-widest text-sm">
-                      {cfg.label}s
-                    </h3>
-                    <span className="text-xs text-slate-gray font-bold bg-gray-200 px-2 py-0.5 rounded-full">
+                <div key={type} className="mb-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-lg">{cfg.emoji}</span>
+                    <h3 className="font-black text-gray-800 uppercase tracking-widest text-sm">{cfg.label}s</h3>
+                    <span className="text-xs text-gray-400 font-bold bg-gray-100 px-2 py-0.5 rounded-full">
                       {items.length}
                     </span>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     {items.map((item) => (
                       <Link
                         href={`/resources/${item.slug}`}
                         key={item.slug}
-                        className={`group ${cfg.bg} border border-transparent hover:border-brand-start/20 hover:shadow-md rounded-[1.5rem] p-5 transition-all block`}
+                        className={`group ${cfg.bg} border border-transparent hover:shadow-md rounded-2xl p-4 transition-all block`}
                       >
-                        <span
-                          className={`text-[10px] font-black uppercase tracking-widest ${cfg.text} mb-3 block`}
-                        >
+                        <span className={`text-[10px] font-black uppercase tracking-widest ${cfg.text} mb-2 block`}>
                           {cfg.label}
                         </span>
-                        <h4 className="font-black text-ebony leading-snug group-hover:text-brand-start transition-colors text-sm">
+                        <h4 className="font-black text-gray-800 leading-snug group-hover:text-teal-600 transition-colors text-sm">
                           {item.title}
                         </h4>
-                        <span className="text-xs text-slate-gray mt-2 flex items-center gap-1 group-hover:gap-2 transition-all">
+                        <span className="text-xs text-gray-400 mt-2 flex items-center gap-1 group-hover:gap-2 transition-all">
                           Read <span>→</span>
                         </span>
                       </Link>
@@ -455,13 +605,13 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
         </div>
       </section>
 
-      {/* ── FAQs — first item open by default ── */}
-      <section id="faqs" className="py-20 bg-white border-t border-gray-100 scroll-mt-20">
+      {/* ── FAQs ── */}
+      <section id="faqs" className="py-20 border-t scroll-mt-20" style={{ background: "#f8f8f6", borderColor: "#e5e7eb" }}>
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
-          <h2 className="text-3xl font-black text-ebony uppercase tracking-tighter mb-12 text-center">
+          <h2 className="text-3xl font-black text-gray-900 uppercase tracking-tight mb-10 text-center">
             Frequently Asked Questions
           </h2>
-          <div className="space-y-0 divide-y divide-gray-100">
+          <div className="divide-y divide-gray-200">
             {page.faqs.map((faq, i) => (
               <FaqItem key={i} faq={faq} defaultOpen={i === 0} />
             ))}
@@ -469,27 +619,31 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
         </div>
       </section>
 
-      {/* ── OTHER PILLAR PAGES ── */}
+      {/* ── OTHER HUBS ── */}
       {related.length > 0 && (
-        <section className="py-20 bg-gray-50 border-t border-gray-100">
+        <section className="py-20 border-t" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <h2 className="text-2xl font-black text-ebony uppercase tracking-tight mb-10 text-center">
+            <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tight mb-10 text-center">
               Explore More Complete Guides
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {related.map((rel) => (
                 <Link
                   href={`/resources/${rel.slug}`}
                   key={rel.slug}
-                  className="group bg-white p-7 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all border border-gray-100 block"
+                  className="group p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all border block"
+                  style={{ background: "#fff", borderColor: "#e5e7eb" }}
                 >
-                  <span className="text-[10px] font-black text-brand-start uppercase tracking-widest bg-brand-start/10 px-3 py-1 rounded-full mb-5 inline-block">
+                  <span
+                    className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block"
+                    style={{ background: "rgba(29,158,117,0.1)", color: "#1D9E75" }}
+                  >
                     Complete Guide
                   </span>
-                  <h4 className="text-lg font-black text-ebony leading-snug group-hover:text-brand-start transition-colors">
+                  <h4 className="text-base font-black text-gray-800 leading-snug group-hover:text-teal-600 transition-colors">
                     {rel.shortTitle}
                   </h4>
-                  <p className="text-xs text-slate-gray mt-2">{rel.readTime}</p>
+                  <p className="text-xs text-gray-400 mt-2">{rel.readTime}</p>
                 </Link>
               ))}
             </div>
@@ -521,25 +675,26 @@ function FaqItem({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className={`py-6 transition-all ${open ? "bg-white" : ""}`}>
+    <div className="py-5">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-start justify-between gap-6 text-left"
       >
-        <span className="font-black text-ebony text-lg leading-snug">{faq.q}</span>
+        <span className="font-black text-gray-800 text-base leading-snug">{faq.q}</span>
         <span
-          className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-black text-lg transition-all mt-0.5 ${
-            open
-              ? "bg-brand-start text-white rotate-45"
-              : "bg-gray-100 text-slate-gray"
-          }`}
+          className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center font-black text-base transition-all mt-0.5"
+          style={{
+            background: open ? "#0f3460" : "#f3f4f6",
+            color: open ? "#fff" : "#9ca3af",
+            transform: open ? "rotate(45deg)" : "none",
+          }}
         >
           +
         </span>
       </button>
       {open && (
         <div
-          className="mt-4 text-slate-gray leading-relaxed text-base [&_strong]:text-ebony [&_a]:text-brand-start [&_a]:font-bold"
+          className="mt-3 text-sm text-gray-600 leading-relaxed [&_strong]:text-gray-800 [&_a]:text-teal-600 [&_a]:font-bold"
           dangerouslySetInnerHTML={{ __html: md(faq.a) }}
         />
       )}
