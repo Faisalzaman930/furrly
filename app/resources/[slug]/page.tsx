@@ -178,6 +178,36 @@ function buildFaqSchema(faqs: { q: string; a: string }[]) {
   };
 }
 
+function buildPillarHowToSchema(pillar: (typeof pillarPages)[0]) {
+  // Only emit HowTo for pillar pages that have a foundational "how to" chapter
+  const howToChapter = pillar.chapters.find(
+    (ch) => ch.anchorId === "foundational-commands" || ch.title.toLowerCase().includes("foundational")
+  );
+  if (!howToChapter) return null;
+
+  // Extract the named steps from the chapter title list
+  const stepNames: { name: string; text: string }[] = [
+    { name: "Sit", text: "Lure from nose upward — the dog's hindquarters naturally drop. Mark the instant they touch the floor, then reward. Add the verbal cue only after the behavior is reliable." },
+    { name: "Stay", text: "Build stay by extending three dimensions incrementally: duration (seconds to minutes), distance (one foot to across the room), and distraction (quiet room to outdoors). Always release with a consistent word." },
+    { name: "Come (Recall)", text: "Never call your dog for anything unpleasant. The word 'come' must always predict something wonderful. Practice in low-distraction settings first, then gradually add challenges. Use the highest-value treats for recall." },
+    { name: "Leave It", text: "Start with treats in a closed fist. When the dog stops nosing and moves away, mark and reward from the other hand. Progress to treats on the floor, then dropped items in the real world." },
+    { name: "Loose-Leash Walking", text: "The rule is absolute: the leash never tightens from pulling and still results in forward movement. Every time the leash goes tight, stop or change direction until the dog returns to your side." },
+  ];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Train a Dog: The 5 Foundational Behaviors",
+    "description": "The five behaviors every dog must know — sit, stay, come, leave it, and loose-leash walking — taught using positive reinforcement.",
+    "step": stepNames.map((s, i) => ({
+      "@type": "HowToStep",
+      "position": i + 1,
+      "name": s.name,
+      "text": s.text,
+    })),
+  };
+}
+
 function buildHowToSchema(article: (typeof howToArticles)[0]) {
   return {
     "@context": "https://schema.org",
@@ -273,10 +303,12 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
 
   const pillar = pillarPages.find((p) => p.slug === slug);
   if (pillar) {
+    const pillarHowTo = buildPillarHowToSchema(pillar);
     return (
       <>
         <JsonLd data={buildArticleSchema(pillar)} />
         {pillar.faqs?.length ? <JsonLd data={buildFaqSchema(pillar.faqs)} /> : null}
+        {pillarHowTo && <JsonLd data={pillarHowTo} />}
         <PillarLayout page={pillar} />
       </>
     );

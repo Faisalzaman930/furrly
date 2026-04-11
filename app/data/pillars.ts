@@ -9,6 +9,10 @@ export interface PillarChapter {
   summary: string;
   content: string;
   linkedSlug?: string;
+  /** Descriptive anchor slug, e.g. "how-dogs-learn". Auto-derived from title if omitted. */
+  anchorId?: string;
+  /** Critical rule shown in an amber callout box below the chapter content. */
+  callout?: string;
 }
 
 export interface PillarPage {
@@ -37,7 +41,7 @@ export const pillarPages: PillarPage[] = [
     title: "The Complete Guide to Dog Training: Methods, Science & What Actually Works",
     seoTitle: "Complete Dog Training Guide 2026: Methods, Science & Results",
     shortTitle: "Dog Training Hub",
-    seoDescription: "The definitive dog training guide — positive reinforcement science, how dogs learn, foundational commands, behavior problems, choosing a trainer, training tools, and advanced skills. Everything in one place.",
+    seoDescription: "Dog training guide 2026: positive reinforcement science, foundational commands, behavior problems, body language, choosing a trainer, and advanced skills — everything in one place.",
     category: "Complete Guide",
     tags: ["Dog Training", "Behavior", "Expert Guide"],
     publishDate: "April 2026",
@@ -54,6 +58,7 @@ Estimated reading time: 25 minutes. Use the chapter headings to jump to what you
     chapters: [
       {
         title: "How Dogs Learn: The Science Every Owner Should Know",
+        anchorId: "how-dogs-learn",
         summary: "Classical conditioning, operant conditioning, timing, reinforcement schedules, and why positive reinforcement works better than punishment.",
         content: `Dogs learn through two primary mechanisms: classical conditioning (learning by association) and operant conditioning (learning by consequence). Both are happening constantly — even when you're not intentionally training.
 
@@ -79,6 +84,8 @@ Modern, science-based training relies primarily on R+ and P-. The goal is to mak
       },
       {
         title: "The 5 Foundational Behaviors Every Dog Must Know",
+        anchorId: "foundational-commands",
+        callout: "**The recall rule:** Never call your dog for anything unpleasant — ever. The word 'come' must always predict something wonderful. A recall that fails when it matters most can cost a life.",
         summary: "Sit, stay, come, leave it, and loose-leash walking — the safety and communication foundations of every dog's education.",
         content: `Five behaviors form the practical foundation for a well-functioning relationship with any dog. These are not tricks — they are safety and communication tools that make every other aspect of dog ownership more manageable. A dog who knows these five behaviors reliably in real-world conditions is a dog who can go anywhere.
 
@@ -95,6 +102,8 @@ Modern, science-based training relies primarily on R+ and P-. The goal is to mak
       },
       {
         title: "Common Behavior Problems: Evidence-Based Solutions",
+        anchorId: "behavior-problems",
+        callout: "**The growling rule:** Never punish growling. A growl is communication — the last warning before a bite. Suppressing it doesn't reduce the underlying tension; it removes your only advance warning signal.",
         summary: "Separation anxiety, excessive barking, destructive behavior, leash reactivity, resource guarding — what works and what makes problems worse.",
         content: `**Separation anxiety:** A genuine anxiety disorder requiring systematic desensitization and often veterinary medication support. Not manageable through punishment or "toughing it out" or "just leaving them — they'll get used to it." Separation anxiety is driven by panic, not behavior; the dog is not being dramatic or manipulative. Treatment involves graduated desensitization (departures of seconds → minutes → hours over weeks), medication consultation for moderate-severe cases (fluoxetine and clomipramine are FDA-approved for canine separation anxiety), and often working with a veterinary behaviorist. See our <a href="/resources/how-to-help-dog-with-separation-anxiety" class="text-brand-start font-bold">complete separation anxiety guide</a>.
 
@@ -111,6 +120,8 @@ Modern, science-based training relies primarily on R+ and P-. The goal is to mak
       },
       {
         title: "Reading Your Dog: Body Language Basics",
+        anchorId: "dog-body-language",
+        callout: "**Never punish growling.** A dog who growls is communicating stress. Remove the warning and you remove the advance notice — producing a dog who bites without warning. Growling is data. Use it.",
         summary: "Calming signals, the stress escalation ladder, whale eye, and how to identify what your dog is actually communicating before problems escalate.",
         content: `Training is a two-way communication process. Becoming more skilled at reading your dog's body language is as important as becoming more skilled at communicating with them. A trainer who can read their dog adjusts in real time; a trainer who can't misses escalating stress signals until the dog has passed threshold.
 
@@ -132,6 +143,7 @@ Dogs communicate continuously through their whole body — tail position and mov
       },
       {
         title: "Choosing a Dog Trainer: Red Flags and Green Flags",
+        anchorId: "choosing-a-trainer",
         summary: "Credentials that matter, methods to avoid, questions to ask before you commit, and how to find qualified help near you.",
         content: `Dog training is an entirely unregulated industry. Anyone can call themselves a dog trainer or "behaviorist" without any education, testing, or oversight. This means the quality range is enormous — from brilliant, evidence-based practitioners to people actively harming dogs with outdated, punishment-based methods.
 
@@ -167,6 +179,7 @@ Dogs communicate continuously through their whole body — tail position and mov
       },
       {
         title: "Training Tools: What's Safe and What Causes Harm",
+        anchorId: "training-tools",
         summary: "The honest breakdown of collars, harnesses, long lines, clickers, and e-collars — what the research says about each.",
         content: `The pet industry markets training equipment relentlessly, often with claims that can't be substantiated. Here is the honest, science-backed breakdown of what works, what's neutral, and what causes harm.
 
@@ -192,6 +205,7 @@ Dogs communicate continuously through their whole body — tail position and mov
       },
       {
         title: "Training Across Breeds and Temperaments",
+        anchorId: "training-breeds",
         summary: "Why herding breeds, hounds, terriers, and brachycephalic dogs require different approaches — and how to work with individual temperament regardless of breed.",
         content: `Breed doesn't determine trainability — it determines what a dog was selectively bred to find intrinsically rewarding. A border collie isn't smarter than a beagle; it's been bred over generations to find the work of herding intrinsically satisfying, making certain behaviors easier to elicit. Understanding a breed's genetic predispositions helps you train with the dog's nature rather than against it.
 
@@ -211,6 +225,7 @@ Dogs communicate continuously through their whole body — tail position and mov
       },
       {
         title: "Beyond the Basics: Sports, Advanced Skills, and Mental Enrichment",
+        anchorId: "advanced-training",
         summary: "Agility, scent work, obedience, rally, trick training, and the evidence base for mental enrichment — why thinking dogs are calmer dogs.",
         content: `Once a dog has reliable foundational behaviors, the question becomes: where do you go next? Advanced training serves multiple functions — it deepens the human-dog bond, provides mental stimulation that reduces problem behaviors, gives dogs a constructive outlet for natural drives, and for some breeds and individuals, is genuinely necessary for wellbeing.
 
@@ -259,7 +274,7 @@ The research on mental enrichment and behavior is consistent: dogs who receive a
     title: "The Complete Puppy Care Guide: Everything You Need for the First Year",
     seoTitle: "Complete Puppy Care Guide 2026: Vet-Backed, Week-by-Week",
     shortTitle: "Puppy Care Hub",
-    seoDescription: "The most comprehensive puppy care guide online. Covers vaccination schedules, nutrition, socialization science, housetraining, crate training, health problems, grooming, sleep, and week-by-week development. Vet-reviewed.",
+    seoDescription: "Complete puppy care guide 2026: vet-backed vaccination schedule, puppy nutrition, housetraining method, socialization science, health issues, and grooming — week by week through the first year.",
     category: "Complete Guide",
     tags: ["Puppies", "New Owners", "Expert Guide"],
     publishDate: "April 2026",
@@ -278,6 +293,7 @@ Sources include AVMA guidelines, AAHA vaccination standards, WSAVA vaccine recom
     chapters: [
       {
         title: "Before Your Puppy Arrives: Preparation, Supplies & the First 72 Hours",
+        anchorId: "puppy-arrival-prep",
         summary: "Everything to buy, set up, and do before pickup day — and the immediate priorities when your puppy comes home.",
         content: `**Preparation before pickup day:**
 
@@ -304,6 +320,7 @@ Keep the environment calm. Resist the urge to immediately expose the puppy to ma
       },
       {
         title: "Vaccination Schedule: What's Required, When, and Why",
+        anchorId: "vaccination-schedule",
         summary: "Complete DHPP schedule, core vs. non-core vaccines, the parvo paradox, and what to avoid before the series is complete.",
         content: `The puppy vaccination series is one of the most important things you will do for your dog's health. Puppies are born with some maternal antibody protection that wanes over the first weeks of life — the vaccination series is timed to build active immunity as maternal antibodies decline.
 
@@ -334,6 +351,7 @@ The resolution: the risk of behavioral problems from poor socialization is stati
       },
       {
         title: "Puppy Nutrition: What to Feed, How Much, and How Often",
+        anchorId: "puppy-nutrition",
         summary: "Choosing the right puppy food, reading labels, feeding schedules by age, large-breed vs. small-breed differences, and when to transition to adult food.",
         content: `Puppy nutrition is more consequential than adult nutrition because errors during growth — too much calcium, too little protein, inappropriate caloric density — have skeletal and developmental consequences that can be permanent. Feeding a puppy correctly isn't complicated, but it requires some foundational knowledge.
 
@@ -358,6 +376,8 @@ Named protein sources (chicken, beef, salmon) should appear early in the ingredi
       },
       {
         title: "Housetraining and Crate Training: The Real Method",
+        anchorId: "housetraining-crate-training",
+        callout: "**The housetraining rule:** Never punish accidents. Accidents are a failure of supervision, not the puppy's choice. Punishing after the fact — even seconds later — creates a dog afraid to eliminate in front of you, making housetraining far harder.",
         summary: "The science-backed housetraining protocol, crate introduction, night crying, and realistic timelines — what actually works.",
         content: `Housetraining is the source of more early frustration than almost any other puppy challenge. The good news: properly executed housetraining produces a reliable dog in 2–4 weeks for most puppies. The bad news: it requires genuine intensity and supervision for those weeks. The reason most people struggle is that they're not actually executing the method — they're doing a half-version that extends the timeline indefinitely.
 
@@ -379,6 +399,8 @@ The crate must be introduced gradually with positive association — it should n
       },
       {
         title: "The Socialization Window: 8–16 Weeks",
+        anchorId: "socialization-window",
+        callout: "**Quality over quantity:** Every socialization exposure must be positive. One genuinely terrifying experience during the socialization window can create a lasting fear association that takes months of counter-conditioning to address.",
         summary: "The most important developmental period — what positive exposure creates, what's safe before vaccination is complete, and the 100-experience goal.",
         content: `The socialization window is the period from approximately 3–14 weeks (with the primary human-oriented window from 8–12 weeks) during which positive exposure to novel stimuli creates permanent "normal" associations. The brain is literally structurally different during this period — novel stimuli encountered within the window are categorized as "safe" far more readily than those encountered after it closes.
 
@@ -402,6 +424,7 @@ Carry the puppy in arms or a bag through high-stimulation environments — full 
       },
       {
         title: "Puppy Development Month by Month: 4–12 Months",
+        anchorId: "puppy-development",
         summary: "Fear periods, adolescence, selective hearing, teething, and what to expect at each developmental stage through the first year.",
         content: `The puppy's first year involves multiple distinct developmental phases, each with predictable challenges. Understanding what's developmentally normal prevents owners from over-correcting, under-responding, or interpreting normal stages as behavioral problems.
 
@@ -426,6 +449,7 @@ Many people assume their dog is fully adult at 12 months because they're full-si
       },
       {
         title: "Common Puppy Health Issues and When to Worry",
+        anchorId: "puppy-health-issues",
         summary: "Diarrhea, vomiting, limping, lethargy, coughing, skin issues — what's normal puppy adjustment and what requires immediate veterinary attention.",
         content: `Puppies are not small adult dogs — their immune systems are immature, their physiology is different, and conditions that are mild inconveniences in adults can be life-threatening in young puppies. Knowing when to watch and when to act is essential.
 
@@ -452,6 +476,7 @@ Most puppies are born with roundworm larvae that activated from the mother durin
       },
       {
         title: "Grooming From Day One: Building a Lifetime of Cooperation",
+        anchorId: "grooming-day-one",
         summary: "Why grooming handling must start at week 8, how to build desensitization to nail trims, brushing, baths, and ear cleaning, and preventing adult grooming problems.",
         content: `The single best time to establish a dog who is calm and cooperative for grooming is during the socialization window — before resistance has been learned and before the dog is physically strong enough to make it difficult. A dog who tolerates nail trims, bathing, ear cleaning, and brushing willingly is not an accident: it's the result of deliberate desensitization and positive association built in puppyhood.
 
@@ -511,7 +536,7 @@ Examine ears weekly from puppyhood: touch the ear flap, look inside, pair with t
     title: "The Complete Pet Health Guide: Prevention, Symptoms & Veterinary Care",
     seoTitle: "Complete Pet Health Guide 2026: Prevention, Symptoms & Vet Care",
     shortTitle: "Pet Health Hub",
-    seoDescription: "The definitive pet health guide — preventive care schedules, how to recognize serious symptoms, what bloodwork reveals, dental health, parasite prevention, managing chronic conditions, and how to find the right vet. Dogs and cats.",
+    seoDescription: "Pet health guide 2026: preventive care schedules, symptom triage, bloodwork explained, dental disease, parasite prevention, chronic condition management, and at-home monitoring — for dogs and cats.",
     category: "Complete Guide",
     tags: ["Pet Health", "Veterinary Care", "Prevention"],
     publishDate: "April 2026",
@@ -526,6 +551,7 @@ This guide covers dogs and cats. Where relevant, species-specific differences ar
     chapters: [
       {
         title: "The Preventive Care Calendar: What Happens at Each Life Stage",
+        anchorId: "preventive-care-calendar",
         summary: "Vaccination schedules, parasite prevention timelines, senior bloodwork, and dental care organized by age for dogs and cats.",
         content: `**Puppies and kittens (8 weeks – 1 year):**
 The vaccination series, parasite prevention, and initial behavior foundation. For puppies: DHPP at 6–8, 10–12, and 14–16 weeks, plus rabies at 14–16 weeks and non-core vaccines based on lifestyle. For kittens: FVRCP (feline viral rhinotracheitis, calicivirus, panleukopenia) at 8, 12, and 16 weeks, plus rabies and FeLV (feline leukemia) for cats with outdoor access. Deworming routinely. Flea, tick, and heartworm prevention established from early age.
@@ -544,6 +570,8 @@ Twice-annual examinations as standard practice. Complete bloodwork twice yearly 
       },
       {
         title: "Reading Symptoms: When to Call vs. When to Go",
+        anchorId: "reading-symptoms",
+        callout: "**Emergency:** A male cat straining to urinate without producing urine is a urethral obstruction — fatal within 24–48 hours without treatment. This is never a 'monitor at home' situation. Go immediately.",
         summary: "Clear triage guidance for the most common symptoms — true emergencies, same-day urgent care, and safe home monitoring situations.",
         content: `The hardest judgment for pet owners is assessing symptom severity. Veterinary practices are appropriately cautious — they'll always say "if in doubt, bring them in." But not every symptom requires immediate emergency evaluation, and understanding triage helps you make informed decisions under stress.
 
@@ -577,6 +605,7 @@ Twice-annual examinations as standard practice. Complete bloodwork twice yearly 
       },
       {
         title: "What Bloodwork Tells You — And When to Ask For It",
+        anchorId: "bloodwork-explained",
         summary: "CBC, metabolic panel, SDMA, thyroid, urinalysis — understanding what each panel screens for and why baseline values matter.",
         content: `Annual bloodwork in middle-aged and senior pets isn't a luxury — it's the most reliable early detection tool available outside of specialized imaging. Many conditions that significantly affect quality of life and lifespan are entirely asymptomatic in early stages and detectable only on bloodwork. The value of running bloodwork annually is not just the current result; it's the trend line across years.
 
@@ -600,6 +629,8 @@ Complements the metabolic panel — kidney function assessment (specific gravity
       },
       {
         title: "Dental Health: The Silent Crisis Most Owners Miss",
+        anchorId: "dental-health",
+        callout: "**The dental truth:** 80% of pets over 3 have clinically significant dental disease — most owners have no idea because pets hide pain. A dog eating normally can still be in chronic oral pain. Dental disease is not cosmetic; it's systemic.",
         summary: "Why 80% of pets over 3 have dental disease, what periodontal disease does to systemic health, and the prevention protocol that actually works.",
         content: `Dental disease is the most underestimated chronic health condition in pets. Studies consistently show that 80% of dogs and 70% of cats over age 3 have clinically significant periodontal disease — and the vast majority of those owners have no idea. Dental disease causes chronic pain (which pets are evolved to hide), systemic bacterial spread to the kidneys, liver, and heart valves, and if left untreated, tooth loss and jaw bone damage.
 
@@ -620,6 +651,7 @@ What doesn't work: dental chews without VOHC acceptance, "dental toys" with no r
       },
       {
         title: "Parasite Prevention: Heartworm, Fleas, Ticks, and Intestinal Parasites",
+        anchorId: "parasite-prevention",
         summary: "The parasite threats by geography, prevention products that work, and why year-round prevention is the evidence-based standard in most climates.",
         content: `Parasite prevention is one of the highest-return investments in pet health — the diseases parasites cause are far more expensive, dangerous, and difficult to treat than the prevention costs. This chapter covers the major parasites, the diseases they cause, and the prevention protocols that veterinary and public health organizations recommend.
 
@@ -641,6 +673,7 @@ Roundworms are nearly universal in puppies. Hookworms, whipworms, and giardia ar
       },
       {
         title: "Managing Chronic Conditions: Arthritis, Allergies, Diabetes, and Kidney Disease",
+        anchorId: "chronic-conditions",
         summary: "The four most common chronic conditions in pets — how they're diagnosed, how they're managed, and what owners can do at home.",
         content: `Chronic disease management is increasingly central to pet health as pets live longer lives. Understanding the four most common chronic conditions helps owners be effective partners in their pet's care rather than passive recipients of vet instructions.
 
@@ -665,6 +698,7 @@ Extremely common in senior cats; common in senior dogs. Often asymptomatic until
       },
       {
         title: "Finding and Working With the Right Veterinarian",
+        anchorId: "finding-a-vet",
         summary: "How to choose a vet, what a good vet-owner relationship looks like, when to seek a specialist, and how to navigate the cost of veterinary care.",
         content: `The veterinarian-owner relationship is one of the most important partnerships in a pet's life. A good working relationship with a vet who knows your animal means problems are caught earlier, communication is clearer, and care decisions are better informed. A poor relationship means you avoid the vet until something is obviously wrong — which is a major driver of preventable morbidity.
 
@@ -694,6 +728,7 @@ Veterinary care is expensive. Options for managing cost:
       },
       {
         title: "At-Home Health Monitoring: What Every Owner Should Check Monthly",
+        anchorId: "home-health-monitoring",
         summary: "Body condition score, lymph nodes, skin and coat assessment, eye and ear checks, and the monitoring behaviors that give you an early-warning system.",
         content: `The veterinarian sees your pet once or twice a year. You see them every day. The most effective early-warning system for your pet's health is you — but only if you know what you're looking for. Building a monthly home health assessment into your routine takes 5 minutes and can catch conditions months before they'd be found at an annual exam.
 
@@ -756,7 +791,7 @@ Normal gums are pink and moist. Press a finger to the gum — color should retur
     title: "The Complete Pet Nutrition Guide: What to Feed, How Much, and Why",
     seoTitle: "Complete Pet Nutrition Guide 2026: Feeding Dogs & Cats Right",
     shortTitle: "Pet Nutrition Hub",
-    seoDescription: "The definitive pet nutrition guide — understanding pet food labels, AAFCO standards, caloric calculation, life-stage nutrition, raw vs. kibble vs. fresh, toxic foods, supplements, hydration, and weight management. Vet-reviewed.",
+    seoDescription: "Pet nutrition guide 2026: read food labels, calculate calories, compare raw vs kibble vs fresh, identify toxic foods, evaluate supplements, and manage weight — vet-reviewed and evidence-based.",
     category: "Complete Guide",
     tags: ["Nutrition", "Feeding", "Pet Health"],
     publishDate: "April 2026",
@@ -771,6 +806,7 @@ A note on cat nutrition: cats are obligate carnivores with fundamentally differe
     chapters: [
       {
         title: "Reading Pet Food Labels: The Regulated Information That Actually Matters",
+        anchorId: "reading-food-labels",
         summary: "AAFCO nutritional adequacy statements, ingredient lists, guaranteed analysis, dry matter basis calculation, and what 'human grade' actually means.",
         content: `**The AAFCO nutritional adequacy statement** is the most important line on any pet food label. It tells you two things: (1) whether the food meets complete nutrition standards for a specific life stage, and (2) how that was determined. Both pieces of information matter.
 
@@ -795,6 +831,8 @@ The only accurate way to compare foods with different moisture levels. A dry kib
       },
       {
         title: "Caloric Calculation and Body Condition Scoring",
+        anchorId: "caloric-calculation",
+        callout: "**The obesity fact:** Dogs maintained at ideal body condition live an average of 1.8 years longer than their slightly overweight counterparts. Obesity is the most preventable cause of premature death in pets — and most owners don't realize their pet is overweight.",
         summary: "How to calculate daily caloric needs, use the body condition score at home, and adjust feeding for weight loss or weight gain.",
         content: `**Caloric calculation:**
 The resting energy requirement (RER) is the baseline: 70 × (body weight in kg)^0.75. This is then multiplied by a lifestyle factor to get maintenance energy requirement (MER):
@@ -827,6 +865,7 @@ Treats are calories and must be factored into the daily total. The guideline is 
       },
       {
         title: "Life Stage Nutrition: Puppies, Adults, Seniors, and Cats",
+        anchorId: "life-stage-nutrition",
         summary: "How nutritional requirements change throughout a pet's life — and why a senior dog's needs are not a simple reduction of adult requirements.",
         content: `**Puppies:**
 Growth requires significantly more protein, calcium, phosphorus, and total energy per unit body weight than adult maintenance. For most small to medium breeds, a food meeting AAFCO puppy standards is appropriate. For large-breed puppies (expected adult weight above 55 lbs/25 kg), use a formula specifically labeled for "large breed puppy" or "large breed growth" — these are formulated with lower calcium and phosphorus ratios appropriate to larger breeds. Too much calcium accelerates bone growth faster than structural integrity develops, contributing to developmental orthopedic disease.
@@ -854,6 +893,7 @@ Never feed a cat dog food as a primary diet — it is nutritionally inadequate f
       },
       {
         title: "Feeding Approaches Compared: Kibble, Wet, Raw, Fresh-Cooked, and Homemade",
+        anchorId: "feeding-approaches",
         summary: "What the science actually says about different feeding approaches — benefits, limitations, and safety considerations for each.",
         content: `**Dry kibble:**
 The most widely fed pet food format and the most extensively studied. Properly formulated kibble from reputable manufacturers with AAFCO feeding trial substantiation provides complete nutrition at relatively low cost, is shelf-stable, and is highly convenient. Limitations: high starch content in some formulations (more relevant for diabetic cats than healthy dogs), lower moisture content (relevant for cats who don't drink enough), and the processing required for shelf stability reduces some heat-sensitive nutrient content (offset by supplementation in quality formulations).
@@ -880,6 +920,8 @@ Only appropriate when formulated by a board-certified veterinary nutritionist (D
       },
       {
         title: "Foods That Are Toxic to Pets: The Complete List",
+        anchorId: "toxic-foods",
+        callout: "**Xylitol warning:** Many 'natural' and 'sugar-free' peanut butters now contain xylitol, which is lethal to dogs at small doses. Always read ingredient labels before giving any human food to your dog. When in doubt, don't give it.",
         summary: "Grapes, xylitol, chocolate, onions, macadamias, and more — the mechanisms of toxicity and what to do if your pet ingests them.",
         content: `Pet food toxicity is one of the most important areas where owner knowledge directly prevents emergencies. Some common human foods cause no harm to pets at small quantities; others can be lethal at doses that would surprise most owners.
 
@@ -915,6 +957,7 @@ Only appropriate when formulated by a board-certified veterinary nutritionist (D
       },
       {
         title: "Supplements: What the Evidence Actually Supports",
+        anchorId: "supplements-evidence",
         summary: "Joint supplements, omega-3s, probiotics, multivitamins, and CBD — separating evidence from marketing in the pet supplement industry.",
         content: `The pet supplement market exceeds $1 billion annually in the US and is almost entirely unregulated — supplements are not held to the same efficacy or safety standards as veterinary medications. This doesn't mean supplements are ineffective; it means you must evaluate each one on its evidence base rather than its marketing claims.
 
@@ -939,6 +982,7 @@ Veterinary research is in early stages but accelerating. A 2019 Cornell Universi
       },
       {
         title: "Hydration, Weight Management, and Special Dietary Considerations",
+        anchorId: "hydration-weight-management",
         summary: "Cat hydration biology, the obesity epidemic in pets, weight loss protocols that work, and dietary management for common conditions.",
         content: `**Hydration in cats — a critically underappreciated issue:**
 Cats evolved as desert predators whose primary water intake came from their prey (which is approximately 70% water). Their thirst drive is correspondingly low — cats do not feel thirsty as readily as dogs or humans in response to mild dehydration. A cat eating only dry kibble (8–10% moisture) is chronically mildly dehydrated in a way that a prey-eating cat would not be.
