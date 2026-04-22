@@ -7,7 +7,7 @@ import { breedArticles } from "./data/breed-articles";
 import { definitionArticles } from "./data/definition-articles";
 import { pillarPages } from "./data/pillars";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://furrly.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://furrly.co";
 
 const TODAY = new Date();
 
