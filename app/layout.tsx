@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   },
   description: "Download Furrly, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
   keywords: ["pet super-app", "best pet app", "dog social media app", "pet adoption app", "mobile vet directory", "find lost pet app", "Furrly app download"],
+  verification: {
+    google: "ayQ4sYm-hWGfrvOeiixegZs5__TY29fuZKuFepIfr5E",
+  },
   robots: {
     index: true,
     follow: true,
