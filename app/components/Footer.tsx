@@ -26,7 +26,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-10 xl:col-span-2 text-sm">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-10 xl:col-span-2 text-sm">
               <div>
                 <h3 className="font-bold text-ebony uppercase tracking-widest text-xs mb-6">Live Now</h3>
                 <ul className="space-y-3">
@@ -57,6 +57,25 @@ const Footer = () => {
                       <Link href={item.href} className="text-slate-gray hover:text-ebony transition-colors flex items-center gap-2">
                         {item.name}
                         <span className="text-[9px] font-black text-brand-start uppercase tracking-widest bg-brand-start/10 px-1.5 py-0.5 rounded-full">Soon</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-ebony uppercase tracking-widest text-xs mb-6">Free Tools</h3>
+                <ul className="space-y-3">
+                  {[
+                    { name: "Pet Sitter Cost", href: "/tools/pet-sitter-cost" },
+                    { name: "Age Calculator", href: "/tools/age-calculator" },
+                    { name: "Toxic Food Checker", href: "/tools/toxic-food" },
+                    { name: "Symptom Checker", href: "/tools/symptom-checker" },
+                    { name: "Breed Compare", href: "/tools/breed-compare" },
+                    { name: "All Tools →", href: "/tools" },
+                  ].map((item) => (
+                    <li key={item.name}>
+                      <Link href={item.href} className="text-slate-gray hover:text-ebony transition-colors">
+                        {item.name}
                       </Link>
                     </li>
                   ))}
