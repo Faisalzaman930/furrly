@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Free Pet Care Calculators & SEO Tools | Furrly Hub",
+  title: "Free Pet Care Calculators & Tools | Furrly Hub",
   description: "Free interactive pet care calculators for the global community. From age converters to toxic food checkers, explore our web-based tools designed for every pet parent.",
 };
 
@@ -151,7 +151,7 @@ export default function ToolsHubPage() {
     <div className="bg-white">
       <Hero
         subtitle="Free Community Resources"
-        title="Web Calculators & <br/>Pet Parent Tools."
+        title="Free Pet Calculators <br/>Built for Modern Pet Parents."
         description="Furrly is more than just an app. We're building a global resource hub for pet parents. Explore our free web-based calculators and interactive guides—designed to give you instant utility, right in your browser."
         showDownloads={true}
       />
