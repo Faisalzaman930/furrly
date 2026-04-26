@@ -90,6 +90,8 @@ const Footer = () => {
                     { name: "Roadmap", href: "/roadmap" },
                     { name: "Resources", href: "/resources" },
                     { name: "About", href: "#" },
+                    { name: "Privacy Policy", href: "/privacy" },
+                    { name: "Terms & Conditions", href: "/terms" },
                   ].map((item) => (
                     <li key={item.name}>
                       <Link href={item.href} className="text-slate-gray hover:text-ebony transition-colors">
