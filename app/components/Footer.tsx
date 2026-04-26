@@ -85,11 +85,11 @@ const Footer = () => {
                 <h3 className="font-bold text-ebony uppercase tracking-widest text-xs mb-6">Company</h3>
                 <ul className="space-y-3">
                   {[
+                    { name: "Join Waitlist", href: "/join" },
+                    { name: "Volunteer", href: "/join" },
                     { name: "Roadmap", href: "/roadmap" },
                     { name: "Resources", href: "/resources" },
                     { name: "About", href: "#" },
-                    { name: "Privacy", href: "#" },
-                    { name: "Terms", href: "#" },
                   ].map((item) => (
                     <li key={item.name}>
                       <Link href={item.href} className="text-slate-gray hover:text-ebony transition-colors">

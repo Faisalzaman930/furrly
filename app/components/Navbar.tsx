@@ -76,15 +76,11 @@ const Navbar = () => {
           <Link href="/about" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
             About
           </Link>
-
-
-
           <Link href="/resources" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
             Resources
           </Link>
-
           <Link
-            href="/#waitlist"
+            href="/join"
             className="rounded-xl bg-brand-gradient px-8 py-3 text-sm font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-lg shadow-brand-start/20"
           >
             🐾 Join Waitlist

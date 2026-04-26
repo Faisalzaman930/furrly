@@ -22,6 +22,7 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/resources`, changeFrequency: "daily", priority: 0.8 },
   { url: `${BASE_URL}/tools`, changeFrequency: "monthly", priority: 0.8 },
   { url: `${BASE_URL}/roadmap`, changeFrequency: "monthly", priority: 0.6 },
+  { url: `${BASE_URL}/join`, changeFrequency: "monthly", priority: 0.8 },
   // Tools
   { url: `${BASE_URL}/tools/age-calculator`, changeFrequency: "monthly", priority: 0.7 },
   { url: `${BASE_URL}/tools/best-dog-quiz`, changeFrequency: "monthly", priority: 0.7 },

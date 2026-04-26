@@ -15,7 +15,7 @@ export default function VolunteerBanner() {
             </p>
           </div>
           <Link
-            href="/about#volunteer"
+            href="/join"
             className="flex-shrink-0 bg-brand-gradient text-white font-black px-8 py-4 rounded-2xl uppercase tracking-widest text-sm hover:scale-105 active:scale-95 transition-all shadow-lg shadow-brand-start/30 whitespace-nowrap"
           >
             🙋 Yes, I want to help →
