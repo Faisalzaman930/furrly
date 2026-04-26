@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const verticals = [
     { name: "Playdates", href: "/playdates", icon: "🎉", desc: "Find compatible pets near you." },
@@ -21,7 +22,7 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
+        <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90" onClick={() => setIsMobileOpen(false)}>
           <Logo className="h-10 w-10" />
           <span className="text-2xl font-black tracking-tighter text-ebony">
             Furr<span className="text-brand-gradient">ly</span>
@@ -30,7 +31,7 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <div className="hidden items-center gap-10 md:flex">
-          <div 
+          <div
             className="relative group"
             onMouseEnter={() => setIsDropdownOpen(true)}
             onMouseLeave={() => setIsDropdownOpen(false)}
@@ -42,7 +43,6 @@ const Navbar = () => {
               </svg>
             </button>
 
-            {/* Mega Dropdown */}
             {isDropdownOpen && (
               <div className="absolute left-1/2 -translate-x-1/2 top-full w-[600px] bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 grid grid-cols-2 gap-6 animate-in fade-in slide-in-from-top-4 duration-300">
                 {verticals.map((feature) => (
@@ -87,15 +87,71 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
-        <div className="md:hidden">
-          <button className="text-ebony">
+        {/* Mobile Hamburger */}
+        <button
+          className="md:hidden text-ebony p-1"
+          onClick={() => setIsMobileOpen(o => !o)}
+          aria-label="Toggle menu"
+        >
+          {isMobileOpen ? (
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-6 w-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-6 w-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
-          </button>
-        </div>
+          )}
+        </button>
       </div>
+
+      {/* Mobile Menu Panel */}
+      {isMobileOpen && (
+        <div className="md:hidden border-t border-gray-100 bg-white px-6 py-6 flex flex-col gap-1">
+          <p className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-3">Features</p>
+          {verticals.map((feature) => (
+            <Link
+              key={feature.name}
+              href={feature.isComingSoon ? "#" : feature.href}
+              onClick={() => setIsMobileOpen(false)}
+              className={`flex items-center gap-3 rounded-2xl px-4 py-3 transition-colors hover:bg-gray-50 ${feature.isComingSoon ? 'opacity-50 pointer-events-none' : ''}`}
+            >
+              <span className="text-xl">{feature.icon}</span>
+              <span className="text-sm font-bold text-ebony">{feature.name}</span>
+              {feature.isComingSoon && (
+                <span className="ml-auto text-[9px] font-black bg-gray-100 text-slate-gray px-2 py-0.5 rounded-full uppercase tracking-tighter">Soon</span>
+              )}
+            </Link>
+          ))}
+
+          <div className="my-4 border-t border-gray-100" />
+
+          {[
+            { name: "Roadmap", href: "/roadmap" },
+            { name: "About", href: "/about" },
+            { name: "Resources", href: "/resources" },
+          ].map(item => (
+            <Link
+              key={item.name}
+              href={item.href}
+              onClick={() => setIsMobileOpen(false)}
+              className="rounded-2xl px-4 py-3 text-sm font-bold text-ebony hover:bg-gray-50 transition-colors"
+            >
+              {item.name}
+            </Link>
+          ))}
+
+          <div className="mt-4">
+            <Link
+              href="/join"
+              onClick={() => setIsMobileOpen(false)}
+              className="flex items-center justify-center gap-2 rounded-2xl bg-brand-gradient px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-lg shadow-brand-start/20"
+            >
+              🐾 Join Waitlist
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
