@@ -32,9 +32,7 @@ const Hero = ({
             <div className="inline-flex items-center rounded-full bg-brand-gradient/10 px-3 py-1 text-sm font-semibold leading-6 text-brand-start ring-1 ring-inset ring-brand-start/20 uppercase tracking-widest font-bold">
               {subtitle}
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-ebony sm:text-6xl">
-              {title}
-            </h1>
+            <h1 className="text-4xl font-bold tracking-tight text-ebony sm:text-6xl" dangerouslySetInnerHTML={{ __html: title }} />
             <p className="max-w-xl text-lg leading-8 text-slate-gray">
               {description}
             </p>
