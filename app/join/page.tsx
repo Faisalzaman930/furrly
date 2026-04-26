@@ -176,16 +176,17 @@ export default function JoinPage() {
         <div className="pointer-events-none absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full bg-brand-end/10 blur-3xl" />
 
         <div className="relative mx-auto max-w-3xl px-6 lg:px-8 text-center">
-          <Link href="/" className="inline-flex items-center gap-3 mb-10 transition-opacity hover:opacity-80">
-            <Logo className="h-10 w-10" />
-            <span className="text-2xl font-black tracking-tighter text-white">
-              Furr<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-start to-brand-end" style={{ WebkitTextFillColor: "transparent" }}>ly</span>
-            </span>
-          </Link>
-
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-5 py-2 text-xs font-black text-white/70 uppercase tracking-widest mb-8">
-            <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
-            App Store &amp; Google Play — Coming Very Soon
+          <div className="flex flex-col items-center gap-4 mb-10">
+            <Link href="/" className="inline-flex items-center gap-3 transition-opacity hover:opacity-80">
+              <Logo className="h-10 w-10" />
+              <span className="text-2xl font-black tracking-tighter text-white">
+                Furr<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-start to-brand-end" style={{ WebkitTextFillColor: "transparent" }}>ly</span>
+              </span>
+            </Link>
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-5 py-2 text-xs font-black text-white/70 uppercase tracking-widest">
+              <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+              App Store &amp; Google Play — Coming Very Soon
+            </div>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tight leading-[0.9] mb-6">

@@ -64,7 +64,7 @@ export default function WaitingList({ light = false, center = false, large = fal
           onChange={e => setEmail(e.target.value)}
           placeholder="Enter your email address"
           className={`rounded-2xl px-6 py-4 text-sm font-bold outline-none transition-all ${large ? "py-5 text-base" : ""} ${
-            center ? "w-full max-w-xs" : "w-full sm:w-72"
+            center ? "w-full max-w-sm" : "w-full sm:w-80"
           } ${
             light
               ? "bg-gray-50 border-2 border-gray-200 text-ebony placeholder:text-gray-400 focus:border-brand-start"
