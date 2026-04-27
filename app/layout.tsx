@@ -49,6 +49,13 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased text-ebony bg-white">
       <head>
         <meta name="google-site-verification" content="ayQ4sYm-hWGfrvOeiixegZs5__TY29fuZKuFepIfr5E" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XP0WNN4KP" />
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-3XP0WNN4KP');
+        `}} />
       </head>
       <body className="min-h-full flex flex-col font-sans">
         <Navbar />
