@@ -213,93 +213,53 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
   const typeOrder = ["how-to", "guide", "symptom", "breed", "definition", "article"];
 
   return (
-    <div style={{ background: "#f8f8f6" }}>
+    <div className="bg-white">
       <ReadingProgress activeChapter={activeChapter} totalChapters={page.chapters.length} />
 
       {/* ── HERO ── */}
-      <div
-        className="relative overflow-hidden px-6 py-20 md:py-28"
-        style={{ background: "linear-gradient(135deg,#0f3460 0%,#16213e 100%)" }}
-      >
-        {/* animated dot pattern */}
-        <div
-          className="absolute inset-0 pointer-events-none select-none"
-          style={{
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-            animation: "pawDrift 20s linear infinite",
-          }}
-        />
-        <style>{`
-          @keyframes pawDrift {
-            0% { background-position: 0 0; }
-            100% { background-position: 28px 28px; }
-          }
-        `}</style>
-
-        <div className="relative mx-auto max-w-4xl">
+      <div className="bg-brand-gradient relative overflow-hidden px-6 py-20 md:py-28">
+        <div className="relative mx-auto max-w-3xl text-center">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest mb-6" style={{ color: "rgba(255,255,255,0.45)" }}>
+          <nav className="flex items-center justify-center gap-2 text-white/60 text-xs font-bold uppercase tracking-widest mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
             <Link href="/resources" className="hover:text-white transition-colors">Resources</Link>
             <span>/</span>
-            <span style={{ color: "rgba(255,255,255,0.7)" }}>{page.shortTitle}</span>
+            <span className="text-white/80">{page.shortTitle}</span>
           </nav>
 
-          {/* Category pill */}
-          <span
-            className="inline-block font-black text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-full mb-6"
-            style={{ background: "rgba(29,158,117,0.3)", color: "#5DCAA5", border: "1px solid rgba(29,158,117,0.4)" }}
-          >
-            {page.category} · {page.readTime}
+          <span className="block bg-white/20 text-white font-black text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-full mb-6 w-fit mx-auto">
+            {page.category}
           </span>
 
-          <h1
-            className="text-4xl md:text-[3.5rem] font-black leading-[0.95] tracking-tight mb-5"
-            style={{ color: "#fff" }}
-          >
-            {page.title}
-          </h1>
-          <p className="text-lg leading-relaxed max-w-2xl mb-8" style={{ color: "rgba(255,255,255,0.7)" }}>
-            {page.seoDescription}
-          </p>
+          <h1 className="text-4xl md:text-5xl font-black text-white leading-tight mb-5">{page.title}</h1>
+          <p className="text-white/75 text-base max-w-2xl mx-auto leading-relaxed mb-8">{page.seoDescription}</p>
 
           {/* Stat pills */}
-          <div className="flex flex-wrap gap-3 mb-8">
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
             {[
               { label: "Chapters", value: `${page.chapters.length}` },
               { label: "Resources", value: `${page.clusterArticles.length}+` },
               { label: "Read time", value: page.readTime },
             ].map((stat) => (
-              <div
-                key={stat.label}
-                className="flex items-center gap-2 px-4 py-2 rounded-full text-sm"
-                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.8)" }}
-              >
-                <span className="font-black" style={{ color: "#5DCAA5" }}>{stat.value}</span>
-                <span className="font-bold text-xs uppercase tracking-widest">{stat.label}</span>
+              <div key={stat.label} className="flex items-center gap-2 px-4 py-2 rounded-full text-sm bg-white/15 border border-white/20">
+                <span className="font-black text-white">{stat.value}</span>
+                <span className="font-bold text-xs uppercase tracking-widest text-white/70">{stat.label}</span>
               </div>
             ))}
           </div>
 
-          {/* CTA */}
           <a
             href={`#${chapterAnchor(page.chapters[0], 0)}`}
-            className="inline-flex items-center gap-2 font-black text-sm px-6 py-3 rounded-full transition-all hover:opacity-90 active:scale-95"
-            style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)", color: "#fff" }}
+            className="inline-flex items-center gap-2 bg-white text-brand-start font-black text-sm px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-lg"
           >
             Start reading ↓
           </a>
 
-          {/* Meta */}
-          <div
-            className="flex items-center gap-5 text-[10px] font-black uppercase tracking-widest mt-10"
-            style={{ color: "rgba(255,255,255,0.35)" }}
-          >
+          <div className="flex items-center justify-center gap-5 text-white/50 text-[10px] font-black uppercase tracking-widest mt-8">
             <span>Updated: {page.lastUpdated}</span>
-            <span className="w-1 h-1 rounded-full" style={{ background: "rgba(255,255,255,0.25)" }} />
-            <span>{page.clusterArticles.length} Resources in This Cluster</span>
+            <span>•</span>
+            <span>Furrly Editorial Team</span>
           </div>
         </div>
       </div>
@@ -308,12 +268,9 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
       <ChapterPillNav chapters={page.chapters} activeIdx={activeChapter} />
 
       {/* ── QUICK ANSWER ── */}
-      <div style={{ background: "#fff", borderBottom: "1px solid #e5e7eb" }}>
-        <div className="mx-auto max-w-4xl px-6 py-6 flex gap-4 items-start">
-          <div
-            className="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center text-white font-black text-sm"
-            style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)" }}
-          >
+      <div className="bg-white border-b border-gray-100">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-6 flex gap-4 items-start">
+          <div className="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center text-white font-black text-sm bg-brand-gradient">
             ✓
           </div>
           <p className="text-base text-gray-700 leading-relaxed font-medium">{page.quickAnswer}</p>
@@ -346,12 +303,12 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
                 ))}
               </div>
 
-              <div className="rounded-2xl p-5 text-center" style={{ background: "#0f3460" }}>
-                <p className="text-white font-black text-sm mb-4 leading-snug">{page.ctaText}</p>
+              <div className="bg-brand-start/5 border border-brand-start/20 rounded-[2rem] p-6 text-center">
+                <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-3">Ready to apply this?</p>
+                <p className="font-black text-ebony text-sm mb-5 leading-snug">{page.ctaText}</p>
                 <Link
                   href={page.ctaFeature}
-                  className="block font-black py-2.5 px-4 rounded-xl uppercase tracking-widest text-[10px] hover:opacity-90 transition-opacity"
-                  style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)", color: "#fff" }}
+                  className="block font-black py-3 px-4 rounded-xl uppercase tracking-widest text-[10px] bg-brand-gradient text-white hover:scale-105 transition-transform"
                 >
                   Learn More →
                 </Link>
