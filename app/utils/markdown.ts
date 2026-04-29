@@ -42,18 +42,8 @@ export function md(text: string): string {
         return `<ol class="md-ol">${items}</ol>`;
       }
 
-      // Section label: **Label:** rest
-      const labelMatch = t.match(/^\*\*([^*]+)\*\*[:\s]/);
-      if (labelMatch) {
-        const label = labelMatch[1];
-        const rest = t.slice(labelMatch[0].length).trim();
-        if (rest) {
-          return `<div class="md-section-wrap"><span class="md-section-label">${label}</span><p class="md-section-body">${inline(rest.replace(/\n/g, "<br />"))}</p></div>`;
-        }
-        return `<span class="md-section-label">${label}</span>`;
-      }
-
       // Mixed block: split contiguous dash-list runs from prose lines
+      // Must run BEFORE labelMatch so "**Title:**\n- item" blocks render as list, not section label
       const hasAnyListLine = lines.some((l) => /^[-*] /.test(l.trim()));
       if (hasAnyListLine) {
         const segments: string[] = [];
@@ -77,6 +67,17 @@ export function md(text: string): string {
           }
         }
         return segments.join("\n");
+      }
+
+      // Section label: **Label:** rest (single-line only — multi-line handled above)
+      const labelMatch = t.match(/^\*\*([^*]+)\*\*[:\s]/);
+      if (labelMatch) {
+        const label = labelMatch[1];
+        const rest = t.slice(labelMatch[0].length).trim();
+        if (rest) {
+          return `<div class="md-section-wrap"><span class="md-section-label">${label}</span><p class="md-section-body">${inline(rest.replace(/\n/g, "<br />"))}</p></div>`;
+        }
+        return `<span class="md-section-label">${label}</span>`;
       }
 
       return `<p style="line-height:1.75;margin-bottom:1rem;color:#6B7280">${inline(t.replace(/\n/g, "<br />"))}</p>`;
