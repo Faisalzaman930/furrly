@@ -404,8 +404,8 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
                       }}
                       dangerouslySetInnerHTML={{
                         __html: md(chapter.content).replace(
-                          /<h3/g,
-                          '<h3 style="border-left:3px solid #1D9E75;padding-left:12px;color:#111827"'
+                          /border-left:[^;"]*(solid\s)?#E11D48/g,
+                          "border-left:4px solid #1D9E75"
                         ),
                       }}
                     />
