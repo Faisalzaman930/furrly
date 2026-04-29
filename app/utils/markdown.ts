@@ -19,14 +19,19 @@ export function md(text: string): string {
       const t = block.trim();
       if (!t) return "";
 
-      if (t.startsWith("### ")) return `<h3 style="font-size:1.125rem;font-weight:900;color:#111827;margin-top:2rem;margin-bottom:0.5rem;line-height:1.3">${inline(t.slice(4))}</h3>`;
-      if (t.startsWith("## "))  return `<h2 style="font-size:1.375rem;font-weight:900;color:#111827;margin-top:2.5rem;margin-bottom:0.75rem;line-height:1.2">${inline(t.slice(3))}</h2>`;
+      if (t.startsWith("### ")) return `<h3 style="font-size:1.35rem;font-weight:900;color:#111827;margin-top:2.25rem;margin-bottom:0.75rem;line-height:1.3;padding-left:1rem;border-left:4px solid #E11D48">${inline(t.slice(4))}</h3>`;
+      if (t.startsWith("## "))  return `<h2 style="font-size:1.65rem;font-weight:900;color:#111827;margin-top:3rem;margin-bottom:1rem;line-height:1.2;padding-left:1.25rem;border-left:6px solid #E11D48">${inline(t.slice(3))}</h2>`;
       if (t.startsWith("> "))   return `<blockquote style="border-left:4px solid #E11D48;padding:0.5rem 0 0.5rem 1.25rem;margin:1.25rem 0;color:#6B7280;font-style:italic;font-size:1.1rem;line-height:1.7">${inline(t.slice(2))}</blockquote>`;
 
       const lines = t.split("\n");
 
-      if (lines.every((l) => /^[-*] /.test(l.trim()))) {
+      // Detect list blocks: all lines start with "- " or "* " (handles single-newline-separated lists)
+      if (lines.length >= 2 && lines.every((l) => /^[-*] /.test(l.trim()))) {
         return renderList(lines.map((l) => l.trim().slice(2)));
+      }
+      // Single-item list line within a mixed block — promote to list if it's the only line
+      if (lines.length === 1 && /^[-*] /.test(lines[0].trim())) {
+        return renderList([lines[0].trim().slice(2)]);
       }
 
       if (lines.every((l) => /^\d+\. /.test(l.trim()))) {
@@ -46,6 +51,32 @@ export function md(text: string): string {
           return `<div class="md-section-wrap"><span class="md-section-label">${label}</span><p class="md-section-body">${inline(rest.replace(/\n/g, "<br />"))}</p></div>`;
         }
         return `<span class="md-section-label">${label}</span>`;
+      }
+
+      // Mixed block: split contiguous dash-list runs from prose lines
+      const hasAnyListLine = lines.some((l) => /^[-*] /.test(l.trim()));
+      if (hasAnyListLine) {
+        const segments: string[] = [];
+        let i = 0;
+        while (i < lines.length) {
+          if (/^[-*] /.test(lines[i].trim())) {
+            const run: string[] = [];
+            while (i < lines.length && /^[-*] /.test(lines[i].trim())) {
+              run.push(lines[i].trim().slice(2));
+              i++;
+            }
+            segments.push(renderList(run));
+          } else {
+            const prose: string[] = [];
+            while (i < lines.length && !/^[-*] /.test(lines[i].trim())) {
+              prose.push(lines[i]);
+              i++;
+            }
+            const pt = prose.join(" ").trim();
+            if (pt) segments.push(`<p style="line-height:1.75;margin-bottom:1rem;color:#6B7280">${inline(pt)}</p>`);
+          }
+        }
+        return segments.join("\n");
       }
 
       return `<p style="line-height:1.75;margin-bottom:1rem;color:#6B7280">${inline(t.replace(/\n/g, "<br />"))}</p>`;
