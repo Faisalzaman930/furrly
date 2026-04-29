@@ -1,14 +1,14 @@
 "use client";
 
 import { Guide } from "../data/guides";
-import { guides } from "../data/guides";
 import Hero from "./Hero";
 import Link from "next/link";
 import ContactSection from "./ContactSection";
 import RelatedTools from "./RelatedTools";
+import { getRelatedArticles } from "../utils/related-articles";
 
 export default function GuideLayout({ guide }: { guide: Guide }) {
-  const related = guides.filter(g => guide.relatedSlugs.includes(g.slug));
+  const related = getRelatedArticles(guide.relatedSlugs);
 
   return (
     <div className="bg-white">
@@ -24,6 +24,8 @@ export default function GuideLayout({ guide }: { guide: Guide }) {
             <span>Published: {guide.publishDate}</span>
             <span>•</span>
             <span>{guide.readTime}</span>
+            <span>•</span>
+            <span>Furrly Editorial Team</span>
             <span>•</span>
             <div className="flex gap-2">
                {guide.tags.map(tag => (
@@ -67,10 +69,11 @@ export default function GuideLayout({ guide }: { guide: Guide }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                  {related.map(rel => (
                    <Link href={`/resources/${rel.slug}`} key={rel.slug} className="group bg-white p-8 rounded-[3rem] shadow-sm hover:shadow-xl transition-all border border-gray-100 block">
-                      <span className="text-[10px] font-black text-brand-start uppercase tracking-widest bg-brand-start/10 px-3 py-1 rounded-full mb-6 inline-block">Guide</span>
+                      <span className="text-[10px] font-black text-brand-start uppercase tracking-widest bg-brand-start/10 px-3 py-1 rounded-full mb-6 inline-block">{rel.typeLabel}</span>
                       <h4 className="text-xl font-black text-ebony leading-snug group-hover:text-brand-start transition-colors">
                         {rel.shortTitle}
                       </h4>
+                      <p className="text-xs text-slate-gray mt-2">{rel.readTime}</p>
                    </Link>
                  ))}
               </div>

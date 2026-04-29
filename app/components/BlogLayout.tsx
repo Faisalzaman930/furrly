@@ -270,6 +270,17 @@ export default function BlogLayout({ article, allArticles }: { article: Article;
         </div>
       </div>
 
+      {/* ─── EDITORIAL DISCLOSURE ──────────────────────────────────────────── */}
+      <div className="bg-amber-50 border-b border-amber-200 px-6 py-4">
+        <div className="mx-auto max-w-5xl flex items-start gap-3">
+          <span className="text-amber-600 text-base mt-0.5 flex-shrink-0">ℹ</span>
+          <p className="text-xs text-amber-800 leading-relaxed">
+            <strong>Editorial disclosure:</strong> Furrly is one of the apps reviewed on this page. We have a direct commercial interest in this category. Our editorial process applies the same scoring criteria to all apps, including our own. Scores and rankings reflect our testing methodology, not promotional intent.{" "}
+            <Link href="/resources#editorial-standards" className="underline font-bold hover:text-amber-900 transition-colors">Read our editorial standards.</Link>
+          </p>
+        </div>
+      </div>
+
       {/* ─── MAIN CONTENT ──────────────────────────────────────────────────── */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">

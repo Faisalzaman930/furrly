@@ -937,7 +937,7 @@ The [ASPCA guidance on separation anxiety](https://www.aspca.org/pet-care/dog-ca
 None of these substitute for systematic desensitization and, where indicated, veterinary-prescribed medication.`,
       },
     ],
-    relatedSlugs: ["how-to-crate-train-a-puppy", "how-to-introduce-new-pet-to-resident-pets", "what-is-positive-reinforcement"],
+    relatedSlugs: ["how-to-crate-train-a-puppy", "how-to-introduce-new-pet-to-resident-pets", "what-is-positive-reinforcement-dog-training"],
     pillarSlug: "complete-guide-to-dog-training",
     ctaFeature: "/vets",
     ctaText: "Connect With a Vet About Anxiety Treatment",

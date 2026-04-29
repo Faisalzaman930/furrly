@@ -154,13 +154,24 @@ function buildArticleSchema(item: { title: string; seoDescription: string; publi
     "description": item.seoDescription,
     "datePublished": item.publishDate,
     "dateModified": item.lastUpdated,
-    "publisher": { "@type": "Organization", "name": "Furrly", "url": "https://furrly.app" },
+    "author": {
+      "@type": "Organization",
+      "name": "Furrly Editorial Team",
+      "url": "https://furrly.co/resources#editorial-standards",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Furrly",
+      "url": "https://furrly.co",
+      "logo": { "@type": "ImageObject", "url": "https://furrly.co/furrly-logo.png" },
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://furrly.co/resources/${item.slug}` },
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://furrly.app" },
-        { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://furrly.app/resources" },
-        { "@type": "ListItem", "position": 3, "name": item.shortTitle, "item": `https://furrly.app/resources/${item.slug}` },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://furrly.co" },
+        { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://furrly.co/resources" },
+        { "@type": "ListItem", "position": 3, "name": item.shortTitle, "item": `https://furrly.co/resources/${item.slug}` },
       ],
     },
   };

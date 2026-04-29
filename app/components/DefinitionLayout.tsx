@@ -1,19 +1,28 @@
 "use client";
 
-import { DefinitionArticle, definitionArticles } from "../data/definition-articles";
+import { DefinitionArticle } from "../data/definition-articles";
 import Link from "next/link";
 import ContactSection from "./ContactSection";
 import { md } from "../utils/markdown";
+import { getRelatedArticles, getPillarTitle } from "../utils/related-articles";
 
 export default function DefinitionLayout({ article }: { article: DefinitionArticle }) {
-  const related = definitionArticles.filter(a => article.relatedSlugs.includes(a.slug));
+  const related = getRelatedArticles(article.relatedSlugs);
 
   return (
     <div className="bg-white">
       {/* Hero */}
       <div className="bg-brand-gradient py-20 px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-block bg-white/20 text-white font-black text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+          <Link
+            href={`/resources/${article.pillarSlug}`}
+            className="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/25 transition-colors text-white font-black text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-full mb-4"
+          >
+            <span>Part of:</span>
+            <span>{getPillarTitle(article.pillarSlug)}</span>
+            <span>→</span>
+          </Link>
+          <span className="block bg-white/20 text-white font-black text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-full mb-6 w-fit mx-auto">
             {article.category}
           </span>
           <h1 className="text-4xl md:text-5xl font-black text-white leading-tight mb-6">{article.title}</h1>
@@ -21,6 +30,8 @@ export default function DefinitionLayout({ article }: { article: DefinitionArtic
             <span>{article.publishDate}</span>
             <span>•</span>
             <span>{article.readTime}</span>
+            <span>•</span>
+            <span>Furrly Editorial Team</span>
           </div>
         </div>
       </div>
@@ -159,8 +170,9 @@ export default function DefinitionLayout({ article }: { article: DefinitionArtic
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {related.map(rel => (
                 <Link href={`/resources/${rel.slug}`} key={rel.slug} className="group bg-white p-7 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all border border-gray-100 block">
-                  <span className="text-[10px] font-black text-brand-start uppercase tracking-widest bg-brand-start/10 px-3 py-1 rounded-full mb-5 inline-block">Health Glossary</span>
+                  <span className="text-[10px] font-black text-brand-start uppercase tracking-widest bg-brand-start/10 px-3 py-1 rounded-full mb-5 inline-block">{rel.typeLabel}</span>
                   <h4 className="text-lg font-black text-ebony leading-snug group-hover:text-brand-start transition-colors">{rel.shortTitle}</h4>
+                  <p className="text-xs text-slate-gray mt-2">{rel.readTime}</p>
                 </Link>
               ))}
             </div>
