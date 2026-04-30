@@ -1299,6 +1299,625 @@ Also posted on Nextdoor · [LOCAL FB GROUP] · Furrly Lost & Found
     relatedSlugs: ["pet-medical-history-template", "pet-custody-agreement-template"],
     downloadFormats: ["PDF (print)", "PNG (social media)", "Google Docs", "Word (.docx)"],
   },
+
+  // ─── TIER 3 ────────────────────────────────────────────────────────────────
+
+  {
+    slug: "pet-adoption-application-template",
+    title: "Pet Adoption Application Form Template (Free, Editable)",
+    seoTitle: "Pet Adoption Application Form Template — Free Download 2026",
+    shortTitle: "Adoption Application Form",
+    seoDescription: "Free pet adoption application form template for rescues and shelters. Covers adopter background, household, experience, references, and pet preferences. Editable PDF and Google Docs. Targets: pet adoption application form template, free pet adoption application template, pet adoption forms template.",
+    icon: "📝",
+    tier: 3,
+    category: "Adoption & Rehoming",
+    targetKeywords: [
+      "pet adoption application form template",
+      "free pet adoption application template",
+      "pet adoption forms template",
+      "pet adoption application template",
+    ],
+    publishDate: "April 2026",
+    lastUpdated: "April 2026",
+    readTime: "7 Min Read",
+    quickAnswer: "A pet adoption application is the first screening tool rescues use before committing to a home visit or approval. A good application captures household composition, living situation, experience with pets, references, and the applicant's expectations — giving you enough to pre-screen before investing time in a deeper conversation.",
+    intro: `The adoption application is the first line of defence in responsible pet placement. Done well, it screens out obviously unsuitable matches early, gives you a paper trail if a placement goes wrong, and shows serious applicants that your rescue operates professionally.
+
+Done poorly — a form that's too short to be useful, or so long that good adopters give up — it actively works against you. This template hits the right balance: comprehensive enough to surface red flags, short enough that motivated adopters complete it in under ten minutes.
+
+The form covers six areas: contact details, household, living situation, current and past pets, experience and lifestyle, and references. A notes section at the end lets applicants explain anything unusual. Use it as a starting point and customise the questions to your organisation's specific criteria.`,
+    whenYouNeedIt: [
+      "Running a rescue or shelter that places animals with approved adopters",
+      "A private individual rehoming a litter or a single pet",
+      "A foster network screening potential adopters before placement",
+      "Any situation where you want a documented record of the adopter's representations",
+    ],
+    whatToInclude: [
+      {
+        title: "Applicant information",
+        items: [
+          "Full legal name, address, phone, email",
+          "Date of birth (to confirm adult applicant)",
+          "Current employer and occupation (stability indicator)",
+          "Government ID type — not the number, just confirmation they have one",
+        ],
+      },
+      {
+        title: "Household composition",
+        items: [
+          "Number of adults and children in the household, ages of children",
+          "Whether all household members have agreed to the adoption",
+          "Whether anyone in the household has allergies to pets",
+        ],
+      },
+      {
+        title: "Living situation",
+        items: [
+          "Own or rent — if renting, landlord contact and written permission required",
+          "House, apartment, condo, or other",
+          "Presence of a yard and whether it is fenced",
+          "Approximate square footage or size of outdoor space",
+        ],
+      },
+      {
+        title: "Current and past pets",
+        items: [
+          "Current pets: species, breed, age, sex, spayed/neutered status",
+          "Past pets: how the relationship ended (died of old age vs. surrendered is a major red flag signal)",
+          "Whether current pets are up to date on vaccinations",
+          "Vet name and contact for reference check",
+        ],
+      },
+      {
+        title: "Experience and lifestyle",
+        items: [
+          "Hours per day the pet would be alone",
+          "Exercise routine and activity level",
+          "Where the pet will sleep",
+          "Prior experience with this species/breed",
+          "Why they want this specific animal",
+          "What they would do if the pet developed a serious or expensive health condition",
+        ],
+      },
+      {
+        title: "References",
+        items: [
+          "Two personal references (non-family) with phone numbers",
+          "Vet reference (required if they have had prior pets)",
+          "Landlord reference (required if renting)",
+        ],
+      },
+    ],
+    stateNotes: `**Privacy:** Adoption applications collect personal information. Clearly state in your form how applicant data will be stored and used. Don't share applications with third parties. If you operate in California, CCPA may apply to your data practices even as a non-profit.\n\n**Discrimination:** Non-profits placing animals must not discriminate in adoption decisions on the basis of race, religion, national origin, disability, or other protected characteristics unrelated to the ability to care for the pet. Rejection decisions should be documented with pet-welfare-specific reasons.\n\n**Retaining applications:** Keep declined applications for at least 12 months in case of disputes.`,
+    templateText: `PET ADOPTION APPLICATION
+
+Organisation: [RESCUE / SHELTER NAME]
+Date received: _____________ Application #: _____________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 1: APPLICANT INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━
+Full Name: _________________________________
+Date of Birth: _____________
+Address: _________________________________
+City / State / ZIP: _________________________________
+Phone (primary): _____________  (secondary): _____________
+Email: _________________________________
+Occupation / Employer: _________________________________
+Do you have a valid government-issued ID? ☐ Yes ☐ No
+
+Pet you are applying to adopt (if specific): _________________________________
+If no specific pet, describe what you're looking for: _________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 2: HOUSEHOLD
+━━━━━━━━━━━━━━━━━━━━━━━━
+Number of adults in household: _____  Ages: _________________________________
+Number of children in household: _____  Ages: _________________________________
+Are all adults in the household aware of and in agreement with this adoption? ☐ Yes ☐ No
+Does anyone in the household have pet allergies? ☐ Yes ☐ No
+If yes, explain: _________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 3: LIVING SITUATION
+━━━━━━━━━━━━━━━━━━━━━━━━
+Do you: ☐ Own your home  ☐ Rent  ☐ Other: _____________
+
+If renting:
+  Landlord name: _____________  Phone: _____________
+  Does your lease permit pets? ☐ Yes ☐ No ☐ With permission
+  Are you willing to provide written landlord permission? ☐ Yes ☐ No
+
+Type of home: ☐ House  ☐ Apartment  ☐ Condo  ☐ Townhouse  ☐ Other: _____________
+Do you have a yard? ☐ Yes ☐ No
+If yes, is it fenced? ☐ Fully  ☐ Partially  ☐ No fence
+Fence height (if applicable): _____________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 4: CURRENT & PAST PETS
+━━━━━━━━━━━━━━━━━━━━━━━━
+Current pets:
+Pet 1: Name _________ Species _________ Breed _________ Age ___  Spayed/Neutered ☐
+Pet 2: Name _________ Species _________ Breed _________ Age ___  Spayed/Neutered ☐
+Pet 3: Name _________ Species _________ Breed _________ Age ___  Spayed/Neutered ☐
+
+Are current pets up to date on vaccinations? ☐ Yes ☐ No
+Current vet name & phone: _________________________________
+
+Past pets (last 5 years): _________________________________
+How did each past pet's time with you end? _________________________________
+
+Have you ever surrendered or rehomed a pet? ☐ Yes ☐ No
+If yes, explain: _________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 5: LIFESTYLE & EXPERIENCE
+━━━━━━━━━━━━━━━━━━━━━━━━
+Approximately how many hours per day would the pet be alone? _____
+Where will the pet sleep? _________________________________
+Describe your typical daily exercise routine: _________________________________
+How much time per day can you dedicate to the pet? _________________________________
+
+Prior experience with this species / breed: _________________________________
+Why are you interested in adopting this specific animal / type of animal? _________________________________
+
+If the pet developed a serious health condition requiring ongoing or expensive treatment, what would you do?
+_________________________________
+_________________________________
+
+What would you do if the adoption wasn't working out for any reason?
+_________________________________
+
+Do you travel frequently? ☐ Yes ☐ No
+If yes, what arrangements would you make for the pet? _________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 6: REFERENCES
+━━━━━━━━━━━━━━━━━━━━━━━━
+Personal Reference 1 (non-family):
+Name: _________________________________  Phone: _____________
+Relationship: _________________________________
+
+Personal Reference 2 (non-family):
+Name: _________________________________  Phone: _____________
+Relationship: _________________________________
+
+Veterinary Reference (required if you have had prior pets):
+Vet / Clinic Name: _________________________________  Phone: _____________
+
+Landlord Reference (required if renting without documented permission):
+Name: _________________________________  Phone: _____________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 7: ADDITIONAL INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━
+Is there anything else you'd like us to know about your household or situation?
+_________________________________
+_________________________________
+_________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+DECLARATION
+━━━━━━━━━━━━━━━━━━━━━━━━
+I confirm that the information provided in this application is accurate and complete to the best of my knowledge. I understand that providing false information may result in the cancellation of any adoption agreement.
+
+Signature: _________________________________  Date: _____________
+Print Name: _________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+FOR RESCUE USE ONLY
+━━━━━━━━━━━━━━━━━━━━━━━━
+References checked: ☐ Personal 1  ☐ Personal 2  ☐ Vet  ☐ Landlord
+Home visit completed: ☐ Yes ☐ No  Date: _____________
+Decision: ☐ Approved  ☐ Declined  ☐ Pending
+Notes: _________________________________
+Approved by: _________________________________  Date: _____________`,
+    faqs: [
+      {
+        q: "How long should a pet adoption application be?",
+        a: "Long enough to surface red flags, short enough that motivated adopters complete it willingly. The sweet spot is 2–3 pages covering the six areas above. If your application takes more than 10 minutes, completion rates drop. A shorter pre-screening call can supplement rather than replace a long form.",
+      },
+      {
+        q: "What are the biggest red flags on an adoption application?",
+        a: "History of surrendering or rehoming pets without a clear reason, no prior vet relationship, renting without landlord permission, children under 5 for certain animal types (breed-dependent), hours alone exceeding 8–10 hours daily for dogs, no fenced yard for high-energy breeds, and evasive answers about what happens if they can no longer keep the pet.",
+      },
+      {
+        q: "Should I check all references?",
+        a: "Yes — at minimum the vet reference and landlord reference. Personal references are useful but rarely disqualifying on their own (applicants won't list hostile references). The vet reference is the most valuable: a vet who hesitates or gives a lukewarm reference for a prior pet is significant. A non-existent vet reference (claiming prior pets with no vet history) is a red flag.",
+      },
+      {
+        q: "Can I reject an applicant who seems financially unstable?",
+        a: "You can factor in the applicant's stated ability to provide veterinary care as a pet welfare consideration — but asking for income documentation or employment verification is sensitive territory. Most rescues ask the open-ended question 'What would you do if the pet required expensive treatment?' and evaluate the response qualitatively.",
+      },
+    ],
+    relatedSlugs: ["pet-adoption-contract-template", "pet-adoption-certificate-template", "pet-medical-history-template"],
+    downloadFormats: ["PDF", "Google Docs", "Word (.docx)"],
+  },
+
+  {
+    slug: "pet-travel-documents-template",
+    title: "Pet Travel Documents: Passport & Health Certificate Templates",
+    seoTitle: "Pet Passport Template & Pet Health Certificate Template — Free 2026",
+    shortTitle: "Pet Travel Documents",
+    seoDescription: "Free editable pet passport template and blank pet health certificate template. Everything you need to travel with your pet — what's required by country, how to get an official health certificate, and a personal pet passport to keep your records organised.",
+    icon: "✈️",
+    tier: 3,
+    category: "Travel & Documents",
+    targetKeywords: [
+      "editable pet passport template",
+      "blank pet health certificate template",
+      "pet passport template",
+      "pet travel document template",
+    ],
+    publishDate: "April 2026",
+    lastUpdated: "April 2026",
+    readTime: "9 Min Read",
+    quickAnswer: "A pet passport is a personal record document — not a legal government document — that consolidates your pet's identification, vaccinations, microchip, and vet contacts for travel. An official health certificate (USDA APHIS Form 7001 or equivalent) is a separate, vet-issued legal document required for international and some interstate travel, and cannot be self-issued.",
+    intro: `Travelling with a pet involves two distinct documents that are frequently confused:
+
+**1. The personal pet passport** — a consolidated record of your pet's ID, microchip number, vaccinations, vet contacts, and entry requirements for your destination. This is a personal organisational tool, not a legal document. You can create and print it yourself using this template.
+
+**2. The official health certificate** — a legally required document signed and issued by a licensed veterinarian, often endorsed by your national or state veterinary authority (USDA APHIS in the U.S.). This cannot be self-issued. It has strict validity windows (typically 10 days from issuance for international travel). You must book a vet appointment specifically to obtain one before each trip.
+
+This page covers both: a template for your personal pet passport, a guide to what the official health certificate must contain, and country-specific requirements for the most common destinations.`,
+    whenYouNeedIt: [
+      "International travel with a pet (all countries require documentation)",
+      "Domestic U.S. air travel (airlines require a vet health certificate, usually within 10 days of travel)",
+      "Interstate travel (some states require a Certificate of Veterinary Inspection)",
+      "Boarding, kennelling, or grooming away from home",
+      "Keeping an organised record for any future travel or emergency",
+    ],
+    whatToInclude: [
+      {
+        title: "Personal pet passport — your record document",
+        items: [
+          "Pet name, species, breed, sex, date of birth, colour/markings",
+          "Microchip number and ISO standard (ISO 11784/11785 required for EU/UK entry)",
+          "Owner name, address, emergency contact",
+          "Vaccination history with dates, lot numbers, and expiry dates",
+          "Rabies titre test results (required for entry to UK, EU, Australia, Japan, and others)",
+          "Parasites treatment records (tapeworm treatment required for UK/Ireland entry)",
+          "Destination country entry requirements checklist",
+          "Emergency vet contacts at destination",
+        ],
+      },
+      {
+        title: "Official health certificate — vet must complete",
+        items: [
+          "Pet identification (must match microchip)",
+          "Veterinarian licence number and signature",
+          "Statement of fitness to travel",
+          "Vaccination status confirmation",
+          "Parasite treatment confirmation",
+          "USDA APHIS endorsement (required for international travel from U.S.)",
+          "Validity: typically 10 days from issuance for international, 30 days for domestic air",
+        ],
+      },
+      {
+        title: "Country-specific requirements (selected)",
+        items: [
+          "EU/UK: microchip → rabies vaccine → 21-day wait → health cert → tapeworm treatment within 1–5 days of entry (UK only)",
+          "Australia/New Zealand: 6+ months preparation, rabies titre test, import permit required — start 6 months before travel",
+          "Japan: approximately 180-day preparation timeline, rabies titre test required",
+          "Canada: valid rabies certificate required, health cert for air travel",
+          "Mexico: current rabies and distemper vaccines, health certificate",
+          "U.S. domestic air: health certificate within 10 days, airline-specific carrier requirements",
+        ],
+      },
+    ],
+    stateNotes: `**USDA APHIS endorsement:** For international travel from the U.S., most countries require your vet's health certificate to be endorsed (stamped and signed) by a USDA-accredited veterinarian and then by the USDA APHIS Veterinary Services office for your region. This process takes 1–5 business days and must be factored into your timeline. Find your regional APHIS office at aphis.usda.gov.\n\n**EU Pet Passport:** The official EU Pet Passport (a physical blue booklet issued by an EU vet) is no longer valid for UK entry post-Brexit. UK entry requires an Animal Health Certificate (AHC) issued by an Official Veterinarian within 10 days of travel.\n\n**Microchip standard:** The U.S. uses 15-digit ISO 11784/11785 microchips. If your pet has an older 9-digit or 10-digit chip, bring your own universal scanner when travelling internationally, as some foreign scanners may not read non-ISO chips.`,
+    templateText: `PET TRAVEL PASSPORT
+Personal Record Document — Not an Official Government Document
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+PET IDENTIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━
+Name: _________________________________
+Species: _____________ Breed: _____________
+Sex: _______  Neutered/Spayed: ☐ Yes ☐ No
+Date of Birth: _____________
+Colour / Markings: _________________________________
+Photo: [ATTACH CLEAR PHOTO]
+
+MICROCHIP
+Number: _________________________________
+ISO Standard: ☐ ISO 11784/11785 (15-digit)  ☐ Other: _____________
+Implant date: _____________  Location: _____________
+Registered with: _________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+OWNER INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━
+Owner Name: _________________________________
+Address: _________________________________
+Phone: _____________  Email: _________________________________
+Emergency contact (while travelling): _________________________________
+Pet insurance: Policy # _____________  Insurer: _____________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+VACCINATION RECORD
+━━━━━━━━━━━━━━━━━━━━━━━━
+Rabies:
+  Date: _____________ Brand/Lot #: _____________
+  Expiry: _____________  Certificate #: _____________
+  Administering vet: _________________________________
+
+Other vaccines:
+Vaccine | Date | Expiry | Vet | Lot #
+--------|------|--------|-----|------
+        |      |        |     |
+        |      |        |     |
+        |      |        |     |
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+RABIES TITRE TEST (required for EU, UK, AU, JP)
+━━━━━━━━━━━━━━━━━━━━━━━━
+Test date: _____________  Lab: _________________________________
+Result: _____________  (Minimum required: 0.5 IU/ml)
+Eligible for travel from: _____________  (21-day wait from passing result)
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+PARASITE TREATMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━
+Tapeworm treatment (required for UK/Ireland entry):
+  Product: _____________  Dose: _____________
+  Date/time administered: _____________  Vet: _____________
+  Note: Must be given 24–120 hours before arrival in UK/Ireland
+
+Flea/tick treatment:
+  Product: _____________  Date: _____________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+HEALTH CERTIFICATES ISSUED
+━━━━━━━━━━━━━━━━━━━━━━━━
+Date issued | Destination | Issuing vet | APHIS endorsed | Valid until
+------------|-------------|------------|----------------|------------
+            |             |            | ☐ Yes ☐ No     |
+            |             |            | ☐ Yes ☐ No     |
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+DESTINATION REQUIREMENTS CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━
+Destination: _________________________________
+Entry requirements verified on (date): _____________
+Source: _________________________________
+
+Requirements:
+☐ Microchip (ISO standard)
+☐ Rabies vaccination (current)
+☐ Rabies titre test (result: _______ IU/ml)
+☐ 21-day post-titre wait
+☐ Import permit obtained
+☐ Health certificate (within ___ days of travel)
+☐ USDA APHIS endorsement
+☐ Tapeworm treatment (within ___ hours of arrival)
+☐ Airline health certificate (within ___ days)
+☐ Other: _________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+VETERINARY CONTACTS
+━━━━━━━━━━━━━━━━━━━━━━━━
+Home vet: _________________________________  Phone: _____________
+USDA-accredited vet: ___________________  Phone: _____________
+Emergency vet at destination: ___________  Phone: _____________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+TRAVEL HISTORY
+━━━━━━━━━━━━━━━━━━━━━━━━
+Date | Destination | Mode | Notes
+-----|-------------|------|------
+     |             |      |
+     |             |      |
+
+Last updated: _____________`,
+    faqs: [
+      {
+        q: "Can I make my own pet passport?",
+        a: "Yes — as a personal organisational document, you can create and print your own pet passport using this template. However, the official EU Pet Passport (a government-issued blue booklet) and official health certificates must be issued by a licensed veterinarian and, for international travel, endorsed by the relevant government authority. The personal passport template here complements those official documents — it doesn't replace them.",
+      },
+      {
+        q: "How far in advance do I need to prepare to travel internationally with my pet?",
+        a: "It depends on the destination. For most of Europe: 3–4 weeks minimum (rabies vaccine needs 21-day wait after titre test). For the UK specifically: add an additional appointment for tapeworm treatment within 24–120 hours of arrival. For Australia, New Zealand, or Japan: 6 months minimum — these countries have strict quarantine protocols and lengthy preparation timelines. Always check the official government website of your destination country, as requirements change.",
+      },
+      {
+        q: "What is a USDA APHIS-accredited vet and do I need one?",
+        a: "For international travel from the U.S., your health certificate must be signed by a USDA-accredited veterinarian (not just any licensed vet). Most general practice vets are USDA-accredited — ask specifically when booking. The certificate then needs to be endorsed by your regional USDA APHIS office, which typically takes 1–5 business days. Factor this into your planning.",
+      },
+      {
+        q: "What if my pet's microchip doesn't meet the ISO standard?",
+        a: "If your pet has an older non-ISO chip (common in dogs chipped before 2014 in the U.S.), bring a universal microchip scanner when travelling to ensure it can be read. Some countries require ISO-standard chips as a condition of entry — check your specific destination. You can have a second ISO-compliant chip implanted alongside the existing one.",
+      },
+    ],
+    relatedSlugs: ["pet-vaccination-record-template", "pet-medical-history-template", "pet-health-record-template"],
+    downloadFormats: ["PDF", "Google Docs", "Word (.docx)", "Printable A5 booklet"],
+  },
+
+  {
+    slug: "lost-pet-flyer-template",
+    title: "Lost Pet Flyer Template (Free, Printable & Social Media Ready)",
+    seoTitle: "Lost Pet Flyer Template — Free Printable & Digital Download 2026",
+    shortTitle: "Lost Pet Flyer",
+    seoDescription: "Free lost pet flyer template in printable and social media formats. Designed to maximise response rates — large phone number, clear photo placement, reward call-out. Targets: lost pet flyer template free, free lost pet template, free missing pet flyer template.",
+    icon: "📢",
+    tier: 3,
+    category: "Lost & Found",
+    targetKeywords: [
+      "lost pet flyer template free",
+      "free lost pet template",
+      "free missing pet flyer template",
+      "missing pet flyer template",
+      "lost dog flyer template",
+      "lost cat flyer template",
+    ],
+    publishDate: "April 2026",
+    lastUpdated: "April 2026",
+    readTime: "6 Min Read",
+    quickAnswer: "An effective lost pet flyer has one job: make someone who sees it immediately pick up the phone. That means one dominant photo, one dominant phone number, and a reward mention — all visible from 10 feet away. Everything else is secondary.",
+    intro: `The difference between a lost pet flyer that generates tips and one that doesn't comes down to three things: photo quality, phone number size, and where it's posted.
+
+Most lost pet flyers fail because owners try to include too much information. A person driving past a telephone pole has 1–2 seconds to register your flyer. In that time, they can process: the animal's face, the word LOST, and a phone number. That's it.
+
+This page provides two versions — a **print flyer** for physical posting in a 1-mile radius, and a **digital/social version** sized for Facebook, Instagram, and Nextdoor sharing. Both are free and designed for maximum impact in the moments when every hour matters.
+
+For a longer-format printable with full details, see our [Lost Pet Poster template](/templates/lost-pet-poster-template).`,
+    whenYouNeedIt: [
+      "Your pet has just gone missing — post within the first 2 hours",
+      "You need a shareable image for Nextdoor, Facebook groups, or Instagram",
+      "You found someone else's pet and need a FOUND PET version",
+      "You want a high-contrast version for night posting or laminating outdoors",
+    ],
+    whatToInclude: [
+      {
+        title: "Above everything: the non-negotiables",
+        items: [
+          "LOST [SPECIES] in the largest font on the page",
+          "A clear, recent, close-up photo — the animal's face fills the frame",
+          "Your phone number in the second-largest font — readable from 15 feet",
+          "REWARD OFFERED — even without an amount, this doubles response rates",
+        ],
+      },
+      {
+        title: "Supporting details (smaller, below the photo)",
+        items: [
+          "Pet name and whether they respond to it (shy pets often won't come to strangers)",
+          "Breed, colour, approximate weight",
+          "Any distinctive markings (white chest, torn ear, limps on left front leg)",
+          "Last seen: date and specific location (cross streets)",
+          "Whether the pet is friendly or fearful (this matters — people need to know not to chase)",
+        ],
+      },
+      {
+        title: "For digital/social versions",
+        items: [
+          "High contrast design — white text on dark background performs well on mobile screens",
+          "Your location/neighbourhood in the caption, not just on the image",
+          "Tag the post with your city name and local hashtags",
+          "Include a specific ask: 'Please share — every share extends our reach'",
+        ],
+      },
+    ],
+    stateNotes: `**Microchip first:** Before posting flyers, call your microchip registry (HomeAgain, PetLink, AKC Reunite) and mark your pet as missing. Also call every shelter, rescue, and vet clinic within 10 miles — phone calls beat flyers for shelter reunions because staff may not check online registries. File a report at PetFBI.org and NextDoor.\n\n**Flyer placement:** Telephone poles, community notice boards, pet store windows, vet clinic boards, dog park entrances, and the entrance/exit of any grocery store within 1 mile. Aim for 50–100 flyers posted within the first 6 hours. Laminate at high-value locations (park entrances) to weather-proof them.`,
+    templateText: `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERSION A — PRINT FLYER (Letter / A4)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Print in colour. Aim for 50–100 copies. Laminate at key locations.]
+
+
+  ██╗      ██████╗ ███████╗████████╗    ██████╗  ██████╗  ██████╗
+  ██║     ██╔═══██╗██╔════╝╚══██╔══╝    ██╔══██╗██╔═══██╗██╔════╝
+  ██║     ██║   ██║███████╗   ██║       ██║  ██║██║   ██║██║  ███╗
+  ██║     ██║   ██║╚════██║   ██║       ██║  ██║██║   ██║██║   ██║
+  ███████╗╚██████╔╝███████║   ██║       ██████╔╝╚██████╔╝╚██████╔╝
+  ╚══════╝ ╚═════╝ ╚══════╝   ╚═╝       ╚═════╝  ╚═════╝  ╚═════╝
+
+  ▶ LOST [DOG / CAT / OTHER] ◀
+  ─────────────────────────────
+
+  [  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ]
+  [                                       ]
+  [     ATTACH BEST PHOTO HERE            ]
+  [     — cropped close to face —         ]
+  [     — print in COLOUR —               ]
+  [                                       ]
+  [  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ]
+
+  CALL OR TEXT — ANY TIME:
+
+        📞 [YOUR NUMBER — VERY LARGE]
+
+  💰 REWARD OFFERED
+
+─────────────────────────────────────────
+Name: [PET NAME]   Breed: [BREED]
+Colour: [COLOUR]   Weight: ~[WEIGHT] lbs
+Age: [AGE]   Sex: [M/F]   Collar: [YES/NO — COLOUR]
+
+LAST SEEN: [DATE], [TIME], near [STREET + CROSS STREET]
+Direction heading (if known): [DIRECTION]
+
+[PET NAME] is [friendly / shy — please do NOT chase, just call us].
+[Any urgent note: "needs daily medication" / "may hide under cars"]
+
+Also posted on: Nextdoor · [LOCAL FB GROUP] · PetFBI.org
+─────────────────────────────────────────
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERSION B — DIGITAL / SOCIAL MEDIA
+(1080 × 1080 px — Instagram / Facebook / Nextdoor)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Use Canva, Google Slides, or any image editor. Dark background, white/bright text.]
+
+LAYOUT (top to bottom):
+
+  [Dark background — black or dark navy]
+
+  ── TOP BANNER (bold, all caps, max 3 words) ──
+  LOST DOG  /  LOST CAT  /  MISSING PET
+
+  ── PHOTO (takes 50% of image height) ──
+  [Close crop of pet's face — fill the frame]
+
+  ── LARGE TEXT ──
+  📞 [PHONE NUMBER]
+
+  ── SMALLER TEXT ──
+  [PET NAME] · [BREED] · [COLOUR]
+  Last seen: [DATE], [NEIGHBOURHOOD]
+  REWARD OFFERED
+
+  ── BOTTOM ──
+  Please share. Tag anyone in [NEIGHBOURHOOD].
+
+── CAPTION FOR POST ──────────────────────────────
+LOST [DOG / CAT] in [NEIGHBOURHOOD / CITY] 😢
+
+[PET NAME] has been missing since [DATE] near [STREET / AREA].
+[He/She/They] is [friendly / shy and may hide from strangers].
+
+📞 Please call or text [YOUR NUMBER] if you see [him/her/them].
+💰 Reward offered.
+
+Please share this post — every share extends our reach to someone
+who may have seen [PET NAME].
+
+#Lost[Dog/Cat] #[YourCity] #[YourNeighbourhood] #LostPet #MissingPet
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IMMEDIATE ACTION CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+☐ Call microchip registry — mark as MISSING now
+☐ Call all shelters and rescues within 10 miles
+☐ Post to Nextdoor immediately
+☐ Post to local Facebook community groups
+☐ File report at PetFBI.org
+☐ Print and post 50+ flyers within 1 mile radius
+☐ Inform neighbours directly — knock on doors
+☐ Leave an unwashed item of your clothing near the escape point
+☐ Set a humane trap near last sighting if appropriate
+☐ Check back at shelters in person every 48 hours`,
+    faqs: [
+      {
+        q: "Should I include the reward amount on the flyer?",
+        a: "No. 'Reward offered' is enough — it motivates people without anchoring to a specific amount. Listing a large amount can attract dishonest responses or theft attempts. Listing a small amount can reduce motivation. Let callers know the amount when they phone.",
+      },
+      {
+        q: "What size should I print the flyers?",
+        a: "Standard letter (8.5x11) or A4 for general posting. Print a few in A3/tabloid (11x17) for high-traffic spots — park entrances, community boards, grocery store entrances. Larger format = visible from further away. Always print in colour; black and white significantly reduces recognisability.",
+      },
+      {
+        q: "My pet is shy and won't approach strangers. What should I say on the flyer?",
+        a: "Include a clear note: 'Very shy — please do NOT approach or chase. Call us immediately with the location.' A frightened pet will run from strangers attempting to catch them, and a tip about location is far more valuable than a failed catch attempt. Also mention any food they respond to (e.g., 'will come for cheese').",
+      },
+      {
+        q: "How is this different from the Lost Pet Poster template?",
+        a: "This page focuses on two flyer formats — a print version optimised for telephone pole posting and a digital/social version optimised for sharing online. The Lost Pet Poster template is a longer-format document with more fields for detailed information. Use this flyer for rapid deployment in the first hours; use the poster for more complete information at community boards and vet clinics.",
+      },
+    ],
+    relatedSlugs: ["lost-pet-poster-template", "pet-medical-history-template", "pet-vaccination-record-template"],
+    downloadFormats: ["PDF (print)", "PNG (social media)", "Google Docs", "Word (.docx)"],
+  },
 ];
 
 export const templatesByTier = {
