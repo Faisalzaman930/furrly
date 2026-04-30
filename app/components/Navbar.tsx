@@ -3,10 +3,13 @@
 import Link from "next/link";
 import Logo from "./Logo";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const isResourcesActive = pathname.startsWith("/resources");
 
   const verticals = [
     { name: "Playdates", href: "/playdates", icon: "🎉", desc: "Find compatible pets near you." },
@@ -76,7 +79,11 @@ const Navbar = () => {
           <Link href="/about" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
             About
           </Link>
-          <Link href="/resources" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
+          <Link
+            href="/resources"
+            className={`text-sm font-bold uppercase tracking-widest transition-colors ${isResourcesActive ? "text-brand-start underline underline-offset-4" : "text-slate-gray hover:text-ebony"}`}
+            aria-current={isResourcesActive ? "page" : undefined}
+          >
             Resources
           </Link>
           <Link
@@ -130,16 +137,20 @@ const Navbar = () => {
             { name: "Roadmap", href: "/roadmap" },
             { name: "About", href: "/about" },
             { name: "Resources", href: "/resources" },
-          ].map(item => (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={() => setIsMobileOpen(false)}
-              className="rounded-2xl px-4 py-3 text-sm font-bold text-ebony hover:bg-gray-50 transition-colors"
-            >
-              {item.name}
-            </Link>
-          ))}
+          ].map(item => {
+            const active = item.href === "/resources" ? isResourcesActive : pathname === item.href;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsMobileOpen(false)}
+                aria-current={active ? "page" : undefined}
+                className={`rounded-2xl px-4 py-3 text-sm font-bold transition-colors ${active ? "text-brand-start bg-brand-start/5" : "text-ebony hover:bg-gray-50"}`}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
 
           <div className="mt-4">
             <Link

@@ -2,16 +2,22 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Pet Care Resources: Guides, How-Tos & Breed Profiles",
-  description: "Browse Furrly's free pet care library — expert guides, symptom explainers, breed profiles, how-to tutorials, and vet-backed advice for every pet parent.",
+  // Item 5: updated meta description
+  description: "Evidence-based pet care guides, how-tos, breed profiles, and symptom references — reviewed by vets. Free library from Furrly.",
+  // Item 8: canonical prevents thin-page dilution from any query-string variants
+  alternates: {
+    canonical: "https://furrly.co/resources",
+  },
   openGraph: {
     title: "Pet Care Resources: Guides, How-Tos & Breed Profiles | Furrly",
-    description: "Expert guides, symptom explainers, breed profiles, and how-to tutorials — all free in the Furrly pet care library.",
+    description: "Evidence-based pet care guides, how-tos, breed profiles, and symptom references — reviewed by vets. Free library from Furrly.",
     type: "website",
+    url: "https://furrly.co/resources",
   },
   twitter: {
     card: "summary_large_image",
     title: "Pet Care Resources | Furrly",
-    description: "Expert guides, symptom explainers, breed profiles, and how-to tutorials — all free in the Furrly pet care library.",
+    description: "Evidence-based pet care guides, how-tos, breed profiles, and symptom references — reviewed by vets. Free library from Furrly.",
   },
 };
 
