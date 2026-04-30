@@ -245,6 +245,15 @@ export default async function BreedPage({
                     </span>
                   )}
                 </div>
+                {/* Compare CTA */}
+                <div className="mt-6">
+                  <Link
+                    href={`/tools/breed-compare?a=${breed.slug}`}
+                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[10px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl transition-colors"
+                  >
+                    🆚 Compare with another breed
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -363,9 +372,17 @@ export default async function BreedPage({
           {/* ── Related breeds ─────────────────────────────────────── */}
           {related.length > 0 && (
             <div className="mt-16 pt-12 border-t border-gray-100">
-              <h2 className="text-xl font-black text-ebony uppercase tracking-tight mb-8">
-                Related {animalLabel} Breeds
-              </h2>
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-xl font-black text-ebony uppercase tracking-tight">
+                  Related {animalLabel} Breeds
+                </h2>
+                <Link
+                  href={`/tools/breed-compare?a=${breed.slug}`}
+                  className="text-[10px] font-black uppercase tracking-widest text-brand-start border border-brand-start/30 px-4 py-2 rounded-full hover:bg-brand-start/5 transition-colors"
+                >
+                  🆚 Compare breeds
+                </Link>
+              </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {related.map((b) => (
                   <Link
