@@ -399,7 +399,7 @@ High-value distractions (other dogs, bicycles, squirrels) require management as 
         a: "It depends on whether the pulling is accompanied by excessive arousal (hyper-focused staring, lunging, vocalizing, inability to recover attention after passing another dog). If so, it's leash reactivity rather than simple pulling — and requires a more specific protocol: counter-conditioning and desensitization below threshold, not just leash manners training. See a Certified Professional Dog Trainer (CPDT-KA) for reactivity.",
       },
     ],
-    relatedSlugs: ["how-to-read-dog-body-language", "3-3-3-rule-for-rescue-dogs", "complete-guide-to-dog-training"],
+    relatedSlugs: ["how-to-read-dog-body-language", "how-to-manage-leash-reactive-dog", "complete-guide-to-dog-training"],
     pillarSlug: "complete-guide-to-dog-training",
     ctaFeature: "/playdates",
     ctaText: "Find Socialization Partners Near You",
@@ -546,7 +546,7 @@ Your job: intervene at steps 1–4. Create distance, remove the dog from the str
         a: "The 'submissive grin' — lips pulled back horizontally to show all teeth, often combined with squinting eyes and a lowered, wriggling body — is an appeasement behavior that looks alarming but is friendly. Distinguishing features: the rest of the body is loose and low, the dog is moving toward you, and the expression relaxes when you respond positively. Contrast with the threat expression: lips pulled back vertically (showing front teeth, creating a wrinkled nose), combined with a stiff, high body posture and hard stare.",
       },
     ],
-    relatedSlugs: ["how-to-stop-dog-pulling-on-leash", "how-to-introduce-new-pet-to-resident-pets", "complete-guide-to-dog-training"],
+    relatedSlugs: ["how-to-stop-dog-pulling-on-leash", "how-to-stop-dog-barking", "complete-guide-to-dog-training"],
     pillarSlug: "complete-guide-to-dog-training",
     ctaFeature: "/playdates",
     ctaText: "Find Safe, Verified Playdates",
@@ -685,7 +685,7 @@ Most dogs on appropriate medication combined with behavioral treatment show sign
         a: "Separation anxiety can develop at any age. Common onset periods include: post-adoption (especially from shelters), after a change in owner schedule, following a period of continuous human presence (like a remote work period ending), after the loss of a companion animal, and in senior dogs as cognitive decline affects emotional regulation. Sudden onset in an older dog without apparent trigger warrants a veterinary exam to rule out medical causes.",
       },
     ],
-    relatedSlugs: ["best-pet-camera-monitoring-apps", "how-to-crate-train-a-puppy", "complete-guide-to-dog-training"],
+    relatedSlugs: ["how-to-stop-dog-barking", "how-to-crate-train-a-puppy", "complete-guide-to-dog-training"],
     pillarSlug: "complete-guide-to-dog-training",
     ctaFeature: "/vets",
     ctaText: "Talk to a Vet About Anxiety",
@@ -1354,5 +1354,537 @@ The [ASPCA recommends](https://www.aspca.org/pet-care/cat-care/cats-and-other-an
     pillarSlug: "complete-guide-to-dog-training",
     ctaFeature: "/adoption",
     ctaText: "Find Your Next Pet Through Furrly Adoption",
+  },
+
+  {
+    slug: "how-to-stop-dog-barking",
+    title: "How to Stop Excessive Dog Barking: A Trigger-by-Trigger Guide",
+    seoTitle: "How to Stop Dog Barking: Proven Methods for Every Bark Type 2026",
+    shortTitle: "Stop Excessive Barking",
+    seoDescription: "Stop your dog barking with trigger-specific methods: alert barking, demand barking, separation barking, and leash reactivity. Positive reinforcement protocols that work without bark collars.",
+    category: "How-To",
+    tags: ["Dog Training", "Behavior Problems", "Barking"],
+    publishDate: "April 2026",
+    lastUpdated: "April 2026",
+    readTime: "12 Min Read",
+    quickAnswer: "The solution to excessive barking depends on the trigger. Alert barking is managed through environmental management and a trained 'quiet' cue. Demand barking is extinguished by consistently withholding the reward being demanded — every time you give in extends the problem. Separation barking requires addressing the underlying anxiety, not the bark itself. Identify the trigger type before choosing a method.",
+    introduction: `Excessive barking is one of the most common reasons dog owners seek professional help — and one of the most commonly mishandled. The instinct is to address barking directly: shout, spray water, use a bark collar. These approaches treat the symptom rather than the cause, and often worsen the underlying issue.
+
+Barking is communication. A dog who barks excessively is not misbehaving out of spite — they are responding to a stimulus, an unmet need, or an emotional state. The key to solving any barking problem is correctly identifying the type of barking before choosing a method. Applying the wrong method to the wrong bark type doesn't just fail — it can actively make the problem worse.
+
+This guide covers the five main categories of excessive barking and the evidence-based approach for each.`,
+    supplies: [
+      { item: "High-value training treats", note: "For counter-conditioning and rewarding silence. Use something genuinely exciting — cheese, chicken, or commercial training treats with strong smell." },
+      { item: "Long-line or management tools", note: "For alert barkers: window film, baby gates, or exercise pens to manage environmental triggers during training." },
+      { item: "Food puzzle or Kong", note: "For demand barkers and dogs who bark for attention: having an appropriate outlet pre-loaded reduces demand behavior before it starts." },
+    ],
+    steps: [
+      {
+        number: 1,
+        title: "Identify the bark type before choosing a method",
+        content: `The single most important step. Watch for: what triggers the barking, what happens just before it, and what the dog does after barking. The five main categories:
+
+**Alert barking:** Triggered by movement, sounds, or visual stimuli (strangers passing, squirrels, cars). The dog barks a few times and may pause to check the stimulus. Usually stops when the trigger leaves.
+
+**Demand barking:** Triggered by wanting something — food, attention, play, being let out. The dog barks directly at you or at the object they want. Stops when they get what they want (which is exactly why it continues).
+
+**Separation barking:** Occurs only when the dog is alone. Owner-absent, often continuous or distress-driven. The dog cannot be distracted out of it because the root cause is anxiety.
+
+**Territorial/alarm barking:** At perceived threats to the home or yard. Often lower-pitched, continuous, and accompanied by stiff posture and forward body weight.
+
+**Reactive barking (on-leash):** At other dogs, people, or stimuli while on leash. Accompanied by lunging, pulling, or inability to disengage. This is leash reactivity, not simple barking — see our <a href="/resources/how-to-manage-leash-reactive-dog" class="text-brand-start font-bold">leash reactivity guide</a> for the correct protocol.`,
+        tip: "Keep a 3-day log: note the time, what triggered it, what you did, and how long it lasted. Patterns will emerge quickly that clarify the type.",
+      },
+      {
+        number: 2,
+        title: "Manage alert barking with environment + a 'quiet' cue",
+        content: `Alert barking is the most normal and most manageable. Dogs need to alert — a single bark is appropriate. The problem is the continuous, hysterical response that doesn't de-escalate.
+
+**Environmental management:** Remove or restrict visual access to the trigger. Window film on lower panes, strategic baby gates to limit access to the front window, or moving the dog's rest area away from the street-facing window dramatically reduces frequency without training.
+
+**The 'quiet' cue — correct method:**
+1. Wait for a brief natural pause in barking (even 1 second)
+2. Say "quiet" once, calmly
+3. Deliver a treat immediately into the dog's mouth
+4. If they stay quiet for 3 seconds: reward again
+5. Build duration incrementally: 3 seconds → 10 → 30 → 1 minute
+
+**Critical error to avoid:** Never say "quiet" while the dog is actively barking — you are marking the barking. The cue must be introduced in the pause, then gradually used earlier in the bark sequence as the dog learns what it predicts.`,
+        tip: "Practice the 'quiet' cue in low-intensity situations first — when the dog barks at something minor — before trying to use it on high-intensity triggers like strangers at the door.",
+        warning: "Never shout at a barking dog. To the dog, this sounds like you are joining in — which is reinforcing. It also increases arousal, making the barking more intense.",
+      },
+      {
+        number: 3,
+        title: "Extinguish demand barking through consistent non-reward",
+        content: `Demand barking is maintained by intermittent reward: the dog barks, you eventually give them what they want, demand barking is reinforced on a variable schedule (the most durable schedule possible).
+
+The solution is extinction: completely and consistently withholding the demanded resource every time barking is used to demand it.
+
+**Protocol:**
+- Dog barks for attention → turn completely away, remove eye contact, leave the room if needed. Do not speak, do not say "no," do not acknowledge in any way
+- The moment barking stops and the dog is quiet: turn back, wait 3 seconds, then engage with them calmly
+- If they bark again immediately upon your return: turn away again. No exceptions.
+
+**Expect an extinction burst first.** When a previously rewarded behavior stops working, the dog will intensify the behavior before extinguishing it — barking longer, louder, or more urgently. This is the most critical moment: many owners give in during the extinction burst, which teaches the dog that *more intense* demand barking works. Power through it.
+
+**Simultaneously, reward alternate behavior.** When the dog is quiet near you, give them attention proactively. Don't wait for them to demand — give it before they need to ask. This reduces the motivation to demand.`,
+        tip: "Install a baby gate between rooms so you can leave the dog's visual field quickly when demand barking starts, without leaving the house entirely.",
+      },
+      {
+        number: 4,
+        title: "Address separation barking at the root: the anxiety",
+        content: `Separation barking is a symptom of separation anxiety — a genuine panic disorder. It cannot be extinguished through ignoring, bark collars, or punishing the dog when you return. The dog is not performing — they are panicking.
+
+**The correct approach is systematic desensitization:**
+
+1. Find the dog's threshold: at what duration of absence does barking begin? (Often within 30–90 seconds for severe cases)
+2. Practice departures that stay below that threshold: go to the door → come back before barking starts → reward calm behavior
+3. Gradually extend duration: 10 seconds → 30 seconds → 1 minute → 5 minutes over days to weeks
+4. Use departure cues strategically: a long-lasting food puzzle (frozen Kong) immediately before each departure creates a positive association with your leaving
+
+**For moderate to severe cases:** A veterinary consultation is appropriate. Fluoxetine and clomipramine are FDA-approved for canine separation anxiety and work synergistically with behavior modification. Medication alone doesn't solve separation anxiety, but behavior modification alone is significantly harder without it for severe cases.
+
+See our complete <a href="/resources/how-to-help-dog-with-separation-anxiety" class="text-brand-start font-bold">separation anxiety treatment guide</a> for the full protocol.`,
+        tip: "A camera with two-way audio (Furbo, Petcube) is highly useful for separation anxiety work — you can see exactly when barking starts and monitor progress without being present.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Using a bark collar (citronella spray or shock)",
+        why: "Bark collars punish the symptom without addressing the cause. For separation anxiety dogs, adding punishment to an already panicking dog increases anxiety. For demand barkers, the collar becomes associated with the environment, not the behavior — barking stops when the collar is on and resumes when it's off. Research shows no lasting behavior change with shock bark collars.",
+        fix: "Identify the bark type and apply the trigger-specific protocol. Environmental management combined with positive reinforcement produces lasting change.",
+      },
+      {
+        mistake: "Shouting 'quiet' or 'no' repeatedly while the dog barks",
+        why: "To an aroused barking dog, your raised voice sounds like joining in. It increases arousal rather than decreasing it, and provides social attention (even negative attention is reinforcing for some dogs).",
+        fix: "Wait for a natural pause, say 'quiet' once at normal volume, and deliver a treat. Silence communicates more than shouting.",
+      },
+      {
+        mistake: "Punishing separation barking discovered on return",
+        why: "Dogs cannot associate a punishment delivered on your return to barking that occurred 3 hours earlier. The dog learns that your return predicts something unpleasant, which can worsen anxiety and owner-approach avoidance.",
+        fix: "Separation barking requires systematic desensitization while the dog is being monitored — not punishment after the fact.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Why does my dog bark at everything on walks?",
+        a: "Barking at everything on walks is typically leash reactivity — a different problem from household barking that requires a different protocol. The core method is counter-conditioning below threshold: identify the distance at which your dog can see triggers without reacting, feed high-value treats the instant the trigger appears, and gradually decrease distance over many sessions. See our dedicated leash reactivity guide.",
+      },
+      {
+        q: "My dog only barks when I leave. Is this separation anxiety?",
+        a: "If barking occurs within minutes of your departure and doesn't stop until you return (or is accompanied by destructive behavior, elimination, or pacing on camera), yes — this is separation anxiety, not boredom or habit. The distinction matters because the treatment is completely different. Boredom barking can be addressed with enrichment; separation anxiety requires systematic desensitization.",
+      },
+      {
+        q: "How long does it take to stop a dog from barking?",
+        a: "For demand barking with a consistent extinction protocol, significant improvement is often seen within 1–2 weeks. Alert barking management through environmental modification works immediately. Separation anxiety desensitization typically takes 4–12 weeks depending on severity and consistency of practice.",
+      },
+    ],
+    relatedSlugs: ["how-to-help-dog-with-separation-anxiety", "how-to-manage-leash-reactive-dog", "complete-guide-to-dog-training"],
+    pillarSlug: "complete-guide-to-dog-training",
+    ctaFeature: "/playdates",
+    ctaText: "Find Calm Socialization Partners for Your Dog",
+  },
+
+  {
+    slug: "how-to-stop-dog-jumping-on-people",
+    title: "How to Stop a Dog Jumping on People: The Method That Actually Works",
+    seoTitle: "How to Stop Dog Jumping on People: Positive Training Guide 2026",
+    shortTitle: "Stop Dog Jumping",
+    seoDescription: "Stop your dog jumping on people with the only method that produces lasting results: removing the reward consistently and teaching an incompatible behavior. No knee-in-chest, no corrections.",
+    category: "How-To",
+    tags: ["Dog Training", "Behavior Problems", "Manners"],
+    publishDate: "April 2026",
+    lastUpdated: "April 2026",
+    readTime: "9 Min Read",
+    quickAnswer: "Dogs jump because jumping has been rewarded — with touch, eye contact, or verbal attention, even negative attention. The solution is removing every reward for jumping (turn away, no contact, no eye contact, no speech) while rewarding the incompatible behavior (four paws on floor or a sit earns all the attention the dog wanted). Consistency across every person the dog meets is essential.",
+    introduction: `Jumping on people is one of the easiest behavior problems to inadvertently create and one of the most common to address. Most dogs learn to jump as puppies when it's considered cute — they jump up to reach a face, a hand goes out to steady them, and jumping on people gets reinforced hundreds of times before it stops being cute.
+
+By the time owners want to stop it, the behavior is well-established and the dog has no idea it's a problem. From their perspective, jumping has reliably produced attention — touch, eye contact, even scolding — and attention is what they want. The solution is not a knee in the chest, a foot on the paw, or a squirt bottle. These are aversive techniques that suppress jumping temporarily while damaging the human-dog relationship and sometimes producing fear or redirected aggression.
+
+The solution is simple but requires absolute consistency: jumping produces nothing, and four paws on the floor produces everything the dog wanted from jumping.`,
+    supplies: [
+      { item: "Training treats (small, high value)", note: "For rewarding four paws on floor. Small so you can deliver many repetitions in a session." },
+      { item: "Leash for doorway management", note: "Tethering or holding the leash when guests arrive lets you control the environment during training before the behavior is solid." },
+    ],
+    steps: [
+      {
+        number: 1,
+        title: "Remove every reward for jumping — completely and every time",
+        content: `The foundation: jumping must produce absolutely nothing the dog wants.
+
+When your dog jumps:
+- Turn your back completely. Not sideways — a full 180°
+- Remove eye contact entirely
+- Say nothing. Not "no," not "down," not their name. Silence.
+- Keep arms crossed or at your sides — no pushing them down (pushing is physical contact, which many dogs find rewarding)
+
+Stay turned away until all four paws are on the floor. The instant paws land: turn around calmly (no big energy), mark with "yes," and reward with a treat or calm petting.
+
+If they jump again the moment you turn around: turn back away immediately. The cycle can repeat many times in one session. That is not failure — that is the dog testing whether the rule is consistent. Be a wall.`,
+        tip: "Practice in short sessions of 2–3 minutes. The dog needs many repetitions to understand the pattern — quantity of repetitions matters more than session length.",
+        warning: "If anyone in the household, or any visitor, responds to jumping with attention (even pushing the dog off), you are training intermittent reward. This makes the behavior dramatically more resistant to extinction. 100% consistency is required from every person the dog encounters.",
+      },
+      {
+        number: 2,
+        title: "Teach the incompatible behavior: four paws earns everything",
+        content: `Extinction alone (withholding reward) can be frustrating for the dog without a clear alternative. The most effective approach pairs extinction of jumping with strong reinforcement of the incompatible behavior.
+
+**Option 1 — Four paws on floor:**
+Whenever your dog approaches you with all four paws on the ground, immediately reward with enthusiastic attention, treats, and everything they wanted from jumping. The dog learns: "I don't need to jump — the floor position is what gets me the good stuff."
+
+**Option 2 — Sit for greeting:**
+Teach and reward a sit-for-greeting specifically. Ask for a sit before any greeting interaction — leash on, food bowl down, door opens, visitors enter. The sit becomes the dog's default "I want something" behavior instead of jumping.
+
+Build this by:
+1. Approaching the dog → the moment they sit (offered or cued): deliver big reward
+2. If they jump during your approach: immediately turn away
+3. Repeat until sitting is the dog's first response to an approaching person`,
+        tip: "Carry treats in a pocket or pouch during the retraining period so every correct greeting gets rewarded, not just training sessions.",
+      },
+      {
+        number: 3,
+        title: "Manage visitors and door arrivals during the training period",
+        content: `The most critical — and most commonly failed — aspect of the jumping protocol is visitor management. Guests who allow or encourage jumping (even once) undo significant training progress.
+
+**Before guests arrive:**
+- Put your dog on a leash before opening the door
+- Brief visitors: "Please turn your back and ignore him if he jumps. Only pet him when all four feet are on the floor."
+- Have treats in your hand for the greeting sequence
+
+**The greeting sequence:**
+1. Dog on leash, door opens, guest enters
+2. Ask dog to sit
+3. If sitting: guest approaches slowly and calmly, delivers a treat from their hand, pets only when paws stay down
+4. If dog jumps: guest turns away, you withhold attention, wait for four paws, repeat
+
+**Progress takes time.** Guests represent the highest-value triggers for jumping — a dog who is perfect when you greet them alone may revert fully with visitors. Treat visitors as a new, advanced training environment, not a test of whether the training worked.`,
+        tip: "Use a long-line or tether near the door during the training period. Tethering your dog 6 feet from the door gives them freedom to greet but prevents them from jumping on guests before the greeting is set up correctly.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Using a knee in the chest or stepping on paws",
+        why: "These aversive techniques can cause physical harm, produce fear or pain associations with greeting (which creates a different problem), and provide physical contact — which some dogs experience as rewarding attention rather than punishment. They also don't teach the dog what TO do.",
+        fix: "Turn your back. Silence. Wait for four paws. Reward. Repeat until the pattern is learned.",
+      },
+      {
+        mistake: "Saying 'off' or 'no' repeatedly while the dog jumps",
+        why: "Verbal attention — even scolding — is social interaction, which is what the dog wanted from jumping. You are rewarding the behavior you want to stop.",
+        fix: "Complete silence when the dog jumps. Save verbal markers ('yes!') for the moment four paws land.",
+      },
+      {
+        mistake: "Rewarding four paws on floor only sometimes",
+        why: "The four-paws-on-floor behavior must be heavily reinforced, especially early in training. Owners who expect it as the default without rewarding it find the dog reverts to jumping (which used to be more reliably rewarded).",
+        fix: "Reward every correct greeting in the first 2 weeks. Then shift to a variable schedule to maintain the behavior.",
+      },
+    ],
+    faqs: [
+      {
+        q: "My dog only jumps on some people — why?",
+        a: "Because those people have previously rewarded the jumping (knowingly or not) or respond in a way the dog finds exciting. Dogs discriminate quickly between who rewards jumping and who doesn't. The people who allow it need to be briefed and consistent for the training to generalize.",
+      },
+      {
+        q: "How do I stop my dog jumping on children specifically?",
+        a: "Children are challenging because they often squeal, run, or reach out — all of which are highly exciting. Keep your dog on a leash around unfamiliar children during training. Teach the sit-for-greeting specifically with children present, using your dog's highest-value treats. Children over 5 can be coached to turn away and cross their arms. Supervise all interactions until the behavior is solid.",
+      },
+      {
+        q: "Does it help to teach 'off' as a command?",
+        a: "'Off' (meaning 'remove your paws from this surface') is a useful cue, but it doesn't replace training the underlying behavior. Teaching 'off' and rewarding it gives you a verbal shortcut — but if jumping continues to be intermittently rewarded, the cue won't hold reliably in high-excitement situations. Train the default behavior (four paws on floor earns greeting) first.",
+      },
+    ],
+    relatedSlugs: ["how-to-stop-dog-pulling-on-leash", "how-to-teach-basic-dog-commands", "complete-guide-to-dog-training"],
+    pillarSlug: "complete-guide-to-dog-training",
+    ctaFeature: "/playdates",
+    ctaText: "Practice Greetings With Community Dogs",
+  },
+
+  {
+    slug: "how-to-teach-basic-dog-commands",
+    title: "How to Teach Basic Dog Commands: Sit, Stay, Down, Come & Leave It",
+    seoTitle: "How to Teach Basic Dog Commands: Step-by-Step Guide 2026",
+    shortTitle: "Teach Basic Commands",
+    seoDescription: "Step-by-step instructions for teaching sit, stay, down, come, and leave it using positive reinforcement. Includes timing, luring technique, adding cues, and proofing in real-world environments.",
+    category: "How-To",
+    tags: ["Dog Training", "Basic Commands", "Obedience"],
+    publishDate: "April 2026",
+    lastUpdated: "April 2026",
+    readTime: "14 Min Read",
+    quickAnswer: "Teach basic commands using lure-reward: physically guide the dog into position with a treat, mark the instant they achieve it with a click or 'yes,' deliver the treat. Repeat 10–15 times before adding the verbal cue — adding the cue too early attaches it to an unreliable behavior. Practice in short sessions (5–10 minutes) twice daily, gradually adding distraction and distance once each behavior is solid at home.",
+    introduction: `Five behaviors form the functional foundation of any well-trained dog: sit, stay, down, come, and leave it. These aren't tricks — they are safety and communication tools. A dog who responds to these five cues reliably in real-world conditions can go anywhere, do anything, and be trusted in environments that would otherwise require management or restriction.
+
+The good news: all five can be taught using the same basic method, and most dogs can learn them in days to weeks with consistent practice. The bad news: most owners add the cue too early, skip the proofing phase, or apply the behaviors inconsistently — producing dogs who respond in the kitchen but ignore you at the park.
+
+This guide covers the mechanics of each behavior from first lure to real-world reliability.`,
+    supplies: [
+      { item: "Small, high-value treats", note: "Small enough to deliver 50+ per session without overfeeding. Use something your dog finds genuinely exciting — the more distracting the environment, the higher the treat value needs to be." },
+      { item: "Treat pouch or pocket access", note: "Treat delivery speed matters. If you're digging through a bag, the timing window for reinforcement has closed." },
+      { item: "Clicker (optional but recommended)", note: "A clicker creates a more precise, consistent marker than a verbal cue. See our <a href='/resources/what-is-clicker-training' class='text-brand-start font-bold'>guide to clicker training</a> for how to condition it." },
+      { item: "6-foot standard leash", note: "For proofing outdoors. Keeps the dog in the training environment without requiring off-leash trust before it's earned." },
+    ],
+    steps: [
+      {
+        number: 1,
+        title: "Teach sit: the gateway behavior",
+        content: `Sit is the easiest behavior to teach and the foundation for almost everything else. Teach it first.
+
+**Luring method:**
+1. Hold a treat against your dog's nose
+2. Slowly move the treat backward toward their ears — directly over the top of their head
+3. As their head follows the treat upward, their hindquarters naturally lower
+4. The instant their hindquarters touch the floor: mark ("yes!" or click) and deliver the treat
+5. Release them ("free" or "okay"), reset, and repeat
+
+**Do not add the verbal cue yet.** Wait until the dog is reliably dropping into the sit within 1–2 seconds of the lure, 8 out of 10 repetitions, before adding the word "sit." Adding the cue too early attaches it to an unreliable behavior.
+
+**Adding the cue:** Say "sit" one second before you begin the lure. After 50+ repetitions of this pairing, try saying "sit" without the lure. Most dogs will begin responding to the word alone.
+
+**Build sit into daily life:** Ask for a sit before the food bowl goes down. Ask for a sit before the leash goes on. Ask for a sit before the door opens. Sit earns privileges — this is more powerful than any training session.`,
+        tip: "If your dog jumps up to get the treat instead of sitting, your hand is too high. The treat should move backward toward their ears at nose height, not upward.",
+      },
+      {
+        number: 2,
+        title: "Teach down from sit",
+        content: `Down is more physically vulnerable than sit, so some dogs resist it initially. Build sit first so the dog is comfortable with you handling treats near their face.
+
+**Luring from sit:**
+1. Ask for sit
+2. Hold a treat at the dog's nose
+3. Slowly lower the treat straight toward the floor, between their front paws
+4. If they follow the treat down, their elbows will reach the floor — mark and reward the instant elbows touch
+5. Release and repeat
+
+**Stubborn dogs:** Some dogs pop up out of sit to follow the treat toward the floor. Try luring under a low obstacle (your leg bent at the knee, a coffee table) — the dog has to fold down to follow the treat through the gap.
+
+**Adding "down":** Same timing as sit — say "down" one second before the lure, for 50+ repetitions, then try the verbal cue alone.`,
+        tip: "Mark generously at first — reward any elbow movement toward the floor, not just a perfect down. Build the behavior incrementally: lower and lower each session.",
+        warning: "Never push a dog's shoulder toward the floor to force a down. This teaches nothing about the behavior, can be physically harmful, and erodes the trust the dog needs to engage with training.",
+      },
+      {
+        number: 3,
+        title: "Build stay in three dimensions: duration, distance, distraction",
+        content: `Stay is not a single behavior — it's the concept of maintaining a position until released. Build it across three dimensions, never extending more than one at a time.
+
+**Duration first:**
+1. Ask for sit (or down)
+2. Wait 2 seconds → mark and reward → release with "free"
+3. Gradually extend: 5 seconds → 10 → 30 → 1 minute → 3 minutes
+4. If the dog breaks position before you mark: quietly reset them, go back to a shorter duration that's achievable
+
+**Distance second (only after 30-second stay is solid):**
+1. Ask for sit → take one step back → step back in → mark and reward
+2. Build: 1 step → 3 steps → halfway across the room → leave the room briefly
+3. Return to the dog to reward — don't call them to you from a stay (that's a recall, not a stay release)
+
+**Distraction third (only after distance is solid):**
+1. Introduce mild distractions while the dog holds position: clap your hands, drop something, have another person walk by
+2. Gradually increase: someone knocking, doorbell, other dogs in the environment
+
+**The release word:** Use a consistent word ("free," "okay," or "release") that means "you may break position now." The dog learns that "stay" means remain in position until they hear the release word — not until they feel like moving.`,
+        tip: "The most common mistake in stay training is adding distance before duration is solid. A dog who won't stay for 30 seconds when you're standing right in front of them will not stay for 5 seconds when you're 10 feet away.",
+      },
+      {
+        number: 4,
+        title: "Build a reliable recall (come)",
+        content: `Recall is the most important safety behavior you will ever teach. It should also be the most fun and most richly rewarded behavior your dog knows.
+
+**The inviolable rule:** Never call your dog for anything unpleasant. If you need to end their off-leash play, clip their nails, give them a bath — go get them. Never call them. The word "come" must be the most reliable predictor of excellent things in your dog's vocabulary.
+
+**Building the foundation:**
+1. Say your dog's name + "come" in a cheerful, excited tone
+2. Back away from them as they approach (movement away is naturally exciting)
+3. When they reach you: jackpot reward — multiple treats, enthusiastic praise, play
+4. Never punish a slow recall. A dog who comes after 5 seconds still came — punishing lateness guarantees a slower recall next time.
+
+**Proofing outdoors:** Use a 15–30 foot long line for recall practice in unfenced areas. The long line allows real distance without off-leash risk. Practice in low-distraction environments first, gradually building to areas with other dogs, people, and wildlife.
+
+**Keep recall value high:** Practice recall daily even when you don't need it. Random recalls during a walk, during play, in the yard — always followed by a great reward and then releasing the dog to continue what they were doing. The recall should never mean "fun is over."`,
+        warning: "If recall breaks down in high-distraction environments, go back to basics — more distance from the distraction, higher treat value. A recall that fails when it matters costs a life. Never advance to off-leash in unfenced areas until recall is solid on a long line in similar environments.",
+      },
+      {
+        number: 5,
+        title: "Teach leave it: the safety disengagement cue",
+        content: `Leave it teaches your dog to disengage from whatever they're approaching or fixated on. The real-world applications: dropped grape, chicken bone, dead bird, approaching dog who is stiff and uncomfortable.
+
+**Foundation with closed fist:**
+1. Put a treat in your closed fist
+2. Present your fist to your dog
+3. They will sniff, lick, paw — ignore all of it. Do not say anything.
+4. The moment they pull their nose away even slightly: mark and reward with a treat from your OTHER hand (never with the item they left)
+5. Repeat until the dog backs off your fist immediately
+
+**Progression:**
+- Treat on floor covered by your hand → treat on floor uncovered but you're hovering → treat on floor with you standing upright → treat dropped from a height → high-value item on the ground while you're at leash length
+
+**Adding the cue:** Say "leave it" as you present the item, once the dog understands the behavior reliably.
+
+**Critical rule:** Never reward leave it with the item they left. If you call "leave it" for a chicken bone and then give them the chicken bone, you are teaching "leave it temporarily." Always reward from a separate treat source.`,
+        tip: "The real power of 'leave it' comes from pairing it with high-value items the dog desperately wants. Practice with things that genuinely tempt your dog — a slice of cheese on the floor is more valuable training than kibble.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Adding the verbal cue too early",
+        why: "If you say 'sit' while luring a dog who only sits 50% of the time, you attach the word to an unreliable behavior. The dog learns 'sit' means 'maybe sit.'",
+        fix: "Teach the behavior with luring until the dog performs it reliably 8/10 repetitions before adding any verbal cue.",
+      },
+      {
+        mistake: "Training sessions that are too long",
+        why: "Dogs — especially puppies — lose focus and motivation within 5–10 minutes. Long sessions produce diminishing returns and can create negative associations with training.",
+        fix: "Keep sessions to 5–10 minutes maximum. Multiple short sessions per day produce faster learning than one long session.",
+      },
+      {
+        mistake: "Practicing only in one location",
+        why: "Dogs don't generalize behaviors automatically. A sit that's perfect in the kitchen is essentially a different behavior outdoors near distractions. Most owners discover this when their dog 'forgets' everything at the park.",
+        fix: "Systematically train each behavior across multiple locations: kitchen → living room → yard → quiet street → moderate street → park. Treat each new environment like starting over with a higher reinforcement rate.",
+      },
+    ],
+    faqs: [
+      {
+        q: "At what age should I start teaching basic commands?",
+        a: "As young as 8 weeks — puppies can begin learning immediately upon coming home. Young puppies learn quickly with very short sessions (2–3 minutes) and high reinforcement. Basic commands should be started during the primary socialization window (8–16 weeks) rather than waiting.",
+      },
+      {
+        q: "My dog knows the commands but ignores them. What's wrong?",
+        a: "Usually one of three things: the behavior wasn't proofed in this environment (the dog is functional in low-distraction but not here), the treat value isn't competing with the distraction (try higher-value treats), or the cue has been repeated so many times without consequence that the dog has learned it can be ignored. Rebuild the behavior in a lower-distraction environment, then increase difficulty gradually.",
+      },
+      {
+        q: "Do I always have to use treats?",
+        a: "For teaching new behaviors, yes — food is the most efficient, precise reinforcer available. Once a behavior is solid, you can maintain it on a variable reward schedule that includes life rewards (permission to sniff, play, greet another dog), praise, and play. But the teaching phase requires a clear, fast, consistent reinforcer to establish the neural pathway.",
+      },
+    ],
+    relatedSlugs: ["what-is-positive-reinforcement-dog-training", "what-is-clicker-training", "complete-guide-to-dog-training"],
+    pillarSlug: "complete-guide-to-dog-training",
+    ctaFeature: "/playdates",
+    ctaText: "Practice Commands in Real Social Situations",
+  },
+
+  {
+    slug: "how-to-manage-leash-reactive-dog",
+    title: "How to Manage a Leash Reactive Dog: Counter-Conditioning That Works",
+    seoTitle: "How to Manage Leash Reactive Dog: Training Protocol 2026",
+    shortTitle: "Leash Reactive Dog",
+    seoDescription: "Train a leash reactive dog using counter-conditioning and desensitization below threshold. Step-by-step protocol for dogs who bark, lunge, and pull toward other dogs or people on leash.",
+    category: "How-To",
+    tags: ["Dog Training", "Leash Reactivity", "Behavior Problems"],
+    publishDate: "April 2026",
+    lastUpdated: "April 2026",
+    readTime: "13 Min Read",
+    quickAnswer: "Leash reactivity is treated through counter-conditioning and desensitization: exposing the dog to triggers at a distance where they can see them without reacting, then immediately feeding high-value treats. Over many sessions, the dog's emotional response changes from fear or frustration to anticipation of treats. The key variables are: distance from the trigger, treat value, and consistency. Correction-based approaches worsen the underlying emotion and increase reactivity over time.",
+    introduction: `Leash reactivity — barking, lunging, and hyper-arousal toward other dogs, people, cyclists, or other stimuli on-leash — is one of the most common and most distressing behavior issues owners face. A dog who is completely relaxed off-leash with other dogs at the park may become unmanageable on a leash near the same dogs.
+
+This apparent contradiction has a straightforward explanation: the leash creates a barrier frustration effect. The dog is prevented from using their normal approach-and-greet behavior, cannot communicate or flee if frightened, and over time the leash itself becomes associated with conflict-laden, frustrating encounters with other dogs. The leash-reactive dog is typically not aggressive — they are frustrated, anxious, or over-aroused, and have learned that explosive displays make the scary or frustrating thing go away (the other dog passes, the person moves on).
+
+The treatment is not corrections, not "showing the dog you're the boss," and not flooding (forcing the dog to remain close to the trigger until they stop reacting — this approach reliably causes lasting psychological damage). The treatment is counter-conditioning: changing the emotional response from fear/frustration to positive anticipation.`,
+    supplies: [
+      { item: "Extremely high-value treats", note: "Leash reactivity training requires treats that outcompete a real dog or person trigger. Use real meat: boiled chicken, freeze-dried beef, cheese. Standard kibble will not work." },
+      { item: "Front-clip harness", note: "Reduces pulling force and gives you more directional control without aversive pressure on the trachea." },
+      { item: "15–30 foot long line (optional)", note: "Useful for early management: allows distance from triggers in open areas without requiring off-leash trust." },
+      { item: "Treat pouch worn on the body", note: "Speed of treat delivery is critical. You must be able to get a treat into your dog's mouth within 1–2 seconds of the trigger appearing." },
+    ],
+    steps: [
+      {
+        number: 1,
+        title: "Establish your dog's threshold distance",
+        content: `Threshold is the distance from a trigger at which your dog can remain functional — aware of the trigger but not reacting. Below threshold, the dog can still take treats, make eye contact with you, and respond to cues. Above threshold (too close), the dog is over-aroused: lunging, barking, refusing treats, unable to respond to anything.
+
+**Finding threshold:**
+Take your dog to an area where triggers (other dogs, cyclists, strangers) appear at varying distances. Watch carefully:
+- At what distance does your dog first notice the trigger? (Head orientation, ears forward, body stiffening)
+- At what distance do they begin fixating? (Hard stare, tension increasing)
+- At what distance do they begin reacting? (Barking, lunging, pulling)
+
+Your working distance is well beyond where they begin reacting — typically 10–30 meters for mild reactivity, 50+ meters for severe cases. This is your training starting point.
+
+**Important:** Never train above threshold. If your dog is already reacting, you are not training — you are adding to the emotional history of that trigger. Move away until the dog is below threshold before resuming.`,
+        tip: "Identify a training location where you can control the distance to triggers: a quiet path near a dog park, a spot where you can see the end of a street and back away as needed. Predictability of trigger appearance matters.",
+      },
+      {
+        number: 2,
+        title: "Apply the counter-conditioning protocol at every trigger sighting",
+        content: `The core protocol is simple but requires precision:
+
+**Look at That (LAT) / Open Bar:**
+1. Your dog sees the trigger (other dog, person, bicycle) at or below threshold distance
+2. The instant you see your dog's eyes go to the trigger: produce a treat and deliver it continuously until the trigger passes or moves further away
+3. When the trigger is gone: treats stop ("closed bar")
+
+The dog learns: trigger appears → treats rain from the sky. Trigger leaves → treats stop. Repeat across hundreds of exposures.
+
+**What you are changing:** You are not teaching the dog to ignore the trigger. You are changing their emotional response to it. The dog who used to feel fear or frustration when seeing another dog begins to feel anticipation: "There's a dog — that means chicken is coming."
+
+**The mechanics matter:**
+- Treat delivery must begin before the dog starts reacting — when they first notice, not after they've started barking
+- Treats must be continuous while the trigger is visible, not after the dog looks at you
+- The trigger's departure ends the treats (this is the "Open Bar / Closed Bar" distinction — the trigger is what opens the bar, not the dog looking at you)`,
+        tip: "For very reactive dogs, starting with the dog watching videos of triggers on a phone or tablet at low volume can build the counter-conditioning association before attempting real-world exposures.",
+        warning: "If your dog is too close and already reacting, don't try to lure them with treats to stop the barking. Remove them from the environment first (increase distance), wait for them to calm, then resume at a greater distance. Feeding a reacting dog teaches the dog that reacting produces treats.",
+      },
+      {
+        number: 3,
+        title: "Decrease distance as the emotional response changes",
+        content: `As weeks of consistent counter-conditioning accumulate, you will notice changes: your dog spots a trigger and looks to you immediately rather than fixating. Or their body language is looser — tail wag instead of stiff, ears relaxed instead of forward. These are signs that the emotional response is shifting.
+
+**Systematic desensitization:** Gradually decrease the working distance as the dog's response improves. Move 2–3 meters closer when the dog is consistently showing a positive response (looking to you, loose body) at the current distance. Do not rush this — premature distance-closing undoes weeks of progress.
+
+**Setting thresholds in practice:**
+- Find your current working distance (e.g., 25 meters)
+- After 2 weeks of consistent counter-conditioning at this distance with reliable positive response: work at 20 meters
+- After another 2 weeks: 15 meters
+- Progress is not linear — some weeks will regress (high arousal state, seasonal, health). That is normal. Step back in distance during regressions.
+
+**Parallel walking:** A useful intermediate step before working at close proximity. Walk parallel to another dog at threshold distance, both dogs moving the same direction, with no direct face-to-face exposure. Gradually reduce parallel distance before attempting face-to-face passing.`,
+        tip: "Keep a progress journal: date, location, trigger type, starting distance, dog's response (1–5 scale), improvements noted. Patterns of regression and progress become visible over weeks that aren't apparent session-to-session.",
+      },
+      {
+        number: 4,
+        title: "Manage the environment during the training period",
+        content: `Counter-conditioning works through accumulated positive experiences. Every time the dog reacts explosively to a trigger (goes over threshold), that reaction is also being rehearsed and reinforced. Management prevents rehearsal during the training period.
+
+**Practical management strategies:**
+- Walk at low-traffic times (early morning, late evening)
+- Use visual barriers — parked cars, hedges, corners — to block sightlines when another dog approaches unexpectedly
+- Turn and move in the opposite direction the moment you see a trigger before your dog notices it
+- Use a "scatter" of treats on the ground to redirect your dog's attention downward when unavoidable close passes occur
+- Communicate with oncoming dog walkers with a hand signal or "my dog needs space" request before they close distance
+
+**Equipment during training:** A front-clip harness gives you directional control without tracheal pressure. Avoid tight leashes during trigger approaches — a tight leash transmits your tension to the dog and has been shown to increase reactivity. Keep the leash loose when possible.`,
+        warning: "Avoid dog parks, off-leash areas, and forced greetings with unknown dogs during the training period. Uncontrolled interactions can produce setbacks that take weeks to recover from.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Correcting the dog for reacting (leash pop, verbal correction)",
+        why: "The reactive dog is already in an anxious or frustrated emotional state. Adding a punishing consequence to that state adds another unpleasant thing to the trigger context — worsening the negative association with other dogs. Research consistently shows that leash corrections increase leash reactivity over time.",
+        fix: "Increase distance until the dog is below threshold, then apply counter-conditioning. If the dog is already reacting, the training window has closed — remove them from the environment calmly and try again at more distance next time.",
+      },
+      {
+        mistake: "Working too close to triggers before the dog is ready",
+        why: "Owners are often impatient with threshold distance management and push too close too soon. Each over-threshold exposure reinforces the reactive behavior and adds to the negative emotional history of that trigger.",
+        fix: "Take the distance seriously. Err on the side of more distance rather than less. Progress is measured in weeks, not sessions.",
+      },
+      {
+        mistake: "Only feeding treats when the dog looks at you, not when they see the trigger",
+        why: "This teaches the dog that looking at you produces treats, which is useful but different from what you're training. Counter-conditioning changes the emotional response to the trigger — so the trigger itself must be what opens the 'treat bar,' not the dog's behavior.",
+        fix: "Treats begin the instant the dog's eyes go to the trigger — not when they look away from it.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Is my leash reactive dog aggressive?",
+        a: "Not necessarily — and usually not. Most leash-reactive dogs are motivated by fear or frustrated arousal (wanting to approach/play but being prevented by the leash), not predatory aggression. Many leash-reactive dogs are perfectly social off-leash. However, distinguishing the motivation matters for treatment: a certified trainer or veterinary behaviorist can assess whether the underlying emotion is fear, frustration, or something more complex.",
+      },
+      {
+        q: "How long does it take to treat leash reactivity?",
+        a: "For mild to moderate reactivity with consistent daily counter-conditioning, meaningful improvement is typically visible in 4–8 weeks. Significant reduction in reactivity (comfortable passing within 5–10 meters) often takes 3–6 months of consistent work. Severe cases with a long history may take longer. Progress is rarely linear — expect setbacks and reframe them as data rather than failure.",
+      },
+      {
+        q: "Should I use a muzzle for leash reactive training?",
+        a: "A basket muzzle (not a fabric sleeve muzzle) is appropriate safety equipment if the dog has escalated to snapping or lunging at contact range. It allows training to proceed safely without the risk of a bite. Muzzle introduction should be gradual and positive — see a trainer for fitting and acclimation. A muzzle doesn't treat the behavior; it manages safety while counter-conditioning does the treatment work.",
+      },
+    ],
+    relatedSlugs: ["how-to-stop-dog-barking", "how-to-read-dog-body-language", "complete-guide-to-dog-training"],
+    pillarSlug: "complete-guide-to-dog-training",
+    ctaFeature: "/playdates",
+    ctaText: "Find Calm, Compatible Dogs for Gradual Socialization",
   },
 ];
