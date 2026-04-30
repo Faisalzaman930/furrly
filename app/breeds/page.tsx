@@ -84,6 +84,41 @@ export default function BreedsHubPage() {
           </div>
         </div>
       </section>
+      {/* Attribution */}
+      <section className="py-12 border-t border-gray-100 bg-gray-50">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <p className="text-[9px] font-black uppercase tracking-widest text-slate-gray mb-3">
+            Image Attribution
+          </p>
+          <p className="text-xs text-slate-gray/70 leading-6 max-w-3xl">
+            Dog breed photos sourced from the{" "}
+            <a
+              href="http://vision.stanford.edu/aditya86/ImageNetDogs/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-ebony transition-colors"
+            >
+              Stanford Dogs Dataset
+            </a>
+            . If you use this data in a publication, please cite:
+          </p>
+          <ul className="mt-3 space-y-2 text-[10px] text-slate-gray/60 leading-5 max-w-3xl list-disc list-inside">
+            <li>
+              Aditya Khosla, Nityananda Jayadevaprakash, Bangpeng Yao and Li Fei-Fei.{" "}
+              <em>Novel dataset for Fine-Grained Image Categorization.</em>{" "}
+              First Workshop on Fine-Grained Visual Categorization (FGVC), CVPR 2011.
+            </li>
+            <li>
+              J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li and L. Fei-Fei.{" "}
+              <em>ImageNet: A Large-Scale Hierarchical Image Database.</em>{" "}
+              IEEE CVPR 2009.
+            </li>
+          </ul>
+          <p className="mt-3 text-[10px] text-slate-gray/50 leading-5 max-w-3xl">
+            Additional images sourced from Wikipedia under their respective Creative Commons licences.
+          </p>
+        </div>
+      </section>
     </div>
   );
 }
