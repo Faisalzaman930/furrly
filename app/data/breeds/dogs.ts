@@ -233,7 +233,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 48.38,
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
-    image: null,
+    image: "/breeds/dogs/akbash.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -277,7 +277,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 45.0,
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
-    image: null,
+    image: "/breeds/dogs/akita.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 2,
@@ -453,7 +453,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 5.62,
     lifeSpan: "12 to 16 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/alaskan-klee-kai.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -585,7 +585,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 25.88,
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
-    image: null,
+    image: "/breeds/dogs/american-english-coonhound.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -717,7 +717,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 5.85,
     lifeSpan: "13 to 16 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/american-hairless-terrier.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,
@@ -805,7 +805,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 25.88,
     lifeSpan: "12 to 16 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/american-pit-bull-terrier.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 3,
@@ -1113,7 +1113,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 21.38,
     lifeSpan: "10 to 13 years",
     lifeSpanYears: 12.0,
-    image: null,
+    image: "/breeds/dogs/aussiedoodle.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -1201,7 +1201,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 18.0,
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/australian-cattle-dog.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -1333,7 +1333,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 23.62,
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/australian-shepherd.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -3489,7 +3489,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 7.88,
     lifeSpan: "13 to 15 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/boston-terrier.jpg",
     scores: {
       adaptability: 4,
       apartmentFriendly: 5,
@@ -3841,7 +3841,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 14.62,
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
-    image: null,
+    image: "/breeds/dogs/boykin-spaniel.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -4149,7 +4149,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 7.88,
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
-    image: null,
+    image: "/breeds/dogs/bugg.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -4193,7 +4193,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 34.88,
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/bull-arab.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -4237,7 +4237,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 22.5,
     lifeSpan: "9 to 11 years",
     lifeSpanYears: 10.0,
-    image: null,
+    image: "/breeds/dogs/bull-pei.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,
@@ -4457,7 +4457,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 51.75,
     lifeSpan: "8 to 10 years",
     lifeSpanYears: 9.0,
-    image: null,
+    image: "/breeds/dogs/bullmastiff.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -4633,7 +4633,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 47.25,
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
-    image: null,
+    image: "/breeds/dogs/cane-corso.jpg",
     scores: {
       adaptability: 1,
       apartmentFriendly: 1,
@@ -6613,7 +6613,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 10.8,
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/dachshund.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -7009,7 +7009,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 40.5,
     lifeSpan: "9 to 15 years",
     lifeSpanYears: 12.0,
-    image: null,
+    image: "/breeds/dogs/dogo-argentino.jpg",
     scores: {
       adaptability: 1,
       apartmentFriendly: 1,
@@ -7053,7 +7053,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 45.0,
     lifeSpan: "8 to 12 years",
     lifeSpanYears: 10.0,
-    image: null,
+    image: "/breeds/dogs/dogue-de-bordeaux.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -7097,7 +7097,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 9.68,
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/dorgi.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -7581,7 +7581,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 4.95,
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
-    image: null,
+    image: "/breeds/dogs/english-toy-spaniel.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -7669,7 +7669,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 46.12,
     lifeSpan: "11 to 15 years",
     lifeSpanYears: 13.0,
-    image: null,
+    image: "/breeds/dogs/estrela-mountain-dog.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -7757,7 +7757,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 18.45,
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
-    image: null,
+    image: "/breeds/dogs/field-spaniel.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -8769,7 +8769,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 31.5,
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
-    image: null,
+    image: "/breeds/dogs/goldador.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 2,
@@ -8857,7 +8857,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 43.88,
     lifeSpan: "9 to 15 years",
     lifeSpanYears: 12.0,
-    image: null,
+    image: "/breeds/dogs/golden-mountain-dog.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -9033,7 +9033,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 31.5,
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
-    image: null,
+    image: "/breeds/dogs/goldendoodle.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 1,
@@ -9605,7 +9605,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 24.75,
     lifeSpan: "11 to 13 Years",
     lifeSpanYears: 12.0,
-    image: null,
+    image: "/breeds/dogs/hokkaido.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -10705,7 +10705,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 20.25,
     lifeSpan: "9 to 13 years",
     lifeSpanYears: 11.0,
-    image: null,
+    image: "/breeds/dogs/kishu-ken.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -10793,7 +10793,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 10.12,
     lifeSpan: "12 to 14 years",
     lifeSpanYears: 13.0,
-    image: null,
+    image: "/breeds/dogs/kooikerhondje.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -10881,7 +10881,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 4.95,
     lifeSpan: "13 to 15 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/kyi-leo.jpg",
     scores: {
       adaptability: 4,
       apartmentFriendly: 5,
@@ -11145,7 +11145,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 25.88,
     lifeSpan: "12 to 14 years",
     lifeSpanYears: 13.0,
-    image: null,
+    image: "/breeds/dogs/labradoodle.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -11321,7 +11321,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 13.28,
     lifeSpan: "14 to 17 years",
     lifeSpanYears: 16.0,
-    image: null,
+    image: "/breeds/dogs/lagotto-romagnolo.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 2,
@@ -11409,7 +11409,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 6.3,
     lifeSpan: "9 to 14 years",
     lifeSpanYears: 12.0,
-    image: null,
+    image: "/breeds/dogs/lancashire-heeler.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -13301,7 +13301,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 3.6,
     lifeSpan: "12 to 18 years",
     lifeSpanYears: 15.0,
-    image: null,
+    image: "/breeds/dogs/pomchi.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -13477,7 +13477,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 5.18,
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/poochon.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -14841,7 +14841,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 31.5,
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/sheepadoodle.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -14885,7 +14885,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 29.92,
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
-    image: null,
+    image: "/breeds/dogs/shepsky.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -15149,7 +15149,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 20.25,
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
-    image: null,
+    image: "/breeds/dogs/shikoku.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -15193,7 +15193,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 47.25,
     lifeSpan: "9 to 14 years",
     lifeSpanYears: 12.0,
-    image: null,
+    image: "/breeds/dogs/shiloh-shepherd.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -15545,7 +15545,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 23.18,
     lifeSpan: "12 to 16 years",
     lifeSpanYears: 14.0,
-    image: null,
+    image: "/breeds/dogs/sloughi.jpg",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -15677,7 +15677,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 81.0,
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
-    image: null,
+    image: "/breeds/dogs/spanish-mastiff.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -15853,7 +15853,7 @@ export const dogs: BreedDoc[] = [
     weightKg: 13.95,
     lifeSpan: "12 to 14 years",
     lifeSpanYears: 13.0,
-    image: null,
+    image: "/breeds/dogs/staffordshire-bull-terrier.jpg",
     scores: {
       adaptability: 2,
       apartmentFriendly: 3,
