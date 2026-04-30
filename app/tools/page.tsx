@@ -145,6 +145,41 @@ export default function ToolsHubPage() {
       icon: "📸",
       category: "Free Creative Wizard",
     },
+    {
+      title: "Puppy Growth Predictor",
+      desc: "Enter your puppy's current age and weight to predict their adult size and track milestone weights.",
+      href: "/tools/puppy-weight",
+      icon: "📏",
+      category: "Growth Calculator",
+    },
+    {
+      title: "Pet Calorie Calculator",
+      desc: "Calculate precise daily calorie needs using the RER formula — adjusts for life stage, activity, and neuter status.",
+      href: "/tools/calorie-calculator",
+      icon: "🔥",
+      category: "Nutrition Calculator",
+    },
+    {
+      title: "Whelping Due Date Calculator",
+      desc: "Enter the mating date to get the expected whelping date and every key pregnancy milestone for dogs and cats.",
+      href: "/tools/whelping-calculator",
+      icon: "🍼",
+      category: "Breeding Tool",
+    },
+    {
+      title: "Pet Water Intake Calculator",
+      desc: "Find out exactly how much water your dog or cat needs each day based on weight, activity, and diet type.",
+      href: "/tools/water-calculator",
+      icon: "💧",
+      category: "Health Calculator",
+    },
+    {
+      title: "Dog Exercise Calculator",
+      desc: "Get a daily exercise recommendation tailored to your dog's breed energy level, age, and health status.",
+      href: "/tools/exercise-calculator",
+      icon: "🏃",
+      category: "Wellness Calculator",
+    },
   ];
 
   return (
