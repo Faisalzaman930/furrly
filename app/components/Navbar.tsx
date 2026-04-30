@@ -10,6 +10,7 @@ const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const pathname = usePathname();
   const isResourcesActive = pathname.startsWith("/resources");
+  const isTemplatesActive = pathname.startsWith("/templates");
 
   const verticals = [
     { name: "Playdates", href: "/playdates", icon: "🎉", desc: "Find compatible pets near you." },
@@ -87,6 +88,13 @@ const Navbar = () => {
             Resources
           </Link>
           <Link
+            href="/templates"
+            className={`text-sm font-bold uppercase tracking-widest transition-colors ${isTemplatesActive ? "text-brand-start underline underline-offset-4" : "text-slate-gray hover:text-ebony"}`}
+            aria-current={isTemplatesActive ? "page" : undefined}
+          >
+            Templates
+          </Link>
+          <Link
             href="/join"
             className="rounded-xl bg-brand-gradient px-8 py-3 text-sm font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-lg shadow-brand-start/20"
           >
@@ -137,8 +145,9 @@ const Navbar = () => {
             { name: "Roadmap", href: "/roadmap" },
             { name: "About", href: "/about" },
             { name: "Resources", href: "/resources" },
+            { name: "Templates", href: "/templates" },
           ].map(item => {
-            const active = item.href === "/resources" ? isResourcesActive : pathname === item.href;
+            const active = item.href === "/resources" ? isResourcesActive : item.href === "/templates" ? isTemplatesActive : pathname === item.href;
             return (
               <Link
                 key={item.name}
