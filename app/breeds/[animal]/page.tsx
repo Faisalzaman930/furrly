@@ -105,6 +105,12 @@ export default function AnimalBreedsPage({
           <span className="text-xs text-slate-gray font-black uppercase tracking-widest">
             {filtered.length} breeds
           </span>
+          <Link
+            href="/tools/breed-compare"
+            className="ml-auto flex-none inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-brand-start border border-brand-start/30 px-4 py-2 rounded-full hover:bg-brand-start/5 transition-colors whitespace-nowrap"
+          >
+            🆚 Compare
+          </Link>
         </div>
       </div>
 

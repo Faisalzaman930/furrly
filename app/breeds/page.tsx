@@ -34,7 +34,7 @@ export default function BreedsHubPage() {
             Detailed stats on size, temperament, trainability, health, and
             grooming — for every breed. Free, no sign-up.
           </p>
-          <div className="flex flex-wrap gap-8">
+          <div className="flex flex-wrap items-end gap-8">
             {animals.map((a) => (
               <div key={a}>
                 <p className="text-3xl font-black text-white leading-none">
@@ -45,6 +45,12 @@ export default function BreedsHubPage() {
                 </p>
               </div>
             ))}
+            <Link
+              href="/tools/breed-compare"
+              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[10px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl transition-colors"
+            >
+              🆚 Compare Breeds
+            </Link>
           </div>
         </div>
       </div>
