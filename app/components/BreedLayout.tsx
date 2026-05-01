@@ -238,7 +238,7 @@ export default function BreedLayout({ article }: { article: BreedArticle }) {
         </section>
       )}
 
-      <RelatedTools slugs={["breed-compare", "best-dog-quiz", "best-cat-quiz", "feeding-calculator", "pet-bmi", "age-calculator"]} />
+      <RelatedTools slugs={["breed-compare", "calorie-calculator", "exercise-calculator", "puppy-weight", "best-dog-quiz", "best-cat-quiz", "age-calculator"]} />
       <ContactSection />
     </div>
   );

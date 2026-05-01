@@ -240,6 +240,11 @@ function CompareInner() {
     <ToolLayout
       title="Breed Comparison"
       subtitle="Side-by-Side Analysis"
+      relatedToolSlugs={["best-dog-quiz","best-cat-quiz","exercise-calculator","calorie-calculator"]}
+      relatedArticles={[
+        { slug: "first-time-dog-owner-complete-guide", title: "First-Time Dog Owner Guide", category: "Expert Guide", emoji: "🏠" },
+        { slug: "introducing-pets-to-each-other", title: "Introducing Dogs & Cats to Each Other", category: "Expert Guide", emoji: "🐾" },
+      ]}
       description="Search and compare any two dog breeds across 28 attributes — temperament, grooming, health, trainability, and more."
       illustration={<span className="text-6xl">🆚</span>}
     >

@@ -71,7 +71,13 @@ export default function ToxicFoodChecker() {
   const popular = ["Chocolate", "Grapes", "Carrots", "Avocado", "Chicken", "Xylitol", "Onions", "Broccoli"];
 
   return (
-    <ToolLayout subtitle="Safety Database" title="Toxic Food Checker" description="Is this food safe for my dog or cat? Search our database of 50+ foods to get an instant safety verdict."  illustration={<ToolIllustration type="food" />}
+    <ToolLayout subtitle="Safety Database" title="Toxic Food Checker"
+      relatedToolSlugs={["symptom-checker","feeding-calculator","calorie-calculator","first-aid-quiz"]}
+      relatedArticles={[
+        { slug: "complete-guide-to-pet-nutrition", title: "Complete Guide to Pet Nutrition", category: "Pillar Guide", emoji: "🥗" },
+        { slug: "how-to-read-pet-food-labels", title: "How to Read a Pet Food Label", category: "Expert Guide", emoji: "🥫" },
+        { slug: "how-to-choose-pet-food", title: "How to Choose the Right Pet Food", category: "How-To", emoji: "🛒" },
+      ]} description="Is this food safe for my dog or cat? Search our database of 50+ foods to get an instant safety verdict."  illustration={<ToolIllustration type="food" />}
     >
       <div className="max-w-2xl mx-auto">
         <div className="relative mb-8">

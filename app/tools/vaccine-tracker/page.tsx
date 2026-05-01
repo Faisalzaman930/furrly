@@ -29,6 +29,12 @@ export default function VaccinationTracker() {
   return (
     <ToolLayout 
       subtitle="Preventative Care"
+      relatedToolSlugs={["symptom-checker","age-calculator","insurance-cost","pet-health-quiz"]}
+      relatedArticles={[
+        { slug: "complete-guide-to-pet-health", title: "Complete Guide to Pet Health", category: "Pillar Guide", emoji: "❤️" },
+        { slug: "what-is-kennel-cough", title: "What Is Kennel Cough?", category: "Definition", emoji: "🤧" },
+        { slug: "what-is-parvo-in-dogs", title: "What Is Parvo in Dogs?", category: "Definition", emoji: "⚠️" },
+      ]}
       title="Pet Vaccination Schedule Tracker"
       description="Stay on top of your pet's health. Get the recommended vaccination schedule for puppies, kittens, and adult dogs and cats."
       illustration={<ToolIllustration type="health" />}

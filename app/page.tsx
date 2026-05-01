@@ -425,6 +425,77 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── CONTENT HUBS ─── */}
+      <section className="py-20 bg-gray-50 border-t border-gray-100">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-3">Free for Every Pet Owner</p>
+            <h2 className="text-3xl md:text-5xl font-black text-ebony uppercase tracking-tighter">
+              Everything You Need to Care for Your Pet
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                href: "/tools",
+                emoji: "🛠️",
+                title: "Free Tools",
+                desc: "25+ calculators for calories, exercise, symptoms, breed matching and more.",
+                cta: "Try the Tools",
+                bg: "bg-violet-50",
+                border: "border-violet-100",
+                badge: "25+ tools",
+              },
+              {
+                href: "/breeds",
+                emoji: "🐾",
+                title: "Breed Directory",
+                desc: "Explore 450+ dog and cat breeds with scores, care guides, and comparisons.",
+                cta: "Browse Breeds",
+                bg: "bg-amber-50",
+                border: "border-amber-100",
+                badge: "450+ breeds",
+              },
+              {
+                href: "/templates",
+                emoji: "📄",
+                title: "Free Templates",
+                desc: "Fill-in contracts, health records, vaccination forms and custody agreements.",
+                cta: "Get Templates",
+                bg: "bg-emerald-50",
+                border: "border-emerald-100",
+                badge: "50+ templates",
+              },
+              {
+                href: "/resources",
+                emoji: "📚",
+                title: "Pet Guides",
+                desc: "Expert-written guides, how-tos, symptom articles and complete pillar guides.",
+                cta: "Read Guides",
+                bg: "bg-sky-50",
+                border: "border-sky-100",
+                badge: "200+ articles",
+              },
+            ].map(({ href, emoji, title, desc, cta, bg, border, badge }) => (
+              <Link key={href} href={href}
+                className={`group flex flex-col ${bg} border ${border} rounded-3xl p-7 hover:shadow-lg hover:-translate-y-0.5 transition-all`}>
+                <div className="flex items-start justify-between mb-5">
+                  <span className="text-4xl">{emoji}</span>
+                  <span className="text-[9px] font-black uppercase tracking-widest bg-white/80 text-slate-gray px-2.5 py-1 rounded-full border border-white">
+                    {badge}
+                  </span>
+                </div>
+                <h3 className="text-lg font-black text-ebony uppercase tracking-tight mb-2">{title}</h3>
+                <p className="text-sm text-slate-gray leading-6 flex-1 mb-5">{desc}</p>
+                <span className="text-xs font-black uppercase tracking-widest text-brand-start group-hover:gap-3 transition-all flex items-center gap-2">
+                  {cta} →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─── RESOURCES ─── */}
       <Resources />
 

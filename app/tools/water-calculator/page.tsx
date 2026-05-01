@@ -49,6 +49,12 @@ export default function WaterCalculator() {
   return (
     <ToolLayout
       subtitle="Pet Water Calculator"
+      relatedToolSlugs={["calorie-calculator","exercise-calculator","feeding-calculator","symptom-checker"]}
+      relatedArticles={[
+        { slug: "why-is-my-dog-drinking-so-much-water", title: "Why Is My Dog Drinking So Much Water?", category: "Symptom Guide", emoji: "💧" },
+        { slug: "complete-guide-to-pet-health", title: "Complete Guide to Pet Health", category: "Pillar Guide", emoji: "❤️" },
+        { slug: "complete-guide-to-pet-nutrition", title: "Complete Guide to Pet Nutrition", category: "Pillar Guide", emoji: "🥗" },
+      ]}
       title="How Much Water Should My Pet Drink?"
       description="Calculate your dog or cat's daily water intake needs based on weight, activity, weather, and diet type."
     >

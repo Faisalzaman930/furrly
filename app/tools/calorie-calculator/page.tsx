@@ -57,6 +57,12 @@ export default function PetCalorieCalculator() {
   return (
     <ToolLayout
       subtitle="Pet Calorie Calculator"
+      relatedToolSlugs={["water-calculator","exercise-calculator","feeding-calculator","pet-bmi"]}
+      relatedArticles={[
+        { slug: "how-to-read-pet-food-labels", title: "How to Read a Pet Food Label", category: "Expert Guide", emoji: "🥫" },
+        { slug: "complete-guide-to-pet-nutrition", title: "Complete Guide to Pet Nutrition", category: "Pillar Guide", emoji: "🥗" },
+        { slug: "how-to-choose-pet-food", title: "How to Choose the Right Pet Food", category: "How-To", emoji: "🛒" },
+      ]}
       title="Daily Calorie Needs for Your Pet"
       description="Calculate your dog or cat's precise daily caloric requirement using the RER (Resting Energy Requirement) formula used by veterinary nutritionists."
     >

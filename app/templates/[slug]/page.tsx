@@ -325,6 +325,53 @@ export default async function TemplatePage({ params }: Props) {
                 </div>
               )}
 
+              {/* Helpful tools */}
+              <div>
+                <p className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-4 px-1">
+                  Helpful Tools
+                </p>
+                <div className="space-y-2">
+                  {[
+                    { href: "/tools/calorie-calculator", icon: "🔥", label: "Calorie Calculator" },
+                    { href: "/tools/water-calculator",   icon: "💧", label: "Water Intake Calculator" },
+                    { href: "/tools/exercise-calculator",icon: "🏃", label: "Exercise Calculator" },
+                    { href: "/tools/vaccine-tracker",    icon: "💉", label: "Vaccine Tracker" },
+                    { href: "/tools/symptom-checker",    icon: "🩺", label: "Symptom Checker" },
+                    { href: "/tools/breed-compare",      icon: "⚖️",  label: "Breed Compare" },
+                  ].map(({ href, icon, label }) => (
+                    <Link key={href} href={href}
+                      className="flex items-center gap-3 bg-gray-50 hover:bg-white hover:shadow-md rounded-2xl px-4 py-3 transition-all group border border-transparent hover:border-gray-200">
+                      <span className="text-base flex-none">{icon}</span>
+                      <span className="text-sm font-black text-ebony group-hover:text-brand-start transition-colors">{label}</span>
+                      <span className="ml-auto text-slate-gray/40 group-hover:text-brand-start transition-colors text-xs">→</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Related guides */}
+              <div>
+                <p className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-4 px-1">
+                  Related Guides
+                </p>
+                <div className="space-y-2">
+                  {[
+                    { href: "/resources/complete-guide-to-pet-health",     emoji: "❤️", label: "Complete Guide to Pet Health" },
+                    { href: "/resources/complete-guide-to-puppy-care",     emoji: "🐶", label: "Complete Guide to Puppy Care" },
+                    { href: "/resources/first-time-dog-owner-complete-guide", emoji: "🏠", label: "First-Time Dog Owner Guide" },
+                    { href: "/resources/senior-pet-care-guide",            emoji: "👴", label: "Senior Pet Care Guide" },
+                    { href: "/resources/logistics-and-heartbreak-foster-parent-manual", emoji: "💛", label: "Pet Foster Parent Manual" },
+                  ].map(({ href, emoji, label }) => (
+                    <Link key={href} href={href}
+                      className="flex items-center gap-3 bg-gray-50 hover:bg-white hover:shadow-md rounded-2xl px-4 py-3 transition-all group border border-transparent hover:border-gray-200">
+                      <span className="text-base flex-none">{emoji}</span>
+                      <span className="text-sm font-black text-ebony group-hover:text-brand-start transition-colors leading-snug">{label}</span>
+                      <span className="ml-auto text-slate-gray/40 group-hover:text-brand-start transition-colors text-xs">→</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
               {/* Back to hub */}
               <Link
                 href="/templates"

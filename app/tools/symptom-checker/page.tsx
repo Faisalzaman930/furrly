@@ -59,7 +59,13 @@ export default function SymptomChecker() {
 
   return (
     <ToolLayout 
-      subtitle="Advanced Diagnostic Guide" 
+      subtitle="Advanced Diagnostic Guide"
+      relatedToolSlugs={["toxic-food","first-aid-quiz","pet-health-quiz","vaccine-tracker","insurance-cost"]}
+      relatedArticles={[
+        { slug: "complete-guide-to-pet-health", title: "Complete Guide to Pet Health", category: "Pillar Guide", emoji: "❤️" },
+        { slug: "why-is-my-dog-not-eating", title: "Why Is My Dog Not Eating?", category: "Symptom Guide", emoji: "🍽️" },
+        { slug: "why-is-my-dog-limping", title: "Why Is My Dog Limping?", category: "Symptom Guide", emoji: "🦵" },
+      ]} 
       title="Pet Symptom Pro Checker" 
       description="Instant urgency ratings and first-aid remedies for 40+ common pet symptoms. Always prioritize professional veterinary diagnosis."
       illustration={<ToolIllustration type="health" />}

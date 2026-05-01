@@ -212,7 +212,7 @@ export default function DefinitionLayout({ article }: { article: DefinitionArtic
         </section>
       )}
 
-      <RelatedTools slugs={["symptom-checker", "pet-health-quiz", "vaccine-tracker", "toxic-food", "first-aid-quiz"]} />
+      <RelatedTools slugs={["symptom-checker", "toxic-food", "first-aid-quiz", "pet-health-quiz", "vaccine-tracker", "insurance-cost"]} />
       <ContactSection />
     </div>
   );

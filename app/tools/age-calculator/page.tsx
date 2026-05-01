@@ -70,6 +70,11 @@ export default function PetAgeCalculator() {
   return (
     <ToolLayout 
       subtitle="Advanced Biological Model"
+      relatedToolSlugs={["insurance-cost","pet-health-quiz","vaccine-tracker","symptom-checker"]}
+      relatedArticles={[
+        { slug: "senior-pet-care-guide", title: "Senior Pet Care Guide", category: "Expert Guide", emoji: "👴" },
+        { slug: "complete-guide-to-pet-health", title: "Complete Guide to Pet Health", category: "Pillar Guide", emoji: "❤️" },
+      ]}
       title="Pet Human Age Calculator"
       description="Modern veterinary aging formulas for Dogs, Cats, Rabbits, and Birds. No more '7-year' myths—get the true life stage of your companion."
       illustration={<ToolIllustration type="calculator" />}

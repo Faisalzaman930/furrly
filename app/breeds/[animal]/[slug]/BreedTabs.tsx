@@ -178,9 +178,12 @@ export default function BreedTabs({
               <div className="space-y-2">
                 {[
                   { href: "/tools/breed-compare", label: "🆚 Compare with another breed" },
-                  { href: "/tools/calorie-calculator", label: "🍖 Calorie Calculator" },
+                  { href: "/tools/calorie-calculator", label: "🔥 Calorie Calculator" },
                   { href: "/tools/water-calculator", label: "💧 Water Intake Calculator" },
-                  ...(!isCat ? [{ href: "/tools/exercise-calculator", label: "🏃 Exercise Calculator" }] : []),
+                  ...(!isCat ? [
+                    { href: "/tools/exercise-calculator", label: "🏃 Exercise Calculator" },
+                    { href: "/tools/puppy-weight", label: "⚖️ Puppy Weight Predictor" },
+                  ] : []),
                 ].map(({ href, label }) => (
                   <Link key={href} href={href}
                     className="flex items-center justify-between bg-white/5 hover:bg-white/10 rounded-2xl px-4 py-3 text-white text-xs font-black transition-colors group">
@@ -188,6 +191,60 @@ export default function BreedTabs({
                     <span className="text-white/30 group-hover:text-white transition-colors">→</span>
                   </Link>
                 ))}
+              </div>
+            </div>
+
+            {/* Related care guides */}
+            <div className="bg-gray-50 rounded-3xl p-6">
+              <p className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-4">Care Guides</p>
+              <div className="space-y-2">
+                {[
+                  ...(!isCat ? [
+                    { href: "/resources/complete-guide-to-puppy-care", label: "Complete Guide to Puppy Care", emoji: "🐶" },
+                    { href: "/resources/complete-guide-to-dog-training", label: "Complete Guide to Dog Training", emoji: "🎓" },
+                    { href: "/resources/complete-guide-to-pet-health", label: "Complete Guide to Pet Health", emoji: "❤️" },
+                    { href: "/resources/complete-guide-to-pet-nutrition", label: "Complete Guide to Pet Nutrition", emoji: "🥗" },
+                  ] : [
+                    { href: "/resources/complete-guide-to-pet-health", label: "Complete Guide to Pet Health", emoji: "❤️" },
+                    { href: "/resources/complete-guide-to-pet-nutrition", label: "Complete Guide to Pet Nutrition", emoji: "🥗" },
+                    { href: "/resources/senior-pet-care-guide", label: "Senior Pet Care Guide", emoji: "👴" },
+                  ]),
+                ].map(({ href, label, emoji }) => (
+                  <Link key={href} href={href}
+                    className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-ebony hover:bg-white hover:shadow-sm transition-all group border border-transparent hover:border-gray-100">
+                    <span className="text-base">{emoji}</span>
+                    <span className="font-bold group-hover:text-brand-start transition-colors leading-snug">{label}</span>
+                    <span className="ml-auto text-slate-gray/40 group-hover:text-brand-start transition-colors text-xs">→</span>
+                  </Link>
+                ))}
+                <Link href="/resources"
+                  className="flex items-center justify-center gap-2 mt-2 text-[10px] font-black uppercase tracking-widest text-brand-start hover:opacity-80 transition-opacity pt-1">
+                  All Resources →
+                </Link>
+              </div>
+            </div>
+
+            {/* Templates */}
+            <div className="bg-gray-50 rounded-3xl p-6">
+              <p className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-4">Free Documents</p>
+              <div className="space-y-2">
+                {[
+                  { href: "/templates/pet-medical-history-template", label: "Pet Medical History", emoji: "🏥" },
+                  { href: "/templates/pet-vaccination-record-template", label: "Vaccination Record", emoji: "💉" },
+                  { href: "/templates/pet-sitting-contract-template-free", label: "Pet Sitting Contract", emoji: "🐾" },
+                  { href: "/templates/pet-adoption-contract-template", label: "Adoption Contract", emoji: "💛" },
+                ].map(({ href, label, emoji }) => (
+                  <Link key={href} href={href}
+                    className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-ebony hover:bg-white hover:shadow-sm transition-all group border border-transparent hover:border-gray-100">
+                    <span className="text-base">{emoji}</span>
+                    <span className="font-bold group-hover:text-brand-start transition-colors leading-snug">{label}</span>
+                    <span className="ml-auto text-slate-gray/40 group-hover:text-brand-start transition-colors text-xs">→</span>
+                  </Link>
+                ))}
+                <Link href="/templates"
+                  className="flex items-center justify-center gap-2 mt-2 text-[10px] font-black uppercase tracking-widest text-brand-start hover:opacity-80 transition-opacity pt-1">
+                  All Templates →
+                </Link>
               </div>
             </div>
           </div>

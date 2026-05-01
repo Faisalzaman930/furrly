@@ -27,6 +27,12 @@ export default function PetFeedingCalculator() {
   return (
     <ToolLayout 
       subtitle="Feeding Calculator"
+      relatedToolSlugs={["calorie-calculator","water-calculator","toxic-food","pet-bmi"]}
+      relatedArticles={[
+        { slug: "how-to-read-pet-food-labels", title: "How to Read a Pet Food Label", category: "Expert Guide", emoji: "🥫" },
+        { slug: "complete-guide-to-pet-nutrition", title: "Complete Guide to Pet Nutrition", category: "Pillar Guide", emoji: "🥗" },
+        { slug: "how-to-switch-dog-food-safely", title: "How to Switch Dog Food Safely", category: "How-To", emoji: "🔄" },
+      ]}
       title="Pet Feeding Schedule"
       description="Calculate the optimal daily feeding amounts for your pet based on weight, age, and activity level."
       illustration={<ToolIllustration type="food" />}

@@ -95,6 +95,12 @@ export default function ExerciseCalculator() {
   return (
     <ToolLayout
       subtitle="Dog Exercise Calculator"
+      relatedToolSlugs={["calorie-calculator","water-calculator","puppy-weight","pet-bmi"]}
+      relatedArticles={[
+        { slug: "complete-guide-to-dog-training", title: "Complete Guide to Dog Training", category: "Pillar Guide", emoji: "🎓" },
+        { slug: "how-to-stop-dog-pulling-on-leash", title: "How to Stop Your Dog Pulling on the Lead", category: "How-To", emoji: "🦮" },
+        { slug: "how-to-manage-leash-reactive-dog", title: "How to Manage a Leash-Reactive Dog", category: "How-To", emoji: "😤" },
+      ]}
       title="How Much Exercise Does My Dog Need?"
       description="Get a personalised daily exercise recommendation for your dog based on breed energy level, age, and health status."
     >

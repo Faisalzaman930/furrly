@@ -67,6 +67,11 @@ export default function WhelpingCalculator() {
   return (
     <ToolLayout
       subtitle="Whelping Calculator"
+      relatedToolSlugs={["puppy-weight","calorie-calculator","vaccine-tracker","insurance-cost"]}
+      relatedArticles={[
+        { slug: "complete-guide-to-puppy-care", title: "Complete Guide to Puppy Care", category: "Pillar Guide", emoji: "🐶" },
+        { slug: "first-time-dog-owner-complete-guide", title: "First-Time Dog Owner Guide", category: "Expert Guide", emoji: "🏠" },
+      ]}
       title="Dog & Cat Pregnancy Due Date Calculator"
       description="Enter the mating date to calculate the expected whelping date and all key pregnancy milestones for dogs and cats."
     >

@@ -84,6 +84,12 @@ export default function PuppyGrowthPredictor() {
   return (
     <ToolLayout
       subtitle="Puppy Growth Predictor"
+      relatedToolSlugs={["exercise-calculator","calorie-calculator","whelping-calculator","vaccine-tracker"]}
+      relatedArticles={[
+        { slug: "complete-guide-to-puppy-care", title: "Complete Guide to Puppy Care", category: "Pillar Guide", emoji: "🐶" },
+        { slug: "first-time-dog-owner-complete-guide", title: "First-Time Dog Owner Guide", category: "Expert Guide", emoji: "🏠" },
+        { slug: "how-to-crate-train-a-puppy", title: "How to Crate Train a Puppy", category: "How-To", emoji: "🏡" },
+      ]}
       title="How Big Will My Puppy Get?"
       description="Enter your puppy's current age and weight to predict their adult size and track growth milestones."
     >

@@ -120,7 +120,7 @@ export default function GuideLayout({ guide }: { guide: Guide }) {
         </section>
       )}
 
-      <RelatedTools slugs={["age-calculator", "feeding-calculator", "vaccine-tracker", "insurance-cost", "pet-health-quiz", "pet-owner-quiz"]} />
+      <RelatedTools slugs={["calorie-calculator", "water-calculator", "exercise-calculator", "age-calculator", "vaccine-tracker", "insurance-cost", "pet-health-quiz", "pet-owner-quiz"]} />
       <ContactSection />
     </div>
   );

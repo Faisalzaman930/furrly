@@ -217,7 +217,7 @@ export default function HowToLayout({ article }: { article: HowToArticle }) {
         </section>
       )}
 
-      <RelatedTools slugs={["feeding-calculator", "packing-checklist", "photo-tips", "pet-bmi", "toxic-food", "first-aid-quiz"]} />
+      <RelatedTools slugs={["exercise-calculator", "calorie-calculator", "water-calculator", "feeding-calculator", "pet-bmi", "packing-checklist", "first-aid-quiz"]} />
       <ContactSection />
     </div>
   );
