@@ -123,7 +123,7 @@ export default async function TemplatePage({ params }: Props) {
                     href="#template-text"
                     className="w-full flex items-center justify-center gap-2 bg-brand-start text-white font-black uppercase tracking-widest px-6 py-4 rounded-2xl hover:opacity-90 transition-opacity text-sm"
                   >
-                    ✏️ Fill in Template ↓
+                    ✏️ Use Template ↓
                   </a>
                 </div>
               </div>
@@ -149,7 +149,7 @@ export default async function TemplatePage({ params }: Props) {
               href="#template-text"
               className="flex-none inline-flex items-center gap-2 bg-brand-start text-white text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl hover:opacity-90 transition-opacity"
             >
-              ✏️ Fill in Template ↓
+              ✏️ Use Template ↓
             </a>
           </div>
         </div>
@@ -160,6 +160,15 @@ export default async function TemplatePage({ params }: Props) {
 
             {/* ── Main ── */}
             <div className="lg:col-span-2 space-y-14">
+
+              {/* Template builder — first thing users see */}
+              <section id="template-text" className="scroll-mt-20">
+                <TemplateBuilder templateText={t.templateText} shortTitle={t.shortTitle} />
+                <p className="text-[10px] text-slate-gray/50 mt-4 leading-5">
+                  This template is provided for informational purposes only and does not constitute legal advice.
+                  For legally binding documents, consult a qualified attorney in your jurisdiction.
+                </p>
+              </section>
 
               {/* Quick answer */}
               <div className="bg-gradient-to-br from-brand-start/5 to-transparent border border-brand-start/20 rounded-3xl p-7">
@@ -248,15 +257,6 @@ export default async function TemplatePage({ params }: Props) {
                 </section>
               )}
 
-              {/* Template builder */}
-              <section id="template-text" className="scroll-mt-20">
-                <TemplateBuilder templateText={t.templateText} shortTitle={t.shortTitle} />
-                <p className="text-[10px] text-slate-gray/50 mt-4 leading-5">
-                  This template is provided for informational purposes only and does not constitute legal advice.
-                  For legally binding documents, consult a qualified attorney in your jurisdiction.
-                </p>
-              </section>
-
               {/* FAQs */}
               {t.faqs.length > 0 && (
                 <section>
@@ -297,7 +297,7 @@ export default async function TemplatePage({ params }: Props) {
                   href="#template-text"
                   className="w-full flex items-center justify-center gap-2 bg-brand-start text-white font-black uppercase tracking-widest px-5 py-3.5 rounded-2xl hover:opacity-90 transition-opacity text-xs"
                 >
-                  ✏️ Fill in Template ↓
+                  ✏️ Use Template ↓
                 </a>
               </div>
 
