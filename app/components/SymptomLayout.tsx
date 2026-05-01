@@ -6,6 +6,7 @@ import ContactSection from "./ContactSection";
 import { md } from "../utils/markdown";
 import RelatedTools from "./RelatedTools";
 import { getRelatedArticles, getPillarTitle } from "../utils/related-articles";
+import VetDisclaimer from "./VetDisclaimer";
 
 const urgencyConfig: Record<UrgencyLevel, { bg: string; border: string; text: string; label: string }> = {
   emergency: { bg: "bg-red-600",    border: "border-red-700",    text: "text-white", label: "EMERGENCY — Go to vet now" },
@@ -100,6 +101,9 @@ export default function SymptomLayout({ article }: { article: SymptomArticle }) 
 
           {/* Main */}
           <main className="lg:col-span-9">
+            {/* Vet Disclaimer */}
+            <VetDisclaimer />
+
             {/* Quick Answer */}
             <div id="quick-answer" className="bg-brand-start/5 border-l-4 border-brand-start rounded-r-[2rem] p-8 mb-12">
               <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-3">Quick Answer</p>

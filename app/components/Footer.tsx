@@ -89,7 +89,8 @@ const Footer = () => {
                     { name: "Volunteer", href: "/join" },
                     { name: "Roadmap", href: "/roadmap" },
                     { name: "Resources", href: "/resources" },
-                    { name: "About", href: "#" },
+                    { name: "About", href: "/about" },
+                    { name: "Editorial Standards", href: "/about/editorial" },
                     { name: "Privacy Policy", href: "/privacy" },
                     { name: "Terms & Conditions", href: "/terms" },
                   ].map((item) => (

@@ -146,10 +146,10 @@ function JsonLd({ data }: { data: object }) {
   );
 }
 
-function buildArticleSchema(item: { title: string; seoDescription: string; publishDate: string; lastUpdated: string; slug: string; shortTitle: string }) {
+function buildArticleSchema(item: { title: string; seoDescription: string; publishDate: string; lastUpdated: string; slug: string; shortTitle: string }, type: "Article" | "MedicalWebPage" = "Article") {
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": type,
     "headline": item.title,
     "description": item.seoDescription,
     "datePublished": item.publishDate,
@@ -283,7 +283,7 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
   if (symptom) {
     return (
       <>
-        <JsonLd data={buildArticleSchema(symptom)} />
+        <JsonLd data={buildArticleSchema(symptom, "MedicalWebPage")} />
         {symptom.faqs?.length ? <JsonLd data={buildFaqSchema(symptom.faqs)} /> : null}
         <SymptomLayout article={symptom} />
       </>
@@ -305,7 +305,7 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
   if (definition) {
     return (
       <>
-        <JsonLd data={buildArticleSchema(definition)} />
+        <JsonLd data={buildArticleSchema(definition, "MedicalWebPage")} />
         {definition.faqs?.length ? <JsonLd data={buildFaqSchema(definition.faqs)} /> : null}
         <DefinitionLayout article={definition} />
       </>

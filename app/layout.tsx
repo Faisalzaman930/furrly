@@ -49,6 +49,25 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased text-ebony bg-white">
       <head>
         <meta name="google-site-verification" content="ayQ4sYm-hWGfrvOeiixegZs5__TY29fuZKuFepIfr5E" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Furrly",
+            "url": "https://furrly.co",
+            "logo": { "@type": "ImageObject", "url": "https://furrly.co/furrly-logo.png" },
+            "sameAs": [
+              "https://www.instagram.com/furrlyapp",
+              "https://www.tiktok.com/@furrlyapp"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "email": "hello@furrly.co"
+            }
+          })}}
+        />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XP0WNN4KP" />
         <script dangerouslySetInnerHTML={{ __html: `
           window.dataLayer = window.dataLayer || [];

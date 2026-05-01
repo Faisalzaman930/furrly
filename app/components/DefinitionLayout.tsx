@@ -6,6 +6,7 @@ import ContactSection from "./ContactSection";
 import { md } from "../utils/markdown";
 import { getRelatedArticles, getPillarTitle } from "../utils/related-articles";
 import RelatedTools from "./RelatedTools";
+import VetDisclaimer from "./VetDisclaimer";
 
 export default function DefinitionLayout({ article }: { article: DefinitionArticle }) {
   const related = getRelatedArticles(article.relatedSlugs);
@@ -83,6 +84,9 @@ export default function DefinitionLayout({ article }: { article: DefinitionArtic
               <p className="text-[10px] font-black text-white/50 uppercase tracking-widest mb-4">Definition</p>
               <p className="text-xl text-white font-bold leading-relaxed">{article.definition}</p>
             </div>
+
+            {/* Vet Disclaimer */}
+            <VetDisclaimer />
 
             {/* Quick Summary */}
             <div id="summary" className="bg-brand-start/5 border-l-4 border-brand-start rounded-r-[2rem] p-8 mb-12">
