@@ -29,6 +29,21 @@ export interface BreedScores {
   playfulness: number | null;
 }
 
+export interface CatScores {
+  adaptability: number | null;
+  affectionLevel: number | null;
+  childFriendly: number | null;
+  dogFriendly: number | null;
+  energyLevel: number | null;
+  grooming: number | null;
+  healthIssues: number | null;
+  intelligence: number | null;
+  sheddingLevel: number | null;
+  socialNeeds: number | null;
+  strangerFriendly: number | null;
+  vocalisation: number | null;
+}
+
 export interface BreedDoc {
   slug: string;
   name: string;
@@ -44,3 +59,21 @@ export interface BreedDoc {
   image: string | null;
   scores: BreedScores;
 }
+
+export interface CatBreedDoc {
+  slug: string;
+  name: string;
+  animal: "cats";
+  origin: string | null;
+  temperament: string | null;
+  description: string | null;
+  weight: string | null;
+  lifeSpan: string | null;
+  indoor: boolean | null;
+  lap: boolean | null;
+  hypoallergenic: boolean | null;
+  image: string | null;
+  scores: CatScores;
+}
+
+export type AnyBreed = BreedDoc | CatBreedDoc;

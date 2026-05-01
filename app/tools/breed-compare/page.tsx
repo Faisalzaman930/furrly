@@ -6,9 +6,10 @@ import Link from "next/link";
 import Image from "next/image";
 import ToolLayout from "../../components/ToolLayout";
 import { dogs } from "../../data/breeds/dogs";
-import type { BreedDoc, BreedScores } from "../../data/breeds/types";
+import { cats } from "../../data/breeds/cats";
+import type { BreedDoc, CatBreedDoc, BreedScores } from "../../data/breeds/types";
 
-const ALL_BREEDS = dogs;
+const ALL_BREEDS = [...dogs, ...cats];
 
 const SCORE_GROUPS: { label: string; emoji: string; keys: (keyof BreedScores)[] }[] = [
   {
@@ -75,8 +76,8 @@ function BreedSearch({
   placeholder,
   exclude,
 }: {
-  value: BreedDoc | null;
-  onChange: (b: BreedDoc | null) => void;
+  value: BreedDoc | CatBreedDoc | null;
+  onChange: (b: BreedDoc | CatBreedDoc | null) => void;
   placeholder: string;
   exclude: string | null;
 }) {
@@ -105,7 +106,7 @@ function BreedSearch({
           <div className="flex-1 min-w-0">
             <p className="font-black text-ebony text-sm">{value.name}</p>
             <p className="text-[10px] text-slate-gray uppercase tracking-widest mt-0.5">
-              {value.size} · {value.group}
+              {(value as BreedDoc).size ?? (value as CatBreedDoc).origin} · {(value as BreedDoc).group ?? value.animal}
             </p>
           </div>
           <button
@@ -144,7 +145,7 @@ function BreedSearch({
                   <div>
                     <p className="text-sm font-black text-ebony">{b.name}</p>
                     <p className="text-[10px] text-slate-gray uppercase tracking-widest">
-                      {b.size} · {b.group}
+                      {(b as BreedDoc).size ?? (b as CatBreedDoc).origin} · {(b as BreedDoc).group ?? b.animal}
                     </p>
                   </div>
                 </button>
@@ -200,8 +201,8 @@ function CompareInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [breedA, setBreedA] = useState<BreedDoc | null>(null);
-  const [breedB, setBreedB] = useState<BreedDoc | null>(null);
+  const [breedA, setBreedA] = useState<BreedDoc | CatBreedDoc | null>(null);
+  const [breedB, setBreedB] = useState<BreedDoc | CatBreedDoc | null>(null);
 
   // Load from URL params
   useEffect(() => {
@@ -212,15 +213,15 @@ function CompareInner() {
   }, [searchParams]);
 
   // Sync to URL
-  const syncUrl = useCallback((a: BreedDoc | null, b: BreedDoc | null) => {
+  const syncUrl = useCallback((a: BreedDoc | CatBreedDoc | null, b: BreedDoc | CatBreedDoc | null) => {
     const params = new URLSearchParams();
     if (a) params.set("a", a.slug);
     if (b) params.set("b", b.slug);
     router.replace(`/tools/breed-compare?${params.toString()}`, { scroll: false });
   }, [router]);
 
-  const handleA = (b: BreedDoc | null) => { setBreedA(b); syncUrl(b, breedB); };
-  const handleB = (b: BreedDoc | null) => { setBreedB(b); syncUrl(breedA, b); };
+  const handleA = (b: BreedDoc | CatBreedDoc | null) => { setBreedA(b); syncUrl(b, breedB); };
+  const handleB = (b: BreedDoc | CatBreedDoc | null) => { setBreedB(b); syncUrl(breedA, b); };
 
   // Summary scores
   const summaryA = useMemo(() => {
@@ -268,17 +269,19 @@ function CompareInner() {
                       {breed.image ? (
                         <Image src={breed.image} alt={breed.name} fill className="object-cover" sizes="64px" />
                       ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-3xl">🐕</div>
+                        <div className="absolute inset-0 flex items-center justify-center text-3xl">{breed.animal === "cats" ? "🐈" : "🐕"}</div>
                       )}
                     </div>
                     <div>
                       <p className="font-black text-lg leading-tight">{breed.name}</p>
-                      <p className="text-white/50 text-[10px] uppercase tracking-widest mt-1">{breed.group}</p>
+                      <p className="text-white/50 text-[10px] uppercase tracking-widest mt-1">
+                        {(breed as BreedDoc).group ?? (breed as CatBreedDoc).origin ?? breed.animal}
+                      </p>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-3 text-[10px]">
                     {[
-                      { l: "Size", v: breed.size },
+                      { l: "Size", v: (breed as BreedDoc).size ?? (breed as CatBreedDoc).origin },
                       { l: "Life Span", v: breed.lifeSpan },
                       { l: "Weight", v: breed.weight },
                       { l: "Avg Score", v: score ? `${score}/5` : "—" },
@@ -290,7 +293,7 @@ function CompareInner() {
                     ) : null)}
                   </div>
                   <Link
-                    href={`/breeds/dogs/${breed.slug}`}
+                    href={`/breeds/${breed.animal}/${breed.slug}`}
                     className="mt-4 inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-colors"
                   >
                     Full Profile →
@@ -299,25 +302,36 @@ function CompareInner() {
               ))}
             </div>
 
-            {/* Score groups */}
-            {SCORE_GROUPS.map((group) => (
-              <div key={group.label} className="bg-gray-50 rounded-3xl p-6">
-                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-gray-200">
-                  <span className="text-xl">{group.emoji}</span>
-                  <h3 className="text-sm font-black text-ebony uppercase tracking-tight">{group.label}</h3>
+            {/* Score groups — use shared keys only */}
+            {(() => {
+              const aScores = breedA.scores as unknown as Record<string, number | null>;
+              const bScores = breedB.scores as unknown as Record<string, number | null>;
+              const sharedKeys = Object.keys(aScores).filter(k => k in bScores);
+              const allLabels: Record<string, string> = { ...SCORE_LABELS,
+                affectionLevel:"Affection Level", childFriendly:"Child Friendly", energyLevel:"Energy Level",
+                grooming:"Grooming Needs", healthIssues:"Health Issues", sheddingLevel:"Shedding Level",
+                socialNeeds:"Social Needs", strangerFriendly:"Stranger Friendly", vocalisation:"Vocalisation",
+                dogFriendly:"Dog Friendly",
+              };
+              if (sharedKeys.length === 0) return (
+                <div className="bg-gray-50 rounded-3xl p-6 text-center text-slate-gray text-sm">
+                  These breeds have different trait categories — compare two dogs or two cats for a full score breakdown.
                 </div>
-                <div className="space-y-0">
-                  {group.keys.map((key) => (
-                    <ScoreRow
-                      key={key}
-                      label={SCORE_LABELS[key]}
-                      a={breedA.scores[key]}
-                      b={breedB.scores[key]}
-                    />
-                  ))}
+              );
+              return (
+                <div className="bg-gray-50 rounded-3xl p-6">
+                  <div className="flex items-center gap-3 mb-4 pb-3 border-b border-gray-200">
+                    <span className="text-xl">📊</span>
+                    <h3 className="text-sm font-black text-ebony uppercase tracking-tight">Shared Traits</h3>
+                  </div>
+                  <div className="space-y-0">
+                    {sharedKeys.map((key) => (
+                      <ScoreRow key={key} label={allLabels[key] ?? key} a={aScores[key]} b={bScores[key]} />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })()}
 
             {/* Share */}
             <div className="bg-ebony rounded-3xl p-6 flex items-center justify-between gap-4">

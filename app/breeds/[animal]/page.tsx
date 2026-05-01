@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { use, useState, useMemo } from "react";
 import { breedsByAnimal, ANIMAL_LABELS } from "../../data/breeds";
+import type { BreedDoc, CatBreedDoc } from "../../data/breeds";
 
 const SIZE_ORDER = ["Small", "Medium", "Large", "Very Large", "Giant"];
 
@@ -19,11 +20,11 @@ export default function AnimalBreedsPage({
 
   const label = ANIMAL_LABELS[animal] ?? animal;
   const groups = useMemo(
-    () => ["All", ...Array.from(new Set(breeds.map((b) => b.group ?? "Other"))).sort()],
+    () => ["All", ...Array.from(new Set(breeds.map((b) => (b as BreedDoc).group ?? (b as CatBreedDoc).origin ?? "Other"))).sort()],
     [breeds]
   );
   const sizes = useMemo(
-    () => ["All", ...SIZE_ORDER.filter((s) => breeds.some((b) => b.size === s))],
+    () => ["All", ...SIZE_ORDER.filter((s) => breeds.some((b) => (b as BreedDoc).size === s))],
     [breeds]
   );
 
@@ -34,11 +35,13 @@ export default function AnimalBreedsPage({
   const filtered = useMemo(
     () =>
       breeds.filter((b) => {
-        if (group !== "All" && b.group !== group) return false;
-        if (size !== "All" && b.size !== size) return false;
+        const bGroup = (b as BreedDoc).group ?? (b as CatBreedDoc).origin ?? "Other";
+        const bSize = (b as BreedDoc).size;
+        if (group !== "All" && bGroup !== group) return false;
+        if (size !== "All" && bSize !== size) return false;
         if (search) {
           const q = search.toLowerCase();
-          return b.name.toLowerCase().includes(q) || (b.group ?? "").toLowerCase().includes(q);
+          return b.name.toLowerCase().includes(q) || bGroup.toLowerCase().includes(q);
         }
         return true;
       }),
@@ -146,9 +149,9 @@ export default function AnimalBreedsPage({
                     <p className="text-xs font-black text-ebony leading-snug group-hover:text-brand-start transition-colors line-clamp-2">
                       {b.name}
                     </p>
-                    {b.size && (
+                    {((b as BreedDoc).size ?? (b as CatBreedDoc).origin) && (
                       <p className="text-[9px] text-slate-gray uppercase tracking-widest mt-1 font-black">
-                        {b.size}
+                        {(b as BreedDoc).size ?? (b as CatBreedDoc).origin}
                       </p>
                     )}
                   </div>

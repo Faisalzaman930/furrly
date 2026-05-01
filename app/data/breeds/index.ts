@@ -1,20 +1,23 @@
-export type { BreedDoc, BreedScores } from "./types";
+export type { BreedDoc, CatBreedDoc, AnyBreed, BreedScores, CatScores } from "./types";
 export { dogs } from "./dogs";
+export { cats } from "./cats";
 
 import { dogs } from "./dogs";
-import type { BreedDoc } from "./types";
+import { cats } from "./cats";
+import type { BreedDoc, CatBreedDoc, AnyBreed } from "./types";
 
 export const ANIMAL_LABELS: Record<string, string> = {
   dogs: "Dogs",
   cats: "Cats",
 };
 
-export const allBreeds: BreedDoc[] = [...dogs];
-
-export const breedsByAnimal: Record<string, BreedDoc[]> = {
+export const breedsByAnimal: Record<string, BreedDoc[] | CatBreedDoc[]> = {
   dogs,
+  cats,
 };
 
-export function getBreed(animal: string, slug: string): BreedDoc | undefined {
-  return breedsByAnimal[animal]?.find((b) => b.slug === slug);
+export const allBreeds: AnyBreed[] = [...dogs, ...cats];
+
+export function getBreed(animal: string, slug: string): AnyBreed | undefined {
+  return (breedsByAnimal[animal] as AnyBreed[])?.find((b) => b.slug === slug);
 }
