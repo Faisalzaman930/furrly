@@ -77,7 +77,7 @@ export default function BreedTabs({
   const isCat = breed.animal === "cats";
   const cat = isCat ? (breed as CatBreedDoc) : null;
   const dog = !isCat ? (breed as BreedDoc) : null;
-  const faqs = content?.faqs ?? catFaqs;
+  const faqs = content?.faqs ?? catFaqs ?? [];
 
   // Top-level scores for score cards
   const topScores = isCat && cat ? [
@@ -128,28 +128,22 @@ export default function BreedTabs({
       {activeTab === "overview" && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-6">
-            {isCat && cat?.description && (
-              <div className="bg-gray-50 rounded-3xl p-6">
-                <h2 className="text-sm font-black text-ebony uppercase tracking-widest mb-4">About the {cat.name}</h2>
-                <p className="text-sm text-slate-gray leading-7">{cat.description}</p>
-                {cat.temperament && (
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {cat.temperament.split(", ").map((t) => (
-                      <span key={t} className="text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-brand-start/10 text-brand-start rounded-full">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-            {!isCat && content && (
+            {content && (
               <>
                 <div className="bg-gray-50 rounded-3xl p-6">
                   <h2 className="text-sm font-black text-ebony uppercase tracking-widest mb-4">About the {breed.name}</h2>
-                  {content.overview.split("\n\n").map((p, i) => (
+                  {content.overview.split("\n").filter(Boolean).map((p, i) => (
                     <p key={i} className="text-sm text-slate-gray leading-7 mb-3 last:mb-0">{p}</p>
                   ))}
+                  {isCat && cat?.temperament && (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {cat.temperament.split(", ").map((t) => (
+                        <span key={t} className="text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-brand-start/10 text-brand-start rounded-full">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
                 <div className="bg-gray-50 rounded-3xl p-6">
                   <h2 className="text-sm font-black text-ebony uppercase tracking-widest mb-4">Temperament</h2>
@@ -161,7 +155,7 @@ export default function BreedTabs({
             )}
           </div>
           <div className="space-y-6">
-            {!isCat && content && (
+            {content && (
               <>
                 <div className="bg-gray-50 rounded-3xl p-6">
                   <h2 className="text-sm font-black text-ebony uppercase tracking-widest mb-4">Health & Lifespan</h2>
@@ -176,24 +170,6 @@ export default function BreedTabs({
                   ))}
                 </div>
               </>
-            )}
-            {isCat && cat && (
-              <div className="bg-gray-50 rounded-3xl p-6 space-y-4">
-                <h2 className="text-sm font-black text-ebony uppercase tracking-widest mb-4">Quick Facts</h2>
-                {[
-                  { label: "Origin", value: cat.origin },
-                  { label: "Life Span", value: cat.lifeSpan },
-                  { label: "Weight", value: cat.weight },
-                  { label: "Indoor", value: cat.indoor != null ? (cat.indoor ? "Prefers indoors" : "Indoor/Outdoor") : null },
-                  { label: "Lap Cat", value: cat.lap != null ? (cat.lap ? "Yes" : "Not typically") : null },
-                  { label: "Hypoallergenic", value: cat.hypoallergenic != null ? (cat.hypoallergenic ? "Yes" : "No") : null },
-                ].filter(r => r.value).map(({ label, value }) => (
-                  <div key={label} className="flex items-center justify-between border-b border-gray-100 pb-3 last:border-0 last:pb-0">
-                    <span className="text-[10px] font-black text-slate-gray uppercase tracking-widest">{label}</span>
-                    <span className="text-sm font-black text-ebony">{value}</span>
-                  </div>
-                ))}
-              </div>
             )}
 
             {/* Internal tool links */}
@@ -258,71 +234,32 @@ export default function BreedTabs({
       {/* ── Tab: Care ─────────────────────────────────────────────── */}
       {activeTab === "care" && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {!isCat && content ? (
-            <>
-              <div className="bg-gray-50 rounded-3xl p-6">
-                <h2 className="text-sm font-black text-ebony uppercase tracking-widest mb-4">Care, Grooming & Training</h2>
-                {content.careGrooming.split("\n\n").map((p, i) => (
-                  <p key={i} className="text-sm text-slate-gray leading-7 mb-3 last:mb-0">{p}</p>
-                ))}
-              </div>
-              <div className="space-y-4">
-                {[
-                  { href: "/tools/calorie-calculator", emoji: "🍖", label: "Calorie Calculator", desc: "Find your dog's daily calorie needs" },
-                  { href: "/tools/water-calculator", emoji: "💧", label: "Water Intake", desc: "How much water does your dog need?" },
-                  { href: "/tools/exercise-calculator", emoji: "🏃", label: "Exercise Guide", desc: "Daily exercise requirements by breed" },
-                  { href: "/tools/puppy-weight", emoji: "⚖️", label: "Puppy Weight Predictor", desc: "Estimate adult weight from puppy weight" },
-                ].map(({ href, emoji, label, desc }) => (
-                  <Link key={href} href={href}
-                    className="flex items-center gap-4 bg-gray-50 hover:bg-gray-100 rounded-2xl p-4 transition-colors group border border-gray-100">
-                    <span className="text-2xl">{emoji}</span>
-                    <div className="flex-1">
-                      <p className="text-sm font-black text-ebony group-hover:text-brand-start transition-colors">{label}</p>
-                      <p className="text-xs text-slate-gray">{desc}</p>
-                    </div>
-                    <span className="text-slate-gray group-hover:text-brand-start transition-colors">→</span>
-                  </Link>
-                ))}
-              </div>
-            </>
-          ) : cat ? (
-            <>
-              <div className="bg-gray-50 rounded-3xl p-6">
-                <h2 className="text-sm font-black text-ebony uppercase tracking-widest mb-5">Grooming Needs</h2>
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="text-xs text-slate-gray w-32 shrink-0">Grooming Level</span>
-                  <ScoreBar score={cat.scores.grooming} />
+          <div className="bg-gray-50 rounded-3xl p-6">
+            <h2 className="text-sm font-black text-ebony uppercase tracking-widest mb-4">Care, Grooming & Training</h2>
+            {content ? content.careGrooming.split("\n\n").map((p, i) => (
+              <p key={i} className="text-sm text-slate-gray leading-7 mb-3 last:mb-0">{p}</p>
+            )) : null}
+          </div>
+          <div className="space-y-4">
+            {[
+              { href: "/tools/calorie-calculator", emoji: "🍖", label: "Calorie Calculator", desc: isCat ? "Daily calorie needs for your cat" : "Find your dog's daily calorie needs" },
+              { href: "/tools/water-calculator", emoji: "💧", label: "Water Intake", desc: isCat ? "How much water does your cat need?" : "How much water does your dog need?" },
+              ...(!isCat ? [
+                { href: "/tools/exercise-calculator", emoji: "🏃", label: "Exercise Guide", desc: "Daily exercise requirements by breed" },
+                { href: "/tools/puppy-weight", emoji: "⚖️", label: "Puppy Weight Predictor", desc: "Estimate adult weight from puppy weight" },
+              ] : []),
+            ].map(({ href, emoji, label, desc }) => (
+              <Link key={href} href={href}
+                className="flex items-center gap-4 bg-gray-50 hover:bg-gray-100 rounded-2xl p-4 transition-colors group border border-gray-100">
+                <span className="text-2xl">{emoji}</span>
+                <div className="flex-1">
+                  <p className="text-sm font-black text-ebony group-hover:text-brand-start transition-colors">{label}</p>
+                  <p className="text-xs text-slate-gray">{desc}</p>
                 </div>
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="text-xs text-slate-gray w-32 shrink-0">Shedding Level</span>
-                  <ScoreBar score={cat.scores.sheddingLevel} />
-                </div>
-                <p className="text-sm text-slate-gray leading-7">
-                  {(cat.scores.grooming ?? 0) >= 4
-                    ? `The ${cat.name} requires dedicated grooming — daily brushing and regular professional grooming sessions are recommended to keep the coat healthy.`
-                    : (cat.scores.grooming ?? 0) >= 3
-                    ? `The ${cat.name} needs moderate grooming. Brush a few times per week and schedule occasional professional grooming.`
-                    : `The ${cat.name} is relatively low-maintenance. A weekly brush is usually enough to keep the coat in good condition.`}
-                </p>
-              </div>
-              <div className="space-y-4">
-                {[
-                  { href: "/tools/calorie-calculator", emoji: "🍖", label: "Calorie Calculator", desc: "Daily calorie needs for your cat" },
-                  { href: "/tools/water-calculator", emoji: "💧", label: "Water Intake", desc: "How much water does your cat need?" },
-                ].map(({ href, emoji, label, desc }) => (
-                  <Link key={href} href={href}
-                    className="flex items-center gap-4 bg-gray-50 hover:bg-gray-100 rounded-2xl p-4 transition-colors group border border-gray-100">
-                    <span className="text-2xl">{emoji}</span>
-                    <div className="flex-1">
-                      <p className="text-sm font-black text-ebony group-hover:text-brand-start transition-colors">{label}</p>
-                      <p className="text-xs text-slate-gray">{desc}</p>
-                    </div>
-                    <span className="text-slate-gray group-hover:text-brand-start transition-colors">→</span>
-                  </Link>
-                ))}
-              </div>
-            </>
-          ) : null}
+                <span className="text-slate-gray group-hover:text-brand-start transition-colors">→</span>
+              </Link>
+            ))}
+          </div>
         </div>
       )}
 

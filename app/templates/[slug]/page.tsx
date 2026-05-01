@@ -2,8 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { templateDocs } from "../../data/templates";
-import TemplateDownload from "../../components/TemplateDownload";
-import TemplateCopyButton from "../../components/TemplateCopyButton";
+import TemplateBuilder from "../../components/TemplateBuilder";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -112,18 +111,20 @@ export default async function TemplatePage({ params }: Props) {
                 </div>
               </div>
 
-              {/* Right: download card in hero */}
+              {/* Right: CTA card in hero */}
               <div className="lg:col-span-2">
                 <div className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-sm">
                   <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-1">
-                    Download Free
+                    Free · No Signup
                   </p>
-                  <p className="text-white font-black text-xl mb-6 leading-tight">{t.shortTitle}</p>
-                  <TemplateDownload
-                    templateText={t.templateText}
-                    shortTitle={t.shortTitle}
-                    formats={t.downloadFormats}
-                  />
+                  <p className="text-white font-black text-xl mb-3 leading-tight">{t.shortTitle}</p>
+                  <p className="text-white/40 text-xs leading-6 mb-6">Fill in your details below and download a completed document — no account needed.</p>
+                  <a
+                    href="#template-text"
+                    className="w-full flex items-center justify-center gap-2 bg-brand-start text-white font-black uppercase tracking-widest px-6 py-4 rounded-2xl hover:opacity-90 transition-opacity text-sm"
+                  >
+                    ✏️ Fill in Template ↓
+                  </a>
                 </div>
               </div>
             </div>
@@ -148,7 +149,7 @@ export default async function TemplatePage({ params }: Props) {
               href="#template-text"
               className="flex-none inline-flex items-center gap-2 bg-brand-start text-white text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl hover:opacity-90 transition-opacity"
             >
-              Jump to Template ↓
+              ✏️ Fill in Template ↓
             </a>
           </div>
         </div>
@@ -247,39 +248,9 @@ export default async function TemplatePage({ params }: Props) {
                 </section>
               )}
 
-              {/* Template text */}
+              {/* Template builder */}
               <section id="template-text" className="scroll-mt-20">
-                <h2 className="text-2xl font-black text-ebony uppercase tracking-tight mb-1">
-                  The Template
-                </h2>
-                <div className="h-1 w-12 bg-brand-start rounded-full mb-6" />
-                <p className="text-sm text-slate-gray mb-5 leading-6">
-                  Copy the text below, or use the download buttons. Replace all{" "}
-                  <span className="font-black text-brand-start bg-brand-start/10 px-1 py-0.5 rounded">[BRACKETED FIELDS]</span>{" "}
-                  with your specific information before use.
-                </p>
-
-                {/* Code block with copy button */}
-                <div className="bg-gray-950 rounded-3xl overflow-hidden">
-                  {/* Code toolbar */}
-                  <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
-                    <div className="flex items-center gap-2">
-                      <span className="h-3 w-3 rounded-full bg-white/10" />
-                      <span className="h-3 w-3 rounded-full bg-white/10" />
-                      <span className="h-3 w-3 rounded-full bg-white/10" />
-                      <span className="ml-3 text-[10px] font-black text-white/30 uppercase tracking-widest">
-                        {t.shortTitle} — Free Template
-                      </span>
-                    </div>
-                    <TemplateCopyButton text={t.templateText} />
-                  </div>
-                  <div className="p-6 md:p-8 overflow-x-auto max-h-[600px] overflow-y-auto">
-                    <pre className="text-gray-300 text-xs leading-6 font-mono whitespace-pre-wrap">
-                      {t.templateText}
-                    </pre>
-                  </div>
-                </div>
-
+                <TemplateBuilder templateText={t.templateText} shortTitle={t.shortTitle} />
                 <p className="text-[10px] text-slate-gray/50 mt-4 leading-5">
                   This template is provided for informational purposes only and does not constitute legal advice.
                   For legally binding documents, consult a qualified attorney in your jurisdiction.
@@ -315,17 +286,19 @@ export default async function TemplatePage({ params }: Props) {
             {/* ── Sidebar ── */}
             <aside className="space-y-6">
 
-              {/* Download card — sticky */}
+              {/* CTA card — sticky */}
               <div className="bg-ebony rounded-3xl p-7 sticky top-20">
                 <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-1">
-                  Free Download
+                  Free · No Signup
                 </p>
-                <p className="text-white font-black text-xl mb-6 leading-tight">{t.shortTitle}</p>
-                <TemplateDownload
-                  templateText={t.templateText}
-                  shortTitle={t.shortTitle}
-                  formats={t.downloadFormats}
-                />
+                <p className="text-white font-black text-lg mb-3 leading-tight">{t.shortTitle}</p>
+                <p className="text-white/40 text-xs leading-6 mb-5">Fill in your details and get a completed document instantly.</p>
+                <a
+                  href="#template-text"
+                  className="w-full flex items-center justify-center gap-2 bg-brand-start text-white font-black uppercase tracking-widest px-5 py-3.5 rounded-2xl hover:opacity-90 transition-opacity text-xs"
+                >
+                  ✏️ Fill in Template ↓
+                </a>
               </div>
 
               {/* Related */}

@@ -1,4 +1,4 @@
-import type { BreedDoc } from "./types";
+import type { BreedDoc, CatBreedDoc } from "./types";
 
 function scoreLabel(n: number | null, labels: [string, string, string]): string {
   if (n === null) return labels[1];
@@ -167,6 +167,143 @@ In summary, the ${name} is a ${pick(s.friendliness, "loyal and independent", "ve
         `The ${name} is a relatively quiet breed and won't alert bark excessively — a plus for apartment living or noise-sensitive households.`,
         `The ${name} barks at a moderate level. It will alert you to visitors but isn't known for excessive vocalisation.`,
         `The ${name} can be a vocal breed. Training a "quiet" cue early and providing adequate mental stimulation helps manage excessive barking.`
+      ),
+    },
+  ];
+
+  return { overview, temperament, careGrooming, healthLifespan, suitability, faqs };
+}
+
+export function generateCatContent(b: CatBreedDoc): BreedContent {
+  const s = b.scores;
+  const name = b.name;
+  const origin = b.origin ?? "unknown origin";
+  const lifeSpan = b.lifeSpan ?? "12–16 years";
+  const weight = b.weight ?? "varies";
+
+  // ── Overview ──────────────────────────────────────────────────────────────
+  const overview = `The ${name} is a ${scoreLabel(s.adaptability, ["somewhat selective", "adaptable", "highly versatile"])} cat of ${origin} origin, prized for its ${scoreLabel(s.affectionLevel, ["independent", "affectionate", "deeply loving"])} nature and ${scoreLabel(s.intelligence, ["calm", "capable", "keen and intelligent"])} personality. Weighing ${weight} with a typical life expectancy of ${lifeSpan}, this breed makes a ${scoreLabel(s.affectionLevel, ["loyal companion for those who appreciate independence", "wonderful companion for most households", "devoted companion that thrives on human connection"])}.
+${pick(s.energyLevel, `On the quieter end of the energy spectrum, the ${name} enjoys a relaxed lifestyle and is happy to spend much of the day lounging.`, `The ${name} has a moderate energy level — active enough to play but equally happy to settle beside you.`, `The ${name} is a high-energy cat that loves to climb, chase, and explore. Plenty of enrichment and interactive play are essential.`)} ${pick(s.socialNeeds, `This breed is relatively self-sufficient and handles quiet households well.`, `The ${name} enjoys companionship but isn't overly demanding of attention.`, `Highly social by nature, the ${name} craves company and does best in homes where someone is around for much of the day.`)}`;
+
+  // ── Temperament ──────────────────────────────────────────────────────────
+  const childLine = pick(s.childFriendly,
+    `Around children, the ${name} can be reserved and suits calmer households or families with older children.`,
+    `The ${name} generally gets along well with children, especially when introduced calmly and given space to retreat.`,
+    `The ${name} is known for its gentle patience with children of all ages, making it a wonderful family cat.`
+  );
+  const dogLine = pick(s.dogFriendly,
+    `With dogs, the ${name} can be cautious and prefers a cat-only or carefully managed multi-pet household.`,
+    `The ${name} can coexist with dogs when introductions are handled slowly and patiently.`,
+    `The ${name} is dog-friendly and typically adapts well to multi-pet homes.`
+  );
+  const strangerLine = pick(s.strangerFriendly,
+    `Around strangers, the ${name} is naturally reserved and may take time to warm up to new people.`,
+    `The ${name} is generally friendly with new people, warming up steadily without being overly shy or clingy.`,
+    `Sociable and confident, the ${name} tends to greet new people with curiosity rather than caution.`
+  );
+  const vocLine = pick(s.vocalisation,
+    `This breed is on the quieter side, communicating more through body language than vocalisation.`,
+    `The ${name} is moderately vocal — it will let you know when it wants attention, without being overly demanding.`,
+    `The ${name} can be quite vocal and enjoys a good conversation with its owners.`
+  );
+  const temperament = `${pick(s.affectionLevel, `The ${name} has an independent, self-reliant character`, `The ${name} is an even-tempered, well-balanced cat`, `The ${name} is famously affectionate and people-oriented`)} with a ${scoreLabel(s.intelligence, ["steady", "capable", "sharp and curious"])} mind. ${childLine} ${dogLine}
+
+${strangerLine} ${vocLine} ${pick(s.socialNeeds, "This breed handles solitude better than most and suits busy or single-person households.", "The " + name + " enjoys company but copes reasonably well when left alone for moderate periods.", "The " + name + " thrives on interaction and should not be left alone for long stretches without stimulation or a feline companion.")}`;
+
+  // ── Care & Grooming ──────────────────────────────────────────────────────
+  const groomLine = pick(s.grooming,
+    `The ${name} is low-maintenance in the grooming department — a weekly brush is usually sufficient to keep the coat healthy.`,
+    `Moderate grooming is needed: brush a few times per week and schedule occasional professional sessions.`,
+    `The ${name} requires significant grooming commitment — daily brushing and regular professional grooming keep the coat free of mats and tangles.`
+  );
+  const shedLine = pick(s.sheddingLevel, "minimal shedder", "moderate shedder", "heavy shedder");
+  const hypoNote = b.hypoallergenic
+    ? `The ${name} is considered hypoallergenic — it produces less of the Fel d 1 protein than most breeds, making it a popular choice for allergy-sensitive households. No cat is 100% allergen-free, so spending time with the breed before adopting is always advised.`
+    : `The ${name} is not considered hypoallergenic. Regular grooming and vacuuming help manage allergen levels in the home.`;
+  const careGrooming = `The ${name} is a ${shedLine}. ${groomLine} ${hypoNote}
+
+${pick(s.energyLevel, `Exercise needs are modest — a few short play sessions per day and access to a window perch or cat tree will keep the ${name} content.`, `Plan for at least two interactive play sessions daily. Wand toys, puzzle feeders, and climbing structures keep the ${name} physically and mentally engaged.`, `The ${name} needs abundant daily stimulation — vertical space, interactive toys, and regular active play are non-negotiable to prevent boredom and destructive behaviour.`)}
+
+${pick(s.intelligence, "The " + name + " is content with simple enrichment — a comfortable bed and quiet routine suit this breed well.", "Intelligent and curious, the " + name + " enjoys puzzle feeders and rotating toys to stay mentally sharp.", "Exceptionally clever, the " + name + " thrives with clicker training, complex puzzle toys, and new challenges — mental stimulation is just as important as physical exercise.")}`;
+
+  // ── Health & Lifespan ────────────────────────────────────────────────────
+  const healthLine = pick(s.healthIssues,
+    `The ${name} is considered a robust breed with fewer inherited health concerns than many pedigrees.`,
+    `Overall a healthy breed, the ${name} benefits from routine vet check-ups and preventive care.`,
+    `The ${name} can be prone to certain hereditary conditions. Ask breeders for documented health screenings and maintain regular vet visits.`
+  );
+  const indoorNote = b.indoor
+    ? `Keeping the ${name} indoors significantly extends its life expectancy and protects it from outdoor hazards.`
+    : `Whether kept indoors or allowed supervised outdoor access, the ${name} benefits from a stimulating, safe environment.`;
+  const healthLifespan = `With a typical life expectancy of ${lifeSpan}, the ${name} is a long-term commitment. ${healthLine}
+
+Routine health care — including annual vet visits, dental hygiene, parasite prevention, and appropriate vaccination — is essential for all cats. ${indoorNote} Pet insurance from kittenhood provides peace of mind and helps manage unexpected veterinary costs throughout your ${name}'s life.`;
+
+  // ── Suitability ──────────────────────────────────────────────────────────
+  const suitability = `The ${name} suits ${pick(s.adaptability, "owners who can provide a calm, consistent routine", "a wide range of households and lifestyles", "almost any living situation — apartments and houses alike")}. ${pick(s.socialNeeds, "Those who work long hours and prefer a more independent cat will find the " + name + " a comfortable match.", "This breed fits well in families, couples, and single-person households provided social needs are met.", "This is a breed for people who want an active, engaged companion — not a cat that's happy to be ignored.")}
+
+${pick(s.childFriendly, "Households with very young children may want to consider a more tolerant breed.", "Families with children will find the " + name + " a pleasant housemate with proper introductions.", "The " + name + " is an excellent choice for families with children, known for its patience and playful spirit.")} ${pick(s.dogFriendly, "A cat-only household or careful managed introductions with dogs are recommended.", "With patience, the " + name + " can share a home with a dog.", "Dog owners will find the " + name + " one of the easier cats to integrate into a multi-pet home.")}
+
+In summary, the ${name} is a ${pick(s.affectionLevel, "loyal and self-sufficient", "well-rounded and affectionate", "deeply loving and people-centred")} breed that ${pick(s.adaptability, "rewards patient, attentive owners", "fits comfortably into most households", "is relatively easy to integrate into daily life")}. Research breeders carefully or explore breed-specific rescues before bringing a ${name} home.`;
+
+  // ── FAQs ─────────────────────────────────────────────────────────────────
+  const faqs: { q: string; a: string }[] = [
+    {
+      q: `Is the ${name} good with children?`,
+      a: pick(s.childFriendly,
+        `The ${name} can be reserved around young children and suits calmer households. Supervised, gentle introductions are essential.`,
+        `Yes — the ${name} generally gets along well with children. Calm introductions and giving the cat a safe retreat space produce the best results.`,
+        `The ${name} is known for being patient and gentle with children of all ages, making it a great family cat.`
+      ),
+    },
+    {
+      q: `Is the ${name} hypoallergenic?`,
+      a: b.hypoallergenic
+        ? `Yes, the ${name} is considered hypoallergenic — it produces less of the Fel d 1 allergen than most breeds. No cat is 100% allergen-free, so spending time with the breed before adopting is always recommended.`
+        : `No, the ${name} is not considered hypoallergenic. Regular grooming and air filtration help manage allergen levels.`,
+    },
+    {
+      q: `How much grooming does the ${name} need?`,
+      a: pick(s.grooming,
+        `The ${name} is low-maintenance — a brush once a week is usually sufficient.`,
+        `The ${name} needs moderate grooming: brush a few times per week to prevent tangles and reduce shedding.`,
+        `The ${name} requires significant grooming. Daily brushing and regular professional grooming appointments are recommended.`
+      ),
+    },
+    {
+      q: `How vocal is the ${name}?`,
+      a: pick(s.vocalisation,
+        `The ${name} is a relatively quiet breed, communicating mostly through body language.`,
+        `The ${name} is moderately vocal — it will let you know when it needs something without being excessively noisy.`,
+        `The ${name} is a chatty breed that enjoys "talking" to its owners. Expect regular vocal check-ins throughout the day.`
+      ),
+    },
+    {
+      q: `Is the ${name} good with dogs?`,
+      a: pick(s.dogFriendly,
+        `The ${name} generally prefers a cat-only household or very carefully managed introductions with dogs.`,
+        `With slow, patient introductions the ${name} can coexist comfortably with dogs.`,
+        `The ${name} is typically dog-friendly and adapts well to multi-pet households.`
+      ),
+    },
+    {
+      q: `What is the ${name}'s life expectancy?`,
+      a: `The ${name} typically lives ${lifeSpan}. Regular vet visits, a balanced diet, and keeping them in a safe environment all contribute to a long, healthy life.`,
+    },
+    {
+      q: `Is the ${name} easy to care for?`,
+      a: pick(s.adaptability,
+        `The ${name} thrives with a consistent routine and a calm environment. It suits experienced cat owners who understand the breed's preferences.`,
+        `The ${name} is relatively easy to care for and adapts well to different households with standard cat care.`,
+        `Yes — the ${name} is one of the more adaptable breeds and suits a wide range of living situations and owner experience levels.`
+      ),
+    },
+    {
+      q: `Does the ${name} shed a lot?`,
+      a: pick(s.sheddingLevel,
+        `No — the ${name} is a minimal shedder. Great news for those concerned about cat hair on furniture.`,
+        `The ${name} sheds moderately. Regular brushing a few times a week keeps loose fur under control.`,
+        `Yes, the ${name} is a heavy shedder. Daily brushing and regular vacuuming are part of owning this breed.`
       ),
     },
   ];

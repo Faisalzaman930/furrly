@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { breedsByAnimal, getBreed, ANIMAL_LABELS } from "../../../data/breeds";
-import { generateBreedContent } from "../../../data/breeds/content";
+import { generateBreedContent, generateCatContent } from "../../../data/breeds/content";
 import type { BreedDoc, CatBreedDoc, BreedScores, CatScores } from "../../../data/breeds";
 import BreedTabs from "./BreedTabs";
 
@@ -94,7 +94,7 @@ export default async function BreedPage({
   const dog = !isCat ? (breed as BreedDoc) : null;
   const today = new Date().toISOString().split("T")[0];
 
-  const content = !isCat && dog ? generateBreedContent(dog) : null;
+  const content = isCat && cat ? generateCatContent(cat) : dog ? generateBreedContent(dog) : null;
 
   // Related breeds
   const related = (breedsByAnimal[animal] as (BreedDoc | CatBreedDoc)[])
@@ -105,7 +105,7 @@ export default async function BreedPage({
     })
     .slice(0, 4);
 
-  // FAQ for cats
+  // FAQ for cats (used for JSON-LD schema only — runtime uses content.faqs)
   const catFaqs = cat ? [
     { q: `Is the ${cat.name} good with children?`, a: cat.scores.childFriendly !== null ? (cat.scores.childFriendly >= 4 ? `Yes — the ${cat.name} is known for being gentle and patient with children.` : cat.scores.childFriendly >= 3 ? `The ${cat.name} generally gets along well with children with proper introductions.` : `The ${cat.name} can be reserved around young children and suits calmer households.`) : `Always supervise interactions between cats and young children.` },
     { q: `Is the ${cat.name} hypoallergenic?`, a: cat.hypoallergenic ? `Yes, the ${cat.name} is considered hypoallergenic, making it a popular choice for allergy sufferers. No cat is 100% allergen-free, but this breed produces less Fel d 1 protein.` : `No, the ${cat.name} is not considered hypoallergenic. Regular grooming helps manage dander levels.` },
