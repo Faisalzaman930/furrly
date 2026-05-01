@@ -5,22 +5,35 @@ import Logo from "./Logo";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 
+const learnItems = [
+  { name: "Resources",  href: "/resources",  icon: "📚", desc: "Guides, tips & expert pet advice." },
+  { name: "Templates",  href: "/templates",  icon: "📄", desc: "Free forms, contracts & records." },
+  { name: "Tools",      href: "/tools",      icon: "🛠️", desc: "Calculators & interactive tools." },
+  { name: "Breeds",     href: "/breeds",     icon: "🐾", desc: "Dog & cat breed directory." },
+];
+
 const Navbar = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
+  const [isLearnOpen, setIsLearnOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [mobileLearnOpen, setMobileLearnOpen] = useState(false);
   const pathname = usePathname();
-  const isResourcesActive = pathname.startsWith("/resources");
-  const isTemplatesActive = pathname.startsWith("/templates");
+
+  const isLearnActive =
+    pathname.startsWith("/resources") ||
+    pathname.startsWith("/templates") ||
+    pathname.startsWith("/tools") ||
+    pathname.startsWith("/breeds");
 
   const verticals = [
-    { name: "Playdates", href: "/playdates", icon: "🎉", desc: "Find compatible pets near you." },
-    { name: "Social Feed", href: "/social", icon: "📸", desc: "Your neighborhood's pet feed." },
-    { name: "Shelters", href: "/adoption", icon: "🏠", desc: "Browse verified shelters near you." },
-    { name: "Adoption", href: "/adoption", icon: "💛", desc: "Connect with owners rehoming pets." },
-    { name: "Fostering", href: "/fostering", icon: "💖", desc: "Open your home temporarily.", isComingSoon: true },
-    { name: "Vets", href: "/vets", icon: "🏥", desc: "Find trusted clinics nearby.", isComingSoon: true },
-    { name: "Lost & Found", href: "/lost-found", icon: "🔍", desc: "Reunite pets with owners.", isComingSoon: true },
-    { name: "Shop", href: "#", icon: "🛒", desc: "Pet gear & essentials.", isComingSoon: true },
+    { name: "Playdates",   href: "/playdates",  icon: "🎉", desc: "Find compatible pets near you." },
+    { name: "Social Feed", href: "/social",      icon: "📸", desc: "Your neighborhood's pet feed." },
+    { name: "Shelters",    href: "/adoption",    icon: "🏠", desc: "Browse verified shelters near you." },
+    { name: "Adoption",    href: "/adoption",    icon: "💛", desc: "Connect with owners rehoming pets." },
+    { name: "Fostering",   href: "/fostering",   icon: "💖", desc: "Open your home temporarily.", isComingSoon: true },
+    { name: "Vets",        href: "/vets",        icon: "🏥", desc: "Find trusted clinics nearby.", isComingSoon: true },
+    { name: "Lost & Found",href: "/lost-found",  icon: "🔍", desc: "Reunite pets with owners.", isComingSoon: true },
+    { name: "Shop",        href: "#",            icon: "🛒", desc: "Pet gear & essentials.", isComingSoon: true },
   ];
 
   return (
@@ -35,25 +48,22 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <div className="hidden items-center gap-10 md:flex">
-          <div
-            className="relative group"
-            onMouseEnter={() => setIsDropdownOpen(true)}
-            onMouseLeave={() => setIsDropdownOpen(false)}
-          >
+
+          {/* Features dropdown */}
+          <div className="relative group" onMouseEnter={() => setIsFeaturesOpen(true)} onMouseLeave={() => setIsFeaturesOpen(false)}>
             <button className="flex items-center gap-1 text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony py-4">
               Features
-              <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform duration-300 ${isFeaturesOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-
-            {isDropdownOpen && (
+            {isFeaturesOpen && (
               <div className="absolute left-1/2 -translate-x-1/2 top-full w-[600px] bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 grid grid-cols-2 gap-6 animate-in fade-in slide-in-from-top-4 duration-300">
                 {verticals.map((feature) => (
                   <div key={feature.name} className="relative">
                     <Link
                       href={feature.href}
-                      className={`flex items-start gap-4 p-4 rounded-2xl transition-all hover:bg-gray-50 group/item ${feature.isComingSoon ? 'cursor-default pointer-events-none opacity-60' : ''}`}
+                      className={`flex items-start gap-4 p-4 rounded-2xl transition-all hover:bg-gray-50 group/item ${feature.isComingSoon ? "cursor-default pointer-events-none opacity-60" : ""}`}
                     >
                       <div className="h-12 w-12 flex-none rounded-xl bg-gray-50 flex items-center justify-center text-2xl group-hover/item:scale-110 transition-transform shadow-inner">
                         {feature.icon}
@@ -80,20 +90,36 @@ const Navbar = () => {
           <Link href="/about" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
             About
           </Link>
-          <Link
-            href="/resources"
-            className={`text-sm font-bold uppercase tracking-widest transition-colors ${isResourcesActive ? "text-brand-start underline underline-offset-4" : "text-slate-gray hover:text-ebony"}`}
-            aria-current={isResourcesActive ? "page" : undefined}
-          >
-            Resources
-          </Link>
-          <Link
-            href="/templates"
-            className={`text-sm font-bold uppercase tracking-widest transition-colors ${isTemplatesActive ? "text-brand-start underline underline-offset-4" : "text-slate-gray hover:text-ebony"}`}
-            aria-current={isTemplatesActive ? "page" : undefined}
-          >
-            Templates
-          </Link>
+
+          {/* Learn dropdown */}
+          <div className="relative group" onMouseEnter={() => setIsLearnOpen(true)} onMouseLeave={() => setIsLearnOpen(false)}>
+            <button className={`flex items-center gap-1 text-sm font-bold uppercase tracking-widest transition-colors hover:text-ebony py-4 ${isLearnActive ? "text-brand-start" : "text-slate-gray"}`}>
+              Learn
+              <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform duration-300 ${isLearnOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {isLearnOpen && (
+              <div className="absolute left-1/2 -translate-x-1/2 top-full w-72 bg-white rounded-3xl shadow-2xl border border-gray-100 p-4 animate-in fade-in slide-in-from-top-4 duration-300">
+                {learnItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`flex items-center gap-4 px-4 py-3 rounded-2xl transition-all hover:bg-gray-50 group/item ${pathname.startsWith(item.href) ? "bg-brand-start/5" : ""}`}
+                  >
+                    <div className="h-10 w-10 flex-none rounded-xl bg-gray-50 flex items-center justify-center text-xl group-hover/item:scale-110 transition-transform shadow-inner">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <p className={`text-sm font-bold uppercase tracking-widest ${pathname.startsWith(item.href) ? "text-brand-start" : "text-ebony"}`}>{item.name}</p>
+                      <p className="text-[11px] text-slate-gray leading-relaxed">{item.desc}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
           <Link
             href="/join"
             className="rounded-xl bg-brand-gradient px-8 py-3 text-sm font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-lg shadow-brand-start/20"
@@ -103,11 +129,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Hamburger */}
-        <button
-          className="md:hidden text-ebony p-1"
-          onClick={() => setIsMobileOpen(o => !o)}
-          aria-label="Toggle menu"
-        >
+        <button className="md:hidden text-ebony p-1" onClick={() => setIsMobileOpen(o => !o)} aria-label="Toggle menu">
           {isMobileOpen ? (
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-6 w-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -129,7 +151,7 @@ const Navbar = () => {
               key={feature.name}
               href={feature.isComingSoon ? "#" : feature.href}
               onClick={() => setIsMobileOpen(false)}
-              className={`flex items-center gap-3 rounded-2xl px-4 py-3 transition-colors hover:bg-gray-50 ${feature.isComingSoon ? 'opacity-50 pointer-events-none' : ''}`}
+              className={`flex items-center gap-3 rounded-2xl px-4 py-3 transition-colors hover:bg-gray-50 ${feature.isComingSoon ? "opacity-50 pointer-events-none" : ""}`}
             >
               <span className="text-xl">{feature.icon}</span>
               <span className="text-sm font-bold text-ebony">{feature.name}</span>
@@ -141,25 +163,44 @@ const Navbar = () => {
 
           <div className="my-4 border-t border-gray-100" />
 
-          {[
-            { name: "Roadmap", href: "/roadmap" },
-            { name: "About", href: "/about" },
-            { name: "Resources", href: "/resources" },
-            { name: "Templates", href: "/templates" },
-          ].map(item => {
-            const active = item.href === "/resources" ? isResourcesActive : item.href === "/templates" ? isTemplatesActive : pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsMobileOpen(false)}
-                aria-current={active ? "page" : undefined}
-                className={`rounded-2xl px-4 py-3 text-sm font-bold transition-colors ${active ? "text-brand-start bg-brand-start/5" : "text-ebony hover:bg-gray-50"}`}
-              >
-                {item.name}
-              </Link>
-            );
-          })}
+          {/* Learn section mobile */}
+          <button
+            onClick={() => setMobileLearnOpen(o => !o)}
+            className="flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-bold text-ebony hover:bg-gray-50 transition-colors"
+          >
+            <span className={isLearnActive ? "text-brand-start" : ""}>Learn</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform ${mobileLearnOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {mobileLearnOpen && (
+            <div className="ml-4 flex flex-col gap-1">
+              {learnItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileOpen(false)}
+                  className={`flex items-center gap-3 rounded-2xl px-4 py-3 transition-colors hover:bg-gray-50 ${pathname.startsWith(item.href) ? "text-brand-start bg-brand-start/5" : "text-ebony"}`}
+                >
+                  <span className="text-xl">{item.icon}</span>
+                  <span className="text-sm font-bold">{item.name}</span>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          <div className="my-2 border-t border-gray-100" />
+
+          {[{ name: "Roadmap", href: "/roadmap" }, { name: "About", href: "/about" }].map(item => (
+            <Link
+              key={item.name}
+              href={item.href}
+              onClick={() => setIsMobileOpen(false)}
+              className={`rounded-2xl px-4 py-3 text-sm font-bold transition-colors ${pathname === item.href ? "text-brand-start bg-brand-start/5" : "text-ebony hover:bg-gray-50"}`}
+            >
+              {item.name}
+            </Link>
+          ))}
 
           <div className="mt-4">
             <Link
